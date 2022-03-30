@@ -240,6 +240,14 @@
         </a>
       </li><!-- End Dashboard Nav -->
 
+      
+      <li class="nav-item">
+        <a class="nav-link " href="attendance.php">
+          <i class="bi bi-people"></i>
+          <span>Attendance</span>
+        </a>
+      </li>
+
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#client-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-menu-button-wide"></i><span>Client</span><i class="bi bi-chevron-down ms-auto"></i>

@@ -1,6 +1,6 @@
 <?php
     $server_name="localhost";
     $username="root";
-    $password="Sarvesh@Anand@Mankar";
+    $password="";
     $database_name="autoclick";
 ?>
