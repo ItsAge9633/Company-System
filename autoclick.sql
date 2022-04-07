@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2022 at 07:45 PM
+-- Generation Time: Apr 07, 2022 at 07:40 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -20,6 +20,22 @@ SET time_zone = "+00:00";
 --
 -- Database: `autoclick`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attendancet`
+--
+
+CREATE TABLE `attendancet` (
+  `Id` int(7) NOT NULL,
+  `uname` varchar(255) NOT NULL,
+  `empid` varchar(255) NOT NULL,
+  `ddate` date NOT NULL,
+  `intime` time NOT NULL,
+  `outtime` time NOT NULL,
+  `ontime` time DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -142,6 +158,12 @@ INSERT INTO `workt` (`Id`, `empid`, `pid`, `wstatus`) VALUES
 --
 
 --
+-- Indexes for table `attendancet`
+--
+ALTER TABLE `attendancet`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- Indexes for table `clientt`
 --
 ALTER TABLE `clientt`
@@ -169,6 +191,12 @@ ALTER TABLE `workt`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `attendancet`
+--
+ALTER TABLE `attendancet`
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `clientt`
