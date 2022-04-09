@@ -1,0 +1,8 @@
+1. Attendance system
+2. Invoice and report generator
+3. Financial stuff : data and charts
+4. Salary receipt
+5. Employee Ui
+6. Arduino Biometric attendance
+7. Blog index
+8. Achivements
