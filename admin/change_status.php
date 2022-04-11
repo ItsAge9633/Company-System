@@ -9,7 +9,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title>Dashboard - RichTech </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -74,6 +74,8 @@
                         <input type="text" class="form-control" name="pid" id="" placeholder="Project ID"><br>
                         <input type="submit" name="psubmit" style="font-size:20px" class="btn btn-outline-primary" value="Next">
                     </center>
+                    <br>
+                    <br>
                 </form>
             </div>
             <div class="col-md-6">
