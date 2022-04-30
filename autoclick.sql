@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2022 at 07:45 PM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 8.0.9
+-- Generation Time: Apr 30, 2022 at 07:16 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,22 @@ SET time_zone = "+00:00";
 --
 -- Database: `autoclick`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attendancet`
+--
+
+CREATE TABLE `attendancet` (
+  `Id` int(7) NOT NULL,
+  `uname` varchar(255) NOT NULL,
+  `empid` varchar(255) NOT NULL,
+  `ddate` date NOT NULL,
+  `intime` time NOT NULL,
+  `outtime` time NOT NULL,
+  `ontime` time DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -116,6 +132,18 @@ INSERT INTO `logint` (`Id`, `uname`, `pswd`, `role`, `uid`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `timingt`
+--
+
+CREATE TABLE `timingt` (
+  `Id` int(11) NOT NULL,
+  `intime` time NOT NULL,
+  `outtime` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `workt`
 --
 
@@ -161,6 +189,12 @@ ALTER TABLE `logint`
   ADD PRIMARY KEY (`Id`);
 
 --
+-- Indexes for table `timingt`
+--
+ALTER TABLE `timingt`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- Indexes for table `workt`
 --
 ALTER TABLE `workt`
@@ -187,6 +221,12 @@ ALTER TABLE `empt`
 --
 ALTER TABLE `logint`
   MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `timingt`
+--
+ALTER TABLE `timingt`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `workt`
