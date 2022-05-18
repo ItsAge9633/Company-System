@@ -3,7 +3,6 @@ CWIT End Semester Project
 
 ## Phases
 
-![image](image.png)
 
 ## Beginner level ideas
 
