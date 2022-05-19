@@ -5,13 +5,13 @@
     if(isset($_SESSION['uname'])){
         session_destroy();
         ob_start();
-        header('Location: '.'login.php');
+        header('Location: '.'index.php');
         ob_end_flush();
         die();
     }
     else{
         ob_start();
-        header('Location: '.'login.php');
+        header('Location: '.'index.php');
         ob_end_flush();
         die();
     }

@@ -4,7 +4,7 @@
     if ($_SESSION['role']=="emp"){
         echo $_SESSION['new'];
         if (isset($_POST['srsubmit'])){
-            include '../config.php';
+            include '../imports/config.php';
             if ($_SESSION['new']){
                 print("Op");
                 if(!empty($_FILES["pp"]["name"])) { 
@@ -95,7 +95,13 @@
                     $sql_query = "INSERT into empt (uname,empid,ename,email,mobile,dob,eaddress,pphoto,bio,wstatus,github,twitter,linkedin,insta) VALUES 
                     ('$uname','$emp_id','$ename','$email','$mobile','$dob','$address','$imgContent','$bio','free','$github','$twitter','$linkedin','$insta');";
                 }               
-                mysqli_query($conn,$sql_query);
+                
+                if(mysqli_query($conn,$sql_query)){
+                    echo "Records added successfully.";
+                    header('Location: '.'users-profile.php');
+                } else{
+                    echo "ERROR: Could not able to execute $sql_query. " . mysqli_error($conn);
+                }
 
                 mysqli_close($conn);
             }

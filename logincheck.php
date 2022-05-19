@@ -7,7 +7,7 @@
 
         $conn=mysqli_connect($server_name,$username,$password,$database_name);
         if($conn){
-            echo 'Op';
+            echo 'Success';
         }
 
         $sql_query = "SELECT * from logint where uname='$u'";
@@ -36,7 +36,7 @@
                 $_SESSION['uid']=$uid;
                 $_SESSION['role']=$role;
                 ob_start();
-                header('Location: '.'employee/dashboard.php');
+                header('Location: '.'employee/users-profile.php');
                 ob_end_flush();
                 die();
             }

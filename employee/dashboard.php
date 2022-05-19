@@ -3,7 +3,7 @@
         if ($_SESSION['role']=="emp"){
             //print($_SESSION['uname']);
             $u=$_SESSION['uname'];
-            include '../config.php';
+            include '../imports/config.php';
             $conn=mysqli_connect($server_name,$username,$password,$database_name);
             $sql_query = "SELECT * from empt where uname='$u'";
             $records = mysqli_query($conn,$sql_query);

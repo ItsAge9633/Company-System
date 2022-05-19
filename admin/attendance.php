@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <title>Dashboard - RichTech </title>
@@ -49,8 +50,9 @@
                                 <input type="text" class="form-control" id="inputNanme4">
                             </div>
                             <div class="col-12">
-                                <label for="inputPassword4" class="form-label">In time</label>
+                                <label for="inputPassword4" class="form-label">In Time (DD-MM-YYYY)</label>
                                 <input type="text" class="form-control" id="inputPassword4">
+
                             </div>
                             <div class="col-12">
                                 <label for="inputPassword4" class="form-label">Out Time</label>
@@ -66,6 +68,14 @@
                     </div>
                 </div>
             </div>
+
+        <script type="text/javascript">
+            $(function() {
+            $('#datepicker').datepicker();
+        });
+        </script>
+
+
             <div class="col-lg-6 col-md-6" style="float:right;">
                 <div class="card">
                     <div class="card-body">
@@ -126,7 +136,7 @@
                                             echo '<th scope="col">#</th>';
                                             echo '<th scope="col">Empid</th>';
                                             echo '<th scope="col">Employee Name</th>';
-                                            echo '<th scope="col">Word-Profile</th>';
+                                            echo '<th scope="col">Work-Profile</th>';
                                             echo '<th scope="col">In-time</th>';
                                             echo '<th scope="col">Out-time</th>';
                                             echo '<th scope="col">Status</th>';

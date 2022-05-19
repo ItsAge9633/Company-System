@@ -42,7 +42,7 @@
 		session_start();
 		if(isset($_SESSION['uname']) and $_SESSION['role']=="emp"){
 			$u=$_SESSION['uname'];
-            include '../config.php';
+            include '../imports/config.php';
             $conn=mysqli_connect($server_name,$username,$password,$database_name);
             $sql_query = "SELECT * from empt where uname='$u'";
             $records = mysqli_query($conn,$sql_query);
@@ -680,7 +680,7 @@
 					<?php
 
 						$u=$_SESSION['uname'];
-						include '../config.php';
+						include '../imports/config.php';
 						$conn=mysqli_connect($server_name,$username,$password,$database_name);
 						$sql_query = "SELECT * from empt where uname='$u'";
 						$records = mysqli_query($conn,$sql_query);
@@ -936,7 +936,7 @@
 		}
 		else{
 			ob_start();
-            header('Location: '.'../login.php');
+            header('Location: '.'../');
             ob_end_flush();
             die();
 		}

@@ -27,7 +27,14 @@
             
 
             $conn=mysqli_connect($server_name,$username,$password,$database_name);
-            mysqli_query($conn,$sql_query);
+            
+            if(mysqli_query($conn,$sql_query)){
+                echo "New record created successfully";
+                header('Location: '.'viwe_cli.php');
+            }
+            else{
+                echo "Error: ".$sql_query."<br>".mysqli_error($conn);
+            }
             mysqli_close($conn);
         }
     }
