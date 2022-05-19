@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2022 at 07:16 PM
+-- Generation Time: May 10, 2022 at 08:34 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -34,7 +34,7 @@ CREATE TABLE `attendancet` (
   `ddate` date NOT NULL,
   `intime` time NOT NULL,
   `outtime` time NOT NULL,
-  `ontime` time DEFAULT NULL
+  `ontime` varchar(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
