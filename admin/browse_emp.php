@@ -42,18 +42,18 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Employees</h1>
+      <h1><a href="browse_emp.php">Employees</a></h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-          <li class="breadcrumb-item active">Employees</li>
+          <li class="breadcrumb-item active"><a href="browse_emp.php">Employees</a></li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
     <section class="section dashboard">
     <br>
-    <div class="card" style="padding: 2%;">
+    <div id="input" name="input" class="card" style="padding: 2%;">
         <form action="" method="post">
             <label for="empid" class="form-label">Fetch Employee Details by Employee ID:</label>
             <div class="row">
@@ -96,6 +96,7 @@
                 $records = mysqli_query($conn,$sql_query);
             }
             if (isset($_POST['byid']) or isset($_POST['byemail']) or isset($_POST['byname'])){
+                echo '<style type="text/css">#input{display:none;}</style>';
                 while($data = mysqli_fetch_assoc($records)){
                     $empid=$data['empid'];
                     $ename=$data['ename'];

@@ -210,7 +210,8 @@ h1, h2, h3, h4, h5, h6 {
 /* Card */
 .card {
   margin-bottom: 30px;
-  border: none;
+  border-width: 1px;
+  border-color: #000033;
   border-radius: 5px;
   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
 }

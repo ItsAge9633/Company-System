@@ -43,18 +43,18 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Browse Client</h1>
+      <h1><a href="browse_cli.php">Browse Client</a></h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-          <li class="breadcrumb-item active">Browse Client</li>
+          <li class="breadcrumb-item active"><a href="browse_cli.php">Browse Client</a></li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
     <section class="section add_cli">
 
-      <div class="card">
+      <div id="input" name="input" class="card">
         <div class="card-body">
           <h5 class="card-title">Browse Client</h5>
 
@@ -127,6 +127,7 @@
             }
 
             if (isset($_POST['byid']) or isset($_POST['byname']) or isset($_POST['byemail']) or isset($_POST['byproj'])){
+                echo '<style type="text/css">#input{display:none;}</style>';
                 while($data = mysqli_fetch_assoc($records)){
                     $cid=$data['Id'];
                     $cname=$data['cname'];
