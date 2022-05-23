@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if ($_SESSION['role']=="admin"){
+    if ($_SESSION['erole']=="admin"){
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,12 +35,6 @@
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-  <!-- =======================================================
-  * Template Name: NiceAdmin - v2.2.2
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>

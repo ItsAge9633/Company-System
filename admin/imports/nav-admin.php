@@ -293,6 +293,11 @@
           <i class="bi bi-person-badge"></i><span>Employees</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="employees-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+            <a href="addEmployee.php">
+              <i class="bi bi-circle"></i><span>Add Employee</span>
+            </a>
+          </li>
           <li>
             <a href="all_emp.php">
               <i class="bi bi-circle"></i><span>All Employees</span>

@@ -1,7 +1,7 @@
 <?php
 
     session_start();
-    if ($_SESSION['role']=="admin"){
+    if ($_SESSION['erole']=="admin"){
         if (isset($_POST['crsubmit'])){
             include '../imports/config.php';
             $cname=$_POST['cname'];

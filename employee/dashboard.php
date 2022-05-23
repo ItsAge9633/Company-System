@@ -1,6 +1,6 @@
 <?php
         session_start();
-        if ($_SESSION['role']=="emp"){
+        if ($_SESSION['erole']=="emp"){
             //print($_SESSION['uname']);
             $u=$_SESSION['uname'];
             include '../imports/config.php';

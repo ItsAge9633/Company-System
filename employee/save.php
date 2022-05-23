@@ -1,7 +1,7 @@
 <?php
 
     session_start();
-    if ($_SESSION['role']=="emp"){
+    if ($_SESSION['erole']=="emp"){
         echo $_SESSION['new'];
         if (isset($_POST['srsubmit'])){
             include '../imports/config.php';
@@ -20,7 +20,7 @@
                         $imgContent = addslashes(file_get_contents($image)); 
                     }
                     $uname=$_SESSION['uname'];
-                    $emp_id=$_SESSION['uid'];
+                    $emp_id=$_SESSION['euid'];
                     $ename=$_POST['ename'];
                     $email=$_POST['email'];
                     $mobile=$_POST['mobile'];
@@ -52,7 +52,7 @@
                     }
                 }
                 $uname=$_SESSION['uname'];
-                $emp_id=$_SESSION['uid'];
+                $emp_id=$_SESSION['euid'];
                 $ename=$_POST['ename'];
                 $email=$_POST['email'];
                 $mobile=$_POST['mobile'];

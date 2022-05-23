@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if ($_SESSION['role']=="admin"){
+    if ($_SESSION['erole']=="admin"){
 ?>
 <!DOCTYPE html>
 <html lang="en">
