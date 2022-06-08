@@ -6,49 +6,54 @@ $conn=mysqli_connect($server_name,$username,$password,$database_name);
 
 if($_SESSION['erole'] =='admin'){
     if(isset($_POST['addempsubmit'])){
-     
-        //to check if euid already exist
-        $sql_query = "select * from logint where euid='".$_POST['euid']."'";
-        if(mysqli_query($conn,$sql_query)){
-            echo "<script>alert('Employee ID already exists');</script>";
-        }
-        else{
-            $euid = $_POST['euid'];
-        }
 
-        //to check if uname already exist
-        $sql_query = "select * from logint where uname='".$_POST['uname']."'";
-        if(mysqli_query($conn,$sql_query)){
-            echo "<script>alert('Employee Name already exists');</script>";
-        }
-        else{
-            $uname = $_POST['uname'];
-        }
-        
+        $euid = $_POST['euid'];
         $emprole = $_POST['emprole'];
-        $pass = $_POST['pwd'];
-        $repass =  $_POST['repwd'];
+        $uname = $_POST['uname'];
+        $pwd = $_POST['pwd'];
+        $repwd = $_POST['repwd'];
         $jdate = $_POST['jdate'];
-        $newDate = date("Y-m-d", strtotime($jdate));
-    }
-}
 
+        if($pwd == $repwd){
 
-if ($pass == $repass){
-    $sql_query = "INSERT into logint (uname, pswd, erole, euid, jdate) VALUES 
-            ('$uname','$pass','$emprole','$euid','$newDate')";
+            $sql = "SELECT * FROM logint WHERE euid='$euid'";
+            $result = mysqli_query($conn, $sql);
+            $resultCheck = mysqli_num_rows($result);
+
+            $sql2 = "SELECT * FROM logint WHERE uname='$uname'";
+            $result2 = mysqli_query($conn, $sql2);
+            $resultCheck2 = mysqli_num_rows($result2);
+
+            if ($resultCheck > 0) {
+                echo "<script>alert('Employee ID already exists!')</script>";
+                echo "<script>window.location.href='addEmployee.php'</script>";
+                }
+            elseif ($resultCheck2 > 0) {
+                echo "<script>alert('Username already exists!')</script>";
+                echo "<script>window.location.href='addEmployee.php'</script>";
+                }
             
-    $conn=mysqli_connect($server_name,$username,$password,$database_name);
-    if(mysqli_query($conn,$sql_query)){
-        echo "New record created successfully";
-        header('Location: '.'all_emp.php');
-    }
-    else{
-        echo "Error: ".$sql_query."<br>".mysqli_error($conn);
-    }
-    mysqli_close($conn);
-}else{
-echo "<script>alert('Password and Re-Password are not same');</script>";
-}
+            else{
+            $sql = "INSERT INTO `logint`(`uname`, `pswd`, `erole`, `euid`, `jdate`) VALUES ('$uname','$pwd','$emprole','$euid', '$jdate')";
+            $result = mysqli_query($conn,$sql);
 
-?>
+            if($result){
+                echo "<script>alert('Employee Added Successfully');</script>";
+                echo "<script>window.location.href='addEmployee.php'</script>";
+            }
+            else{
+                echo "<script>alert('Employee Not Added');</script>";
+                echo "<script>window.location.href='addEmployee.php'</script>";
+            }
+        }
+        }
+        else{
+            echo "<script>alert('Passwords do not match!');</script>";
+            echo "<script>window.location.href='addEmployee.php'</script>";
+
+        }
+    }
+
+    }
+      
+ ?>
