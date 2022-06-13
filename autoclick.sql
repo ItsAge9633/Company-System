@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2022 at 07:12 PM
+-- Generation Time: Jun 13, 2022 at 01:30 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -33,9 +33,18 @@ CREATE TABLE `attendancet` (
   `empid` varchar(255) NOT NULL,
   `ddate` date NOT NULL,
   `intime` time NOT NULL,
-  `outtime` time NOT NULL,
-  `ontime` time DEFAULT NULL
+  `outtime` time DEFAULT NULL,
+  `fullday` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `attendancet`
+--
+
+INSERT INTO `attendancet` (`Id`, `uname`, `empid`, `ddate`, `intime`, `outtime`, `fullday`) VALUES
+(1, 'b', '1', '2022-06-13', '07:31:00', '20:35:00', 'True'),
+(2, 'c', '2', '2022-06-13', '10:36:00', '18:00:00', 'False'),
+(3, 'd', '3', '2022-06-13', '09:36:00', '15:37:00', 'False');
 
 -- --------------------------------------------------------
 
@@ -177,6 +186,12 @@ INSERT INTO `workt` (`Id`, `empid`, `pid`, `wstatus`) VALUES
 --
 
 --
+-- Indexes for table `attendancet`
+--
+ALTER TABLE `attendancet`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- Indexes for table `clientt`
 --
 ALTER TABLE `clientt`
@@ -212,6 +227,12 @@ ALTER TABLE `workt`
 --
 
 --
+-- AUTO_INCREMENT for table `attendancet`
+--
+ALTER TABLE `attendancet`
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `clientt`
 --
 ALTER TABLE `clientt`
@@ -227,7 +248,7 @@ ALTER TABLE `empt`
 -- AUTO_INCREMENT for table `logint`
 --
 ALTER TABLE `logint`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `timingt`
