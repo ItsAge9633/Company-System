@@ -8,7 +8,7 @@
         
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <title>Dashboard - RichTech </title>
+        <title>Attendance - RichTech </title>
         <meta content="" name="description">
         <meta content="" name="keywords">
         <!-- Favicons -->
@@ -39,24 +39,37 @@
                     <div class="card-body">
                         <h5 class="card-title">Attendance Form</h5>
                         <!-- Vertical Form -->
-                        <form class="row mb-3">
+                        <form class="row mb-3" method="POST" action="attendanceBackend.php">
                             <div class="col-12">
                                 <label for="inputNanme4" class="form-label">Employee id</label>
-                                <input type="text" class="form-control" id="inputNanme4">
+                                <input type="text" class="form-control" id="empid" name="empid" required="">
+                                <br />
                             </div>
-                            <div class="col-12">
-                                <label for="inputPassword4" class="form-label">In Time (DD-MM-YYYY)</label>
-                                <input type="text" class="form-control" id="inputPassword4">
+                            <div class="col-md-6">
+                                <label for="inputEmail4" class="form-label">Date</label>
+                                <input type="date" class="form-control" id="date" name="date" placeholder="Date" required="">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputEmail4" class="form-label">Time</label>
+                                <input type="time" class="form-control" id="time" name="time" placeholder="Time" required="">
+                                <br />
+                            </div>
 
+                            <!--
+                                option code is commented out because it is not used in this project
+                            <div class="col-md-6">
+                            <label for="inputState" class="form-label">OnTime</label>
+                            <select id="boolval" name="boolval" class="form-select">
+                                <option selected>False</option>
+                                <option>True</option>
+                            </select>
                             </div>
-                            <div class="col-12">
-                                <label for="inputPassword4" class="form-label">Out Time</label>
-                                <input type="text" class="form-control" id="inputPassword4">
-                            </div>
+                            -->
+
                             <div class="text-center">
                                 <br>
-                                <button type="submit" class="btn btn-primary">Enter</button>
-                                <button type="reset" class="btn btn-secondary">Release</button>
+                                <button type="submit" name="intime" class="btn btn-primary">Enter</button>
+                                <button type="submit" name="outtime" class="btn btn-secondary">Release</button>
                             </div>
                         </form>
                         <!-- Vertical Form -->
@@ -64,34 +77,27 @@
                 </div>
             </div>
 
-        <script type="text/javascript">
-            $(function() {
-            $('#datepicker').datepicker();
-        });
-        </script>
-
 
             <div class="col-lg-6 col-md-6" style="float:right;">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Search by Employee Details</h5>
                         <!-- Vertical Form -->
-                        <form class="row mb-3">
+                        <form class="row mb-3" action="" method="POST">
                             <div class="col-12">
                                 <label for="inputNanme4" class="form-label">Employee id</label>
-                                <input type="text" class="form-control" id="inputNanme4">
+                                <input type="text" class="form-control" id="empid" name="empid" required="">
+                                <br />
                             </div>
-                            <div class="col-12">
-                                <label for="inputPassword4" class="form-label">Date</label>
-                                <input type="text" class="form-control" id="inputPassword4">
+                            
+                            <div class="col-md-12">
+                                <label for="inputEmail4" class="form-label">Date</label>
+                                <input type="date" class="form-control" id="date" name="date" placeholder="Date">
                             </div>
-                            <div class="col-12">
-                                <label for="inputPassword4" class="form-label">Month and year</label>
-                                <input type="text" class="form-control" id="inputPassword4">
-                            </div>
+                            <p></p> <p></p> <p></p>
+
                             <div class="text-center">
-                                <br>
-                                <button type="submit" class="btn btn-primary">Search</button>
+                                <button type="submit" name="searchattendance" class="btn btn-primary">Search</button>
                             </div>
                         </form>
                         <!-- Vertical Form -->
@@ -121,16 +127,99 @@
                                 <?php
                                     include '../imports/config.php';
                                     $conn=mysqli_connect($server_name,$username,$password,$database_name);
-                                    $sql_query = "SELECT * from empt";
+
+                                    if(isset($_POST['searchattendance']) ){
+                                        
+                                        
+                                        $empid=$_POST['empid'];
+                                        $date=$_POST['date'];
+                                        if ($date !="") {
+                                        $sql="SELECT * FROM attendancet WHERE empid='$empid' AND ddate='$date'";
+                                        $records=mysqli_query($conn,$sql);
+                                        }else{
+                                            $sql="SELECT * FROM attendancet WHERE empid='$empid'";
+                                            $records=mysqli_query($conn,$sql);
+                                        }
+                                        if(mysqli_num_rows($records)>0){
+                                           
+                                            $n=1;
+                                            echo '<div class="table-responsive">';
+                                            echo '<table class="table datatable">';
+                                                echo '<thead class="thead-dark">';
+                                                    echo '<tr>';
+                                                    echo '<th scope="col">#</th>';
+                                                    echo '<th scope="col">Empid</th>';
+                                                    echo '<th scope="col">User Name</th>';
+                                                    echo '<th scope="col">Work-Profile</th>';
+                                                    echo '<th scope="col">In-time</th>';
+                                                    echo '<th scope="col">Out-time</th>';
+                                                    echo '<th scope="col">Status</th>';
+                                            
+                                            
+                                                    echo '</tr>';
+                                                echo '</thead>';
+                                            
+                                                echo '<tbody>';
+                                                while($data = mysqli_fetch_array($records)){
+                                                    $empid=$data['empid'];
+                                                    $ename=$data['uname'];
+        
+                                                    $mysql = "SELECT bio from empt where empid='$empid'";
+                                                    $result2 = mysqli_query($conn, $mysql);
+                                                    $row2 = mysqli_fetch_assoc($result2);
+                                                    $bio = $row2['bio'];
+        
+                                                    $intime=$data['intime'];
+        
+                                                    $outtime=$data['outtime'];
+                                                    if ($outtime=="") {
+                                                        $outtime="Working";
+                                                    }
+                                                
+                                                    $status=$data['fullday'];  
+                                                    if ($status=="True") {
+                                                        $status="Full Day";
+                                                    }
+                                                    elseif ($status=="False" && $outtime=="Working") {
+                                                        $status="";
+                                                    }
+                                                    else{
+                                                        $status="Late/Half Day";
+                                                    }
+        
+                                                    echo '<tr>
+                                                            <th scope="row">'.$n.'</th>
+                                                            <td>'.$empid.'</td>
+                                                            <td>'.$ename.'</td>
+                                                            <td>'.$bio.'</td>
+                                                            <td>'.$intime.'</td>
+                                                            <td>'.$outtime.'</td>
+                                                            <td>'.$status.'</td>
+                                            
+                                                            </tr>';
+                                                    $n+=1;
+                                                }
+                                                echo '</tbody>
+                                        </table>';
+                                        echo '</div>';
+                                        }
+                                        else{
+                                            echo "No data found";
+                                        }
+                                
+                                    }
+                                    else{
+                                    
+                                    $sql_query = "SELECT * from attendancet";
                                     $records = mysqli_query($conn, $sql_query);
                                     $n=1;
                                     echo '<div class="table-responsive">';
-                                    echo '<table class="table table-hover">';
+                                    echo '<table class="table datatable">';
                                         echo '<thead class="thead-dark">';
                                             echo '<tr>';
                                             echo '<th scope="col">#</th>';
                                             echo '<th scope="col">Empid</th>';
-                                            echo '<th scope="col">Employee Name</th>';
+                                            echo '<th scope="col">User Name</th>';
                                             echo '<th scope="col">Work-Profile</th>';
                                             echo '<th scope="col">In-time</th>';
                                             echo '<th scope="col">Out-time</th>';
@@ -143,24 +232,39 @@
                                         echo '<tbody>';
                                         while($data = mysqli_fetch_array($records)){
                                             $empid=$data['empid'];
-                                            $ename=$data['ename'];
-                                            $dob=$data['dob'];
-                                            $photo=$data['pphoto'];
-                                            $cv=$data['cv'];
-                                            $bio=$data['bio'];
-                                            $wstatus=$data['wstatus'];
-                                    
-                                            $dob1=explode(" ",$dob);
-                                            $dob=$dob1[0];
-                                            
+                                            $ename=$data['uname'];
+
+                                            $mysql = "SELECT bio from empt where empid='$empid'";
+                                            $result2 = mysqli_query($conn, $mysql);
+                                            $row2 = mysqli_fetch_assoc($result2);
+                                            $bio = $row2['bio'];
+
+                                            $intime=$data['intime'];
+
+                                            $outtime=$data['outtime'];
+                                            if ($outtime=="") {
+                                                $outtime="Working";
+                                            }
+                                        
+                                            $status=$data['fullday'];  
+                                            if ($status=="True") {
+                                                $status="Full Day";
+                                            }
+                                            elseif ($status=="False" && $outtime=="Working") {
+                                                $status="";
+                                            }
+                                            else{
+                                                $status="Late/Half Day";
+                                            }
+
                                             echo '<tr>
                                                     <th scope="row">'.$n.'</th>
                                                     <td>'.$empid.'</td>
                                                     <td>'.$ename.'</td>
                                                     <td>'.$bio.'</td>
-                                                    <td>'.$dob.'</td>
-                                                    <td>'.$wstatus.'</td>
-                                                    <td>'.$wstatus.'</td>
+                                                    <td>'.$intime.'</td>
+                                                    <td>'.$outtime.'</td>
+                                                    <td>'.$status.'</td>
                                     
                                                     </tr>';
                                             $n+=1;
@@ -168,8 +272,9 @@
                                         echo '</tbody>
                                         </table>';
                                         echo '</div>';
-                                    
+                                    }
                                         mysqli_close($conn);
+                                    
                                     ?>
                                 <!-- End Client Project Working On! -->
                                 <!-- Client Project Working On! -->
@@ -204,3 +309,4 @@
     die();
     }
     ?>
+
