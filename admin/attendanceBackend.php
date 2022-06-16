@@ -47,8 +47,8 @@ if ($_SESSION['erole']=="admin"){
         $time = $_POST['time'];
 
         $marktime = '10:00:00';
-        $marktime2 = '18:00:00';
-
+        $marktim2 = '18:00:00';
+ 
         $sql = "Select * from attendancet where empid='$empid' and ddate='$date'";
         $result = mysqli_query($conn, $sql);
         $count = mysqli_num_rows($result);
