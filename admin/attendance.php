@@ -125,21 +125,22 @@
                                 <h5 class="card-title">Current Logs</h5>
                                 <!-- Employee Details Table -->
                                 <?php
+
                                     include '../imports/config.php';
                                     $conn=mysqli_connect($server_name,$username,$password,$database_name);
 
                                     if(isset($_POST['searchattendance']) ){
                                         
-                                        
                                         $empid=$_POST['empid'];
                                         $date=$_POST['date'];
                                         if ($date !="") {
-                                        $sql="SELECT * FROM attendancet WHERE empid='$empid' AND ddate='$date'";
-                                        $records=mysqli_query($conn,$sql);
+                                            $sql="SELECT * FROM attendancet WHERE empid='$empid' AND ddate='$date'";
+                                            $records=mysqli_query($conn,$sql);
                                         }else{
                                             $sql="SELECT * FROM attendancet WHERE empid='$empid'";
                                             $records=mysqli_query($conn,$sql);
                                         }
+                                        
                                         if(mysqli_num_rows($records)>0){
                                            
                                             $n=1;
@@ -158,7 +159,6 @@
                                             
                                                     echo '</tr>';
                                                 echo '</thead>';
-                                            
                                                 echo '<tbody>';
                                                 while($data = mysqli_fetch_array($records)){
                                                     $empid=$data['empid'];
@@ -206,73 +206,71 @@
                                         else{
                                             echo "No data found";
                                         }
-                                
-                                    }
-                                    else{
+                                    }else{
                                     
-                                    $sql_query = "SELECT * from attendancet";
-                                    $records = mysqli_query($conn, $sql_query);
-                                    $n=1;
-                                    echo '<div class="table-responsive">';
-                                    echo '<table class="table datatable">';
-                                        echo '<thead class="thead-dark">';
-                                            echo '<tr>';
-                                            echo '<th scope="col">#</th>';
-                                            echo '<th scope="col">Empid</th>';
-                                            echo '<th scope="col">User Name</th>';
-                                            echo '<th scope="col">Work-Profile</th>';
-                                            echo '<th scope="col">In-time</th>';
-                                            echo '<th scope="col">Out-time</th>';
-                                            echo '<th scope="col">Status</th>';
-                                    
-                                    
-                                            echo '</tr>';
-                                        echo '</thead>';
-                                    
-                                        echo '<tbody>';
-                                        while($data = mysqli_fetch_array($records)){
-                                            $empid=$data['empid'];
-                                            $ename=$data['uname'];
-
-                                            $mysql = "SELECT bio from empt where empid='$empid'";
-                                            $result2 = mysqli_query($conn, $mysql);
-                                            $row2 = mysqli_fetch_assoc($result2);
-                                            $bio = $row2['bio'];
-
-                                            $intime=$data['intime'];
-
-                                            $outtime=$data['outtime'];
-                                            if ($outtime=="") {
-                                                $outtime="Working";
-                                            }
+                                        $sql_query = "SELECT * from attendancet";
+                                        $records = mysqli_query($conn, $sql_query);
+                                        $n=1;
+                                        echo '<div class="table-responsive">';
+                                        echo '<table class="table datatable">';
+                                            echo '<thead class="thead-dark">';
+                                                echo '<tr>';
+                                                echo '<th scope="col">#</th>';
+                                                echo '<th scope="col">Empid</th>';
+                                                echo '<th scope="col">User Name</th>';
+                                                echo '<th scope="col">Work-Profile</th>';
+                                                echo '<th scope="col">In-time</th>';
+                                                echo '<th scope="col">Out-time</th>';
+                                                echo '<th scope="col">Status</th>';
                                         
-                                            $status=$data['fullday'];  
-                                            if ($status=="True") {
-                                                $status="Full Day";
-                                            }
-                                            elseif ($status=="False" && $outtime=="Working") {
-                                                $status="";
-                                            }
-                                            else{
-                                                $status="Late/Half Day";
-                                            }
+                                        
+                                                echo '</tr>';
+                                            echo '</thead>';
+                                        
+                                            echo '<tbody>';
+                                            while($data = mysqli_fetch_array($records)){
+                                                $empid=$data['empid'];
+                                                $ename=$data['uname'];
 
-                                            echo '<tr>
-                                                    <th scope="row">'.$n.'</th>
-                                                    <td>'.$empid.'</td>
-                                                    <td>'.$ename.'</td>
-                                                    <td>'.$bio.'</td>
-                                                    <td>'.$intime.'</td>
-                                                    <td>'.$outtime.'</td>
-                                                    <td>'.$status.'</td>
-                                    
-                                                    </tr>';
-                                            $n+=1;
+                                                $mysql = "SELECT bio from empt where empid='$empid'";
+                                                $result2 = mysqli_query($conn, $mysql);
+                                                $row2 = mysqli_fetch_assoc($result2);
+                                                $bio = $row2['bio'];
+
+                                                $intime=$data['intime'];
+
+                                                $outtime=$data['outtime'];
+                                                if ($outtime=="") {
+                                                    $outtime="Working";
+                                                }
+                                            
+                                                $status=$data['fullday'];  
+                                                if ($status=="True") {
+                                                    $status="Full Day";
+                                                }
+                                                elseif ($status=="False" && $outtime=="Working") {
+                                                    $status="";
+                                                }
+                                                else{
+                                                    $status="Late/Half Day";
+                                                }
+
+                                                echo '<tr>
+                                                        <th scope="row">'.$n.'</th>
+                                                        <td>'.$empid.'</td>
+                                                        <td>'.$ename.'</td>
+                                                        <td>'.$bio.'</td>
+                                                        <td>'.$intime.'</td>
+                                                        <td>'.$outtime.'</td>
+                                                        <td>'.$status.'</td>
+                                        
+                                                        </tr>';
+                                                $n+=1;
+                                            }
+                                            echo '</tbody>
+                                            </table>';
+                                            echo '</div>';
                                         }
-                                        echo '</tbody>
-                                        </table>';
-                                        echo '</div>';
-                                    }
                                         mysqli_close($conn);
                                     
                                     ?>
