@@ -134,10 +134,10 @@
                                         $empid=$_POST['empid'];
                                         $date=$_POST['date'];
                                         if ($date !="") {
-                                            $sql="SELECT * FROM attendancet WHERE empid='$empid' AND ddate='$date'";
+                                            $sql="SELECT * FROM attendancet WHERE empid='$empid' AND ddate='$date' ORDER BY Id DESC";
                                             $records=mysqli_query($conn,$sql);
                                         }else{
-                                            $sql="SELECT * FROM attendancet WHERE empid='$empid'";
+                                            $sql="SELECT * FROM attendancet WHERE empid='$empid' ORDER BY Id DESC";
                                             $records=mysqli_query($conn,$sql);
                                         }
                                         
@@ -152,6 +152,7 @@
                                                     echo '<th scope="col">Empid</th>';
                                                     echo '<th scope="col">User Name</th>';
                                                     echo '<th scope="col">Work-Profile</th>';
+                                                    echo '<th scope="col">Date</th>';
                                                     echo '<th scope="col">In-time</th>';
                                                     echo '<th scope="col">Out-time</th>';
                                                     echo '<th scope="col">Status</th>';
@@ -163,6 +164,7 @@
                                                 while($data = mysqli_fetch_array($records)){
                                                     $empid=$data['empid'];
                                                     $ename=$data['uname'];
+                                                    $ddate=$data['ddate'];
         
                                                     $mysql = "SELECT bio from empt where empid='$empid'";
                                                     $result2 = mysqli_query($conn, $mysql);
@@ -192,6 +194,7 @@
                                                             <td>'.$empid.'</td>
                                                             <td>'.$ename.'</td>
                                                             <td>'.$bio.'</td>
+                                                            <td>'.$ddate.'</td>
                                                             <td>'.$intime.'</td>
                                                             <td>'.$outtime.'</td>
                                                             <td>'.$status.'</td>
@@ -208,7 +211,7 @@
                                         }
                                     }else{
                                     
-                                        $sql_query = "SELECT * from attendancet";
+                                        $sql_query = "SELECT * from attendancet ORDER BY Id DESC";
                                         $records = mysqli_query($conn, $sql_query);
                                         $n=1;
                                         echo '<div class="table-responsive">';
@@ -218,7 +221,8 @@
                                                 echo '<th scope="col">#</th>';
                                                 echo '<th scope="col">Empid</th>';
                                                 echo '<th scope="col">User Name</th>';
-                                                echo '<th scope="col">Work-Profile</th>';
+                                                echo '<th scope="col">Work Profile</th>';
+                                                echo '<th scope="col">Date</th>';
                                                 echo '<th scope="col">In-time</th>';
                                                 echo '<th scope="col">Out-time</th>';
                                                 echo '<th scope="col">Status</th>';
@@ -231,6 +235,7 @@
                                             while($data = mysqli_fetch_array($records)){
                                                 $empid=$data['empid'];
                                                 $ename=$data['uname'];
+                                                $ddate=$data['ddate'];
 
                                                 $mysql = "SELECT bio from empt where empid='$empid'";
                                                 $result2 = mysqli_query($conn, $mysql);
@@ -260,6 +265,7 @@
                                                         <td>'.$empid.'</td>
                                                         <td>'.$ename.'</td>
                                                         <td>'.$bio.'</td>
+                                                        <td>'.$ddate.'</td>
                                                         <td>'.$intime.'</td>
                                                         <td>'.$outtime.'</td>
                                                         <td>'.$status.'</td>
