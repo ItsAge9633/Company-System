@@ -40,7 +40,7 @@
 <body>
 	<?php
 		session_start();
-		if(isset($_SESSION['uname']) and $_SESSION['role']=="emp"){
+		if(isset($_SESSION['uname']) and $_SESSION['erole']=="emp"){
 			$u=$_SESSION['uname'];
             include '../imports/config.php';
             $conn=mysqli_connect($server_name,$username,$password,$database_name);

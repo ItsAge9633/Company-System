@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2022 at 04:57 PM
+-- Generation Time: Jun 16, 2022 at 08:32 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -156,6 +156,20 @@ INSERT INTO `logint` (`Id`, `uname`, `pswd`, `erole`, `euid`, `jdate`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `notift`
+--
+
+CREATE TABLE `notift` (
+  `Id` int(7) NOT NULL,
+  `titlet` varchar(255) NOT NULL,
+  `descrip` varchar(255) NOT NULL,
+  `ddate` date NOT NULL,
+  `euid` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `salaryt`
 --
 
@@ -261,6 +275,12 @@ ALTER TABLE `logint`
   ADD PRIMARY KEY (`Id`);
 
 --
+-- Indexes for table `notift`
+--
+ALTER TABLE `notift`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- Indexes for table `salaryt`
 --
 ALTER TABLE `salaryt`
@@ -311,6 +331,12 @@ ALTER TABLE `empt`
 --
 ALTER TABLE `logint`
   MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `notift`
+--
+ALTER TABLE `notift`
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `salaryt`

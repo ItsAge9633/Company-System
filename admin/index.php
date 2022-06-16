@@ -511,23 +511,23 @@
                           max: 6500
                         },
                         {
-                          name: 'Administration',
+                          name: 'Admin',//Administration
                           max: 16000
                         },
                         {
-                          name: 'Information Technology',
+                          name: 'Tech',//Information Technology
                           max: 30000
                         },
                         {
-                          name: 'Customer Support',
+                          name: 'Support',//Customer Support
                           max: 38000
                         },
                         {
-                          name: 'Development',
+                          name: 'Develop',//Development
                           max: 52000
                         },
                         {
-                          name: 'Marketing',
+                          name: 'Market',//Marketing
                           max: 25000
                         }
                       ]
