@@ -1,3 +1,4 @@
+<!--#dde2ec-->
 <?php
     session_start();
     if ($_SESSION['erole']=="admin"){

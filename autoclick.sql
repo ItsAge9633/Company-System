@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 13, 2022 at 01:30 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Generation Time: Jun 16, 2022 at 04:57 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -82,6 +82,19 @@ INSERT INTO `clientt` (`Id`, `cname`, `pname`, `mobile`, `email`, `aaddress`, `p
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `dayst`
+--
+
+CREATE TABLE `dayst` (
+  `Id` int(7) NOT NULL,
+  `month` int(7) NOT NULL,
+  `year` int(7) NOT NULL,
+  `wd` int(7) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `empt`
 --
 
@@ -143,6 +156,37 @@ INSERT INTO `logint` (`Id`, `uname`, `pswd`, `erole`, `euid`, `jdate`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `salaryt`
+--
+
+CREATE TABLE `salaryt` (
+  `Id` int(7) NOT NULL,
+  `empid` varchar(255) NOT NULL,
+  `bsalary` int(10) NOT NULL,
+  `bankname` varchar(255) NOT NULL,
+  `bankacc` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `salpayt`
+--
+
+CREATE TABLE `salpayt` (
+  `Id` int(7) NOT NULL,
+  `empid` varchar(255) NOT NULL,
+  `bsalary` int(7) NOT NULL,
+  `month` int(7) NOT NULL,
+  `year` int(7) NOT NULL,
+  `daysworked` int(7) NOT NULL,
+  `gsalary` int(7) NOT NULL,
+  `gdate` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `timingt`
 --
 
@@ -198,6 +242,12 @@ ALTER TABLE `clientt`
   ADD PRIMARY KEY (`Id`);
 
 --
+-- Indexes for table `dayst`
+--
+ALTER TABLE `dayst`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- Indexes for table `empt`
 --
 ALTER TABLE `empt`
@@ -208,6 +258,18 @@ ALTER TABLE `empt`
 -- Indexes for table `logint`
 --
 ALTER TABLE `logint`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indexes for table `salaryt`
+--
+ALTER TABLE `salaryt`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indexes for table `salpayt`
+--
+ALTER TABLE `salpayt`
   ADD PRIMARY KEY (`Id`);
 
 --
@@ -227,16 +289,16 @@ ALTER TABLE `workt`
 --
 
 --
--- AUTO_INCREMENT for table `attendancet`
---
-ALTER TABLE `attendancet`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT for table `clientt`
 --
 ALTER TABLE `clientt`
   MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `dayst`
+--
+ALTER TABLE `dayst`
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `empt`
@@ -248,7 +310,19 @@ ALTER TABLE `empt`
 -- AUTO_INCREMENT for table `logint`
 --
 ALTER TABLE `logint`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `salaryt`
+--
+ALTER TABLE `salaryt`
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `salpayt`
+--
+ALTER TABLE `salpayt`
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `timingt`
