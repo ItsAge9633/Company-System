@@ -31,12 +31,14 @@
 
 
 </head>
-
+<?php
+error_reporting(0);
+?>
 <body>
 	<?php
 
 		session_start();
-    include '../imports/nav-user.php';        
+    	include '../imports/nav-user.php';        
 
 		if(isset($_SESSION['uname']) and $_SESSION['erole']=="emp"){
 			$u=$_SESSION['uname'];
@@ -45,21 +47,36 @@
             $sql_query = "SELECT * from empt where uname='$u'";
             $records = mysqli_query($conn,$sql_query);
 
-      while($data = mysqli_fetch_assoc($records)){
-          $empid=$data['empid'];
-          $ename=$data['ename'];
-          $email=$data['email'];
-          $mobile=$data['mobile'];
-          $dob=$data['dob'];
-          $address=$data['eaddress'];
-          $photo=$data['pphoto'];
-          $cv=$data['cv'];
-          $bio=$data['bio'];
-          $github=$data['github'];
-          $twitter=$data['twitter'];
-          $linkedin=$data['linkedin'];
-          $insta=$data['insta'];
-      }
+			$empid="";
+			$ename="";
+			$email="";
+			$mobile="";
+			$dob="";
+			$address="";
+			$photo="";
+			$cv="";
+			$bio="";
+			$github="";
+			$twitter="";
+			$linkedin="";
+			$insta="";
+
+			while($data = mysqli_fetch_assoc($records)){
+				$empid=$data['empid'];
+				$ename=$data['ename'];
+				$email=$data['email'];
+				$mobile=$data['mobile'];
+				$dob=$data['dob'];
+				$address=$data['eaddress'];
+				$photo=$data['pphoto'];
+				$cv=$data['cv'];
+				$bio=$data['bio'];
+				$github=$data['github'];
+				$twitter=$data['twitter'];
+				$linkedin=$data['linkedin'];
+				$insta=$data['insta'];
+			}
+
 
 			if(true){      
 	?>
