@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2022 at 08:01 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Generation Time: Jun 16, 2022 at 08:32 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,10 +42,9 @@ CREATE TABLE `attendancet` (
 --
 
 INSERT INTO `attendancet` (`Id`, `uname`, `empid`, `ddate`, `intime`, `outtime`, `fullday`) VALUES
-(9, 'b', '1', '2022-06-16', '09:34:00', '19:35:00', 'True'),
-(10, 'c', '2', '2022-06-16', '11:35:00', '18:56:00', 'False'),
-(11, 'd', '3', '2022-06-16', '13:51:00', NULL, 'False'),
-(12, 'b', '1', '2022-06-28', '11:55:00', '13:55:00', 'False');
+(1, 'b', '1', '2022-06-13', '07:31:00', '20:35:00', 'True'),
+(2, 'c', '2', '2022-06-13', '10:36:00', '18:00:00', 'False'),
+(3, 'd', '3', '2022-06-13', '09:36:00', '15:37:00', 'False');
 
 -- --------------------------------------------------------
 
@@ -89,26 +88,9 @@ INSERT INTO `clientt` (`Id`, `cname`, `pname`, `mobile`, `email`, `aaddress`, `p
 CREATE TABLE `dayst` (
   `Id` int(7) NOT NULL,
   `month` int(7) NOT NULL,
+  `year` int(7) NOT NULL,
   `wd` int(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `dayst`
---
-
-INSERT INTO `dayst` (`Id`, `month`, `wd`) VALUES
-(1, 1, 21),
-(2, 2, 18),
-(3, 3, 21),
-(4, 4, 20),
-(5, 5, 21),
-(6, 6, 20),
-(7, 7, 21),
-(8, 8, 21),
-(9, 9, 20),
-(10, 10, 21),
-(11, 11, 14),
-(12, 12, 16);
 
 -- --------------------------------------------------------
 
@@ -169,8 +151,21 @@ INSERT INTO `logint` (`Id`, `uname`, `pswd`, `erole`, `euid`, `jdate`) VALUES
 (1, 'a', 'a', 'admin', '1234', '2022-05-22'),
 (2, 'b', 'b', 'emp', '1', '2022-05-22'),
 (3, 'c', 'c', 'emp', '2', '2022-05-22'),
-(4, 'd', 'd', 'emp', '3', '2022-05-22'),
-(17, 'we', 'we', 'emp', '1111', '2022-06-28');
+(4, 'd', 'd', 'emp', '3', '2022-05-22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notift`
+--
+
+CREATE TABLE `notift` (
+  `Id` int(7) NOT NULL,
+  `titlet` varchar(255) NOT NULL,
+  `descrip` varchar(255) NOT NULL,
+  `ddate` date NOT NULL,
+  `euid` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -180,19 +175,11 @@ INSERT INTO `logint` (`Id`, `uname`, `pswd`, `erole`, `euid`, `jdate`) VALUES
 
 CREATE TABLE `salaryt` (
   `Id` int(7) NOT NULL,
-  `euid` varchar(255) NOT NULL,
+  `empid` varchar(255) NOT NULL,
   `bsalary` int(10) NOT NULL,
   `bankname` varchar(255) NOT NULL,
   `bankacc` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `salaryt`
---
-
-INSERT INTO `salaryt` (`Id`, `euid`, `bsalary`, `bankname`, `bankacc`) VALUES
-(1, '1', 1500000, 'Bank Of Baroda', '1234567890'),
-(2, '1111', 1500000, 'Bank Of Baroda', '12345678903');
 
 -- --------------------------------------------------------
 
@@ -202,11 +189,11 @@ INSERT INTO `salaryt` (`Id`, `euid`, `bsalary`, `bankname`, `bankacc`) VALUES
 
 CREATE TABLE `salpayt` (
   `Id` int(7) NOT NULL,
-  `euid` varchar(255) NOT NULL,
+  `empid` varchar(255) NOT NULL,
+  `bsalary` int(7) NOT NULL,
   `month` int(7) NOT NULL,
   `year` int(7) NOT NULL,
   `daysworked` int(7) NOT NULL,
-  `tsalary` int(11) NOT NULL,
   `gsalary` int(7) NOT NULL,
   `gdate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -288,6 +275,12 @@ ALTER TABLE `logint`
   ADD PRIMARY KEY (`Id`);
 
 --
+-- Indexes for table `notift`
+--
+ALTER TABLE `notift`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- Indexes for table `salaryt`
 --
 ALTER TABLE `salaryt`
@@ -316,12 +309,6 @@ ALTER TABLE `workt`
 --
 
 --
--- AUTO_INCREMENT for table `attendancet`
---
-ALTER TABLE `attendancet`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
 -- AUTO_INCREMENT for table `clientt`
 --
 ALTER TABLE `clientt`
@@ -331,7 +318,7 @@ ALTER TABLE `clientt`
 -- AUTO_INCREMENT for table `dayst`
 --
 ALTER TABLE `dayst`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `empt`
@@ -343,13 +330,19 @@ ALTER TABLE `empt`
 -- AUTO_INCREMENT for table `logint`
 --
 ALTER TABLE `logint`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `notift`
+--
+ALTER TABLE `notift`
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `salaryt`
 --
 ALTER TABLE `salaryt`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `salpayt`
@@ -361,7 +354,7 @@ ALTER TABLE `salpayt`
 -- AUTO_INCREMENT for table `timingt`
 --
 ALTER TABLE `timingt`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `workt`
