@@ -92,12 +92,28 @@
                 <input type="password" class="form-control" required="" id="repassword" name="repwd"/>
                 <div class="invalid-feedback">Please enter your password!</div>
             </div>
-
+            
+            <div class="col-12">
+              <label for="bsalary" class="form-label">Base Salary (INR)</label>
+              <input type="text" class="form-control" name="bsalary" id="bsalary" required="">
+            </div>
 
             <div class="col-12">
-              <label for="pdate" class="form-label">Joining Date (YYYY-MM-DD)</label>
-              <input type="text" class="form-control" name="jdate" id="jdate">
+              <label for="bankname" class="form-label">Bank Name</label>
+              <input type="text" class="form-control" name="bankname" id="bankname" required="">
             </div>
+
+            <div class="col-12">
+              <label for="bankacc" class="form-label">Bank Account number</label>
+              <input type="text" class="form-control" name="bankacc" id="bankacc" required="">
+            </div>
+
+            <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">Join Date</label>
+                <input type="date" class="form-control" id="jdate" name="jdate" placeholder="Date" required="">
+            </div>
+            
+
             <br>
             <div class="text-center">
               <button type="submit" name="addempsubmit" class="btn btn-primary">Submit</button>
