@@ -12,7 +12,11 @@ if($_SESSION['erole'] =='admin'){
         $uname = $_POST['uname'];
         $pwd = $_POST['pwd'];
         $repwd = $_POST['repwd'];
-        $jdate = $_POST['jdate'];
+        $jdate = $_POST['jdate'];  
+        $bankname = $_POST['bankname'];
+        $bankacc = $_POST['bankacc'];
+        $bsalary = $_POST['bsalary'];
+
 
         if($pwd == $repwd){
 
@@ -24,6 +28,11 @@ if($_SESSION['erole'] =='admin'){
             $result2 = mysqli_query($conn, $sql2);
             $resultCheck2 = mysqli_num_rows($result2);
 
+            $sql3 = "SELECT * FROM salaryt where bankacc='$bankacc'";
+            $result3 = mysqli_query($conn, $sql3);
+            $resultCheck3 = mysqli_num_rows($result3);
+
+
             if ($resultCheck > 0) {
                 echo "<script>alert('Employee ID already exists!')</script>";
                 echo "<script>window.location.href='addEmployee.php'</script>";
@@ -32,12 +41,20 @@ if($_SESSION['erole'] =='admin'){
                 echo "<script>alert('Username already exists!')</script>";
                 echo "<script>window.location.href='addEmployee.php'</script>";
                 }
+            elseif ($resultCheck3 > 0) {
+                echo "<script>alert('Bank Account already exists!')</script>";
+                echo "<script>window.location.href='addEmployee.php'</script>";
+                }
             
             else{
             $sql = "INSERT INTO `logint`(`uname`, `pswd`, `erole`, `euid`, `jdate`) VALUES ('$uname','$pwd','$emprole','$euid', '$jdate')";
             $result = mysqli_query($conn,$sql);
 
-            if($result){
+            $sql2 = "INSERT INTO `salaryt`(`euid`, `bankname`, `bankacc`, `bsalary`) VALUES ('$euid','$bankname','$bankacc','$bsalary')";
+            $result2 = mysqli_query($conn,$sql2);
+
+            if($result && $result2){
+                
                 echo "<script>alert('Employee Added Successfully');</script>";
                 echo "<script>window.location.href='addEmployee.php'</script>";
             }
