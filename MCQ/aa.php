@@ -17,7 +17,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Malicious Activity</title>
+    <title>Students not Submitted</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
@@ -63,32 +63,32 @@
             </div>
         </div>
     </nav>
-    <br>
     <?php
         require ('config.php');
     ?>
+    <br>
+
     <div class="container jumbotron">
         <?php
-        $conn=mysqli_connect($server_name,$username,$password,$database_name);
+            $conn=mysqli_connect($server_name,$username,$password,$database_name);
 
-        $sql_query = "SELECT quizname from tempresult";
-        $records = mysqli_query($conn,$sql_query);
-        while($data = mysqli_fetch_array($records)){
-            $qz=$data['quizname'];
-        }
-        
-        echo "<center><h1>Malicious Activities in ".$qz." quiz</h1></center>";
-        mysqli_close($conn);
+            $sql_query = "SELECT quizname from tempresult";
+            $records = mysqli_query($conn,$sql_query);
+            while($data = mysqli_fetch_array($records)){
+                $qz=$data['quizname'];
+            }
+            
+            echo "<center><h1>Students who are giving ".$qz." quiz</h1></center>";
+            mysqli_close($conn);
         ?>
     </div>
 
     <div class="container jumbotron">
         <?php
             $n=1;
-
             $conn=mysqli_connect($server_name,$username,$password,$database_name);
             
-            $sql_query = "SELECT * from malicious where quizname='$qz'";
+            $sql_query = "SELECT * from student where quizname='$qz' and done='no'";
             $records = mysqli_query($conn, $sql_query);
 
             echo '<table class="table">';
@@ -98,7 +98,7 @@
                     echo '<th scope="col">Name</th>';
                     echo '<th scope="col">Roll Number</th>';
                     echo '<th scope="col">Email</th>';
-                    echo '<th scope="col">Activity</th>';
+                    echo '<th scope="col">Mobile Number</th>';
                     echo '</tr>';
                 echo '</thead>';
 
@@ -106,7 +106,7 @@
                 $roll=$data['roll'];
                 $email=$data['email'];
                 $name=$data['ename'];
-                $activity=$data['emessage'];
+                $mobile=$data['mobile'];
 
                 echo '<tbody>
                         <tr>
@@ -114,7 +114,7 @@
                         <td>'.$name.'</td>
                         <td>'.$roll.'</td>
                         <td>'.$email.'</td>
-                        <td>'.$activity.'</td>
+                        <td>'.$mobile.'</td>
                         </tr>';
                 $n+=1;
             }
