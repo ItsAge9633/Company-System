@@ -30,7 +30,7 @@
             
             if(mysqli_query($conn,$sql_query)){
                 echo "New record created successfully";
-                header('Location: '.'viwe_cli.php');
+                header('Location: '.'view_cli.php');
             }
             else{
                 echo "Error: ".$sql_query."<br>".mysqli_error($conn);
