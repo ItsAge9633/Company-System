@@ -1,67 +1,100 @@
+<!--#dde2ec-->
 <?php
     session_start();
-
-    if(isset($_SESSION['uname'])){
-        $a=0;
-    }
-    else{
-        ob_start();
-        header('Location: '.'login.php');
-        ob_end_flush();
-        die();
-    }
+    if ($_SESSION['erole']=="admin"){
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Results</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <style>
-        th, td {
-            padding: 15px;
-        }
-    </style>
-    <style>
-        .fortable{
-            display: block;
-            overflow-x: auto;
-            white-space: nowrap;
-        }
-    </style>
+  <title>Dashboard - RichTech </title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="../assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../assets/css/style.css" rel="stylesheet">
+
 
 </head>
 
-<body class="bodycolor">
-    <nav class="navbar navbar-light navbar-expand-md" style="color: var(--indigo);background: #242226;">
-        <div class="container-fluid"><a class="navbar-brand" href="" style="color:aliceblue">MCQ Software</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+<body>
+
+  <!-- ======= Top and Side Bar ======= -->
+      <?php 
+            include 'imports/nav-admin.php';
+            require ('config.php');
+      ?>
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
+          <li class="breadcrumb-item active">Complete Results</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <nav class="navbar navbar-light navbar-expand-md">
+        <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link active" href="dashboard.php" style="color:aliceblue">Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link" href="allresult.php" style="color:aliceblue">Complete Result</a></li>
-                    <li class="nav-item"><a class="nav-link" href="studresult.php" style="color:aliceblue">Student Result</a></li>
-                    <li class="nav-item"><a class="nav-link" href="questionstats.php" style="color:aliceblue">Question Stats</a></li>
-                    <li class="nav-item"><a class="nav-link" href="graph.php" style="color:aliceblue">Graphical View</a></li>
-                    <li class="nav-item"><a class="nav-link" href="studnots.php" style="color:aliceblue">Not Submitted</a></li>
-                    <li class="nav-item"><a class="nav-link" href="malicious.php" style="color:aliceblue">Malicious Activity</a></li>
+                    <div class="row">
+                        <div class="card container jumbotron col-md-2" style="margin:0px">
+                            <center><li class="nav-item"><a class="nav-link" href="allresult.php" style="color:black">Complete Result</a></li></center>
+                        </div>
+                        <div class="card container jumbotron col-md-2" style="margin:0px">
+                            <center><li class="nav-item"><a class="nav-link" href="studresult.php" style="color:black">Student Result</a></li></center>
+                        </div>
+                        <div class="card container jumbotron col-md-2" style="margin:0px">
+                            <center><li class="nav-item"><a class="nav-link" href="questionstats.php" style="color:black">Question Stats</a></li></center>
+                        </div>
+                        <div class="card container jumbotron col-md-2" style="margin:0px">
+                            <center><li class="nav-item"><a class="nav-link" href="graph.php" style="color:black">Graphical View</a></li></center>
+                        </div>
+                        <div class="card container jumbotron col-md-2" style="margin:0px">
+                            <center><li class="nav-item"><a class="nav-link" href="studnots.php" style="color:black">Not Submitted</a></li></center>
+                        </div>
+                        <div class="card container jumbotron col-md-2" style="margin:0px">
+                            <center><li class="nav-item"><a class="nav-link" href="malicious.php" style="color:black">Malicious Activity</a></li></center>
+                        </div>
+                    </div>
+                    <!--<li class="nav-item"><a class="nav-link active" href="dashboard.php" style="color:black">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="allresult.php" style="color:black">Complete Result</a></li>
+                    <li class="nav-item"><a class="nav-link" href="studresult.php" style="color:black">Student Result</a></li>
+                    <li class="nav-item"><a class="nav-link" href="questionstats.php" style="color:black">Question Stats</a></li>
+                    <li class="nav-item"><a class="nav-link" href="graph.php" style="color:black">Graphical View</a></li>
+                    <li class="nav-item"><a class="nav-link" href="studnots.php" style="color:black">Not Submitted</a></li>
+                    <li class="nav-item"><a class="nav-link" href="malicious.php" style="color:black">Malicious Activity</a></li>-->
                 </ul>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                <ul class="navbar-nav ">
-                    <img src="assets/img/my_logo.jpeg" alt="" width="70" height="70">			
-                </ul>		  
-                </div>
             </div>
         </div>
     </nav>
-    <?php
-        require ('config.php');
-    ?>
     <br>
-    <div class="jumbotron container">
+    <div class="card jumbotron container">
+        <br>
         <?php
         $conn=mysqli_connect($server_name,$username,$password,$database_name);
 
@@ -74,9 +107,11 @@
         echo "<center><h1>Results of ".$qz."</h1></center>";
         mysqli_close($conn);
         ?>
+        <br>
     </div>
 
-    <div class="container jumbotron">
+    <div class="card container jumbotron">
+        <br>
         <?php
             $n=1;
             $conn=mysqli_connect($server_name,$username,$password,$database_name);
@@ -97,6 +132,7 @@
                     echo '</tr>';
                 echo '</thead>';
 
+            echo '<tbody>';    
             while($data = mysqli_fetch_array($records)){
                 $roll=$data['roll'];
                 $email=$data['email'];
@@ -104,10 +140,8 @@
                 $name=$data['ename'];
                 $per=$data['per'];
                 $ttime=$data['ttime'];
-
-                echo '<tbody>
-                        <tr>
-                        <th scope="row">'.$n.'</th>
+                        echo '<tr>
+                        <td scope="row">'.$n.'</td>
                         <td>'.$name.'</td>
                         <td>'.$roll.'</td>
                         <td>'.$email.'</td>
@@ -122,17 +156,50 @@
 
             mysqli_close($conn);
         ?>
+        <br>
     </div>
 
-    <div class="container jumbotron">
+    <div class="card container jumbotron">
+        <br>
         <form action="exportresult.php" method="post">
             <center>
                 <input type="submit" name="exportre" value="Export Reuslt" style="font-size:20px" class="btn btn-outline-success">
             </center>
         </form>
+        <br>
     </div>
     <br><br>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+  </main><!-- End #main -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/chart.js/chart.min.js"></script>
+  <script src="../assets/vendor/echarts/echarts.min.js"></script>
+  <script src="../assets/vendor/quill/quill.min.js"></script>
+  <script src="../assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="../assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../assets/js/main.js"></script>
+
 </body>
+
 </html>
+
+<?php
+            #print("Op");
+        }
+        else{
+            ob_start();
+            header('Location: '.'../index.php');
+            ob_end_flush();
+            die();
+        }
+    ?>

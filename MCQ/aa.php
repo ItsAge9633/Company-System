@@ -13,13 +13,20 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Updated</title>    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Malicious Activity</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
+
+    <style>
+        th, td {
+            padding: 15px;
+        }
+    </style>
     <style>
         .bodycolor{
             background: #9053c7;
@@ -33,6 +40,7 @@
             background-attachment: fixed;
         }
     </style>
+
 </head>
 
 <body class="bodycolor">
@@ -41,8 +49,11 @@
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link active" href="dashboard.php" style="color:aliceblue">Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" style="color:aliceblue">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" style="color:aliceblue">Contact Us</a></li>     
+                    <li class="nav-item"><a class="nav-link" href="allresult.php" style="color:aliceblue">Complete Result</a></li>
+                    <li class="nav-item"><a class="nav-link" href="studresult.php" style="color:aliceblue">Student Result</a></li>
+                    <li class="nav-item"><a class="nav-link" href="graph.php" style="color:aliceblue">Graphical View</a></li>
+                    <li class="nav-item"><a class="nav-link" href="studnots.php" style="color:aliceblue">Not Submitted</a></li>
+                    <li class="nav-item"><a class="nav-link" href="malicious.php" style="color:aliceblue">Malicious Activity</a></li>
                 </ul>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav ">
@@ -52,69 +63,69 @@
             </div>
         </div>
     </nav>
+    <br>
     <?php
         require ('config.php');
     ?>
-    <br>
     <div class="container jumbotron">
         <?php
-            function update($server_name,$username,$password,$database_name){
-                $conn=mysqli_connect($server_name,$username,$password,$database_name);
-                //now check the connection
-                if(!$conn)
-                {
-                    die("Connection Failed:" . mysqli_connect_error());
+        $conn=mysqli_connect($server_name,$username,$password,$database_name);
 
-                }
-
-                if(isset($_POST['save'])){
-                    $quesno= $_POST['quesno'];
-                    $qn=$_POST['quiznameforupdate'];
-
-                    $sql_query = "DELETE from questions where quizname='$qn'";
-                    mysqli_query($conn, $sql_query);
-
-                    for($i=0;$i<=$quesno-1;$i++){
-                        $g='text'.$i;
-                        $ques = $_POST[$g];
-                        $g1='radiotext'.$i.'1';
-                        $opt1= $_POST[$g1];
-                        $g2='radiotext'.$i.'2';
-                        $opt2= $_POST[$g2];
-                        $g3='radiotext'.$i.'3';
-                        $opt3= $_POST[$g3];
-                        $g4='radiotext'.$i.'4';
-                        $opt4= $_POST[$g4];
-                        $g5='radio'.$i;
-                        $oo= $_POST[$g5];
-
-                        if ($oo==1){
-                            $ans=$opt1;
-                        }
-                        if($oo==2){
-                            $ans=$opt2;
-                        }
-                        if($oo==3){
-                            $ans=$opt3;
-                        }
-                        if($oo==4){
-                            $ans=$opt4;
-                        }
-
-                        $sql_query = "INSERT INTO questions (quizname,question,opt1,opt2,opt3,opt4,ans)
-                        VALUES ('$qn','$ques','$opt1','$opt2','$opt3','$opt4','$ans')";
-                        mysqli_query($conn, $sql_query);
-                        
-                        $oo=0;
-                    }
-                mysqli_close($conn);
-                echo "<h2>$qn Quiz Updated!<h2>";
-                }
-            }
-
-            update($server_name,$username,$password,$database_name);
+        $sql_query = "SELECT quizname from tempresult";
+        $records = mysqli_query($conn,$sql_query);
+        while($data = mysqli_fetch_array($records)){
+            $qz=$data['quizname'];
+        }
+        
+        echo "<center><h1>Malicious Activities in ".$qz." quiz</h1></center>";
+        mysqli_close($conn);
         ?>
     </div>
+
+    <div class="container jumbotron">
+        <?php
+            $n=1;
+
+            $conn=mysqli_connect($server_name,$username,$password,$database_name);
+            
+            $sql_query = "SELECT * from malicious where quizname='$qz'";
+            $records = mysqli_query($conn, $sql_query);
+
+            echo '<table class="table">';
+                echo '<thead class="thead-dark">';
+                    echo '<tr>';
+                    echo '<th scope="col">#</th>';
+                    echo '<th scope="col">Name</th>';
+                    echo '<th scope="col">Roll Number</th>';
+                    echo '<th scope="col">Email</th>';
+                    echo '<th scope="col">Activity</th>';
+                    echo '</tr>';
+                echo '</thead>';
+
+            while($data = mysqli_fetch_array($records)){
+                $roll=$data['roll'];
+                $email=$data['email'];
+                $name=$data['ename'];
+                $activity=$data['emessage'];
+
+                echo '<tbody>
+                        <tr>
+                        <th scope="row">'.$n.'</th>
+                        <td>'.$name.'</td>
+                        <td>'.$roll.'</td>
+                        <td>'.$email.'</td>
+                        <td>'.$activity.'</td>
+                        </tr>';
+                $n+=1;
+            }
+            echo '</tbody>
+            </table>';
+
+            mysqli_close($conn);
+        ?>
+    </div>
+    <br><br>
+
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
