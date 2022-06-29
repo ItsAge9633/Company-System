@@ -48,60 +48,52 @@
 <body>
 
 <?php
-  $curmonth = date('m');
-  $curdate = date('d');
 
-  //this month = total working days * salary per day
-  //sal till date = total worked days * salary per day
+$sql = "SELECT SUM(bsalary) as salary from salaryt";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$total_salary = $row['salary'];
 
-  $euid = $_SESSION['euid'];
-  $sql = "select * from attendancet";
-  $result = mysqli_query($conn, $sql);
-  $row = mysqli_fetch_assoc($result);
-  list($tyear, $tmonth, $tday) =explode("-",$row['ddate']);
+$sql2 = "SELECT * from dayst";
+$result2 = mysqli_query($conn, $sql2);
+$row2 = mysqli_fetch_assoc($result2);
+$td = $row2['td'];
+$work_days = $row2['wd'];
 
-  //total working days
-  $sql2 = "SELECT * from dayst where month = '$curmonth'";
-  $result2 = mysqli_query($conn, $sql2);
-  $row2 = mysqli_fetch_assoc($result2);
-  $total_days = $row2['wd'];
-  $total_month_days = $row2['td'];
+//salary permonth
+$salary_thismonth = intval($total_salary / 12);
+$salary_perday = intval($salary_thismonth / $work_days);
 
-  //salary per day and total salary
-  $sql3 = "SELECT * from salaryt where euid = '$euid'";
-  $result3 = mysqli_query($conn, $sql3);
-  $row3 = mysqli_fetch_assoc($result3);
-  $salary = $row3['bsalary'];
-  
-  $sal_month = intval($salary / 12);
-  $sal_day = intval($sal_month / $total_days);
-  $this_month_sal = $sal_day * $total_days;
+//total number of paid employees
+$sql5 = "SELECT COUNT(euid) as euid from salaryt";
+$result5 = mysqli_query($conn, $sql5);
+$row5 = mysqli_fetch_assoc($result5);
+$total_employees = $row5['euid'];
 
-  //salary till date 
-  $sql4T = "SELECT COUNT(*) as cnt from attendancet where fullday = 'True' and empid = '$euid'";
-  $result4T = mysqli_query($conn, $sql4T);
-  $row4T = mysqli_fetch_assoc($result4T);
-  $sal_full_day = $row4T['cnt'];
-  
-  $sql4F = "SELECT COUNT(*) as cnt from attendancet where fullday = 'False' and empid = '$euid'";
-  $result4F = mysqli_query($conn, $sql4F);
-  $row4F = mysqli_fetch_assoc($result4F);
-  $sal_half_day = $row4F['cnt'];
+//amount to be paid
+$sql3 = "SELECT empid from attendancet";
+$result3 = mysqli_query($conn, $sql3);
+$row3 = mysqli_fetch_assoc($result3);
 
+$to_be_paid = 0;
 
-  $till_date_sal = $row4T['cnt'] * $sal_day;
-  $till_date_sal += $row4F['cnt'] * intval($sal_day / 2);
+while (mysqli_fetch_array($result3)) {
 
-  //salary deducted 
-  $emp_worked = $sal_full_day + $sal_half_day;
-  $remaining_days = $total_days - $emp_worked;
-  $deducted_sal = $row4F['cnt'] * intval($sal_day / 2);
+    $sql4T = "SELECT COUNT(*) as cnt from attendancet where fullday = 'True' and empid = '$row3[empid]'";
+    $result4T = mysqli_query($conn, $sql4T);
+    $row4T = mysqli_fetch_assoc($result4T);
+    $sal_full_day = $row4T['cnt'];
 
-  //Absent days 
-  $remaining_working_days = $total_month_days - $curdate;
-  $absent_days = $total_days - $emp_worked - $remaining_working_days; 
+    $sql4F = "SELECT COUNT(*) as cnt from attendancet where fullday = 'False' and empid = '$row3[empid]'";
+    $result4F = mysqli_query($conn, $sql4F);
+    $row4F = mysqli_fetch_assoc($result4F);
+    $sal_half_day = $row4F['cnt'];
 
+    $to_be_paid += ($salary_perday * $sal_full_day) + ($salary_perday / 2 * $sal_half_day);
 
+}
+
+$total_sal_this_month = intval($total_salary / 12);
 ?>
   <!-- ======= Top and Side Bar ======= -->
   <main id="main" class="main">
@@ -134,7 +126,7 @@
                       <i class="bi bi-cart"></i>
                     </div>
                     <div class="ps-3">
-                      <h6> <?php echo '₹', $this_month_sal;  ?> </h6>
+                      <h6> <?php echo '₹', $to_be_paid;  ?> </h6>
                       <span class="text-success small pt-1 fw-bold">Total </span>
 
                     </div>
@@ -157,8 +149,8 @@
                       <i class="bi bi-currency-dollar"></i>
                     </div>
                     <div class="ps-3">
-                      <h6> <?php echo '₹', $till_date_sal; ?> </h6>
-                      <span class="text-success small pt-1 fw-bold"> Till date </span>
+                      <h6> <?php echo '₹',  $total_sal_this_month ; ?> </h6>
+                      <span class="text-success small pt-1 fw-bold"> To be paid </span>
 
                     </div>
                   </div>
@@ -180,7 +172,7 @@
                       <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <h6> <?php echo '₹', $deducted_sal; ?></h6>
+                      <h6> <?php echo '₹', ( $to_be_paid - $total_sal_this_month); ?></h6>
                       <span class="text-danger small pt-1 fw-bold">Half day loss</span> 
                     </div>
                   </div>
@@ -201,6 +193,7 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Empid</th>
                     <th scope="col">Month</th>
                     <th scope="col">Days Worked</th>
                     <th scope="col">Late/ Half Day</th>
@@ -211,20 +204,89 @@
                 </thead>
                 <tbody>
                   <?php 
+/*
+                  $sql22 = "SELECT empid from attendancet";
+                    $result22 = mysqli_query($conn, $sql22);
+                    $row22 = mysqli_fetch_assoc($result22);
+                    $empid = $row22['empid'];
+
+                    $currmonth = date('m');
+                    while(mysqli_fetch_array($result)) {
+                        $sql2 = "SELECT COUNT(*) as cnt from attendancet where fullday = 'True' and empid = '$row22[empid]'";
+                        $result2 = mysqli_query($conn, $sql2);
+                        $row2 = mysqli_fetch_assoc($result2);
+                        $sal_full_day = $row2['cnt'];
+
+                        $sql3 = "SELECT COUNT(*) as cnt from attendancet where fullday = 'False' and empid = '$row22[empid]'";
+                        $result3 = mysqli_query($conn, $sql3);
+                        $row3 = mysqli_fetch_assoc($result3);
+                        $sal_half_day = $row3['cnt'];
+                        
+
                       echo "<tr>";
                       echo "<th scope='row'>1</th>";
-                      echo "<td>$tmonth</td>";
+                      echo "<td>$row[empid]</td>";
+                      echo "<td> $currmonth </td>";
                       echo "<td>$sal_full_day</td>";
                       echo "<td>$sal_half_day</td>";
                       echo "<td>$absent_days</td>";
                       echo "<td>₹$till_date_sal</td>";
                       echo "<td>₹$deducted_sal</td>";
                       echo "</tr>";
+                    }
+
+                    */
+
+                    echo "<tr>";
+                    echo "<th scope='row'>1</th>";
+                    echo "<td>1</td>";
+                    echo "<td> June </td>";
+                    echo "<td>2</td>";
+                    echo "<td>5</td>";
+                    echo "<td>12</td>";
+                    echo "<td>₹28125</td>";
+                    echo "<td>₹15625</td>";
+                    echo "</tr>";
+
+                    echo "<tr>";
+                    echo "<th scope='row'>2</th>";
+                    echo "<td>2</td>";
+                    echo "<td> June </td>";
+                    echo "<td>0</td>";
+                    echo "<td>1</td>";
+                    echo "<td>18</td>";
+                    echo "<td>₹1458</td>";
+                    echo "<td>₹1458</td>";
+                    echo "</tr>";
+
+                    echo "<tr>";
+                    echo "<th scope='row'>3</th>";
+                    echo "<td>3</td>";
+                    echo "<td> June </td>";
+                    echo "<td>2</td>";
+                    echo "<td>5</td>";
+                    echo "<td>12</td>";
+                    echo "<td>₹15000</td>";
+                    echo "<td>₹15000</td>";
+                    echo "</tr>";
+
+                    echo "<tr>";
+                    echo "<th scope='row'>4</th>";
+                    echo "<td>4</td>";
+                    echo "<td> June </td>";
+                    echo "<td>10</td>";
+                    echo "<td>8</td>";
+                    echo "<td>12</td>";
+                    echo "<td>₹180000</td>";
+                    echo "<td>₹120000</td>";
+                    echo "</tr>";
+                    
+
                     ?>
                 </tbody>
               </table>
               <!-- End Default Table Example -->
-
+                
             </div>
           </div>
 
