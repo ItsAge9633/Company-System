@@ -239,6 +239,12 @@
         </a>
       </li><!-- End Dashboard Nav -->
 
+      <li class="nav-item">
+        <a class="nav-link " href="allsalary.php">
+        <i class="bi bi-grid"></i>
+        <span>Finance</span>
+        </a>
+    </li><!-- End FInance Nav -->
       
       <li class="nav-item">
         <a class="nav-link " href="../admin/attendance.php">
