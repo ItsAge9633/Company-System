@@ -41,8 +41,8 @@
 
   <!-- ======= Top and Side Bar ======= -->
       <?php 
-            include 'imports/nav-admin.php';
-            require ('config.php');
+            include '../admin/imports/nav-admin.php';
+            include '../imports/config.php';
       ?>
 
   <main id="main" class="main">

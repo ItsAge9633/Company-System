@@ -1,14 +1,14 @@
 <?php
     session_start();
 
-    if ($_SESSION['erole'] == "emp"){
+    if ($_SESSION['erole'] == "admin"){
 
         include '../imports/config.php';
         $conn = mysqli_connect($server_name, $username, $password, $database_name);
         if(!$conn){
             die("Connection failed: " . mysqli_connect_error());
         }
-        include '../imports/nav-user.php';
+        include './imports/nav-admin.php';
 
 ?>
 <!DOCTYPE html>
@@ -55,7 +55,7 @@
   //sal till date = total worked days * salary per day
 
   $euid = $_SESSION['euid'];
-  $sql = "select * from attendancet where empid = '$euid'";
+  $sql = "select * from attendancet";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($result);
   list($tyear, $tmonth, $tday) =explode("-",$row['ddate']);
