@@ -1,49 +1,58 @@
+<!--#dde2ec-->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Quiz</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <style>
-        .bodycolor{
-            background: #9053c7;
-            background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
-            background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
-            background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
-            background: linear-gradient(-135deg, #c850c0, #4158d0);
-            height: 100%;
-            margin: 0;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Dashboard - RichTech </title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="../assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../assets/css/style.css" rel="stylesheet">
+
+
 </head>
 
-<body class="bodycolor">
-    <nav class="navbar navbar-light navbar-expand-md" style="color: var(--indigo);background: #242226;">
-        <div class="container-fluid"><a class="navbar-brand" href="" style="color:aliceblue">MCQ Software</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link active" href="index.php" style="color:aliceblue">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login.php" style="color:aliceblue">Admin Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" style="color:aliceblue">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#" style="color:aliceblue">Contact Us</a></li>     
-                </ul>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                <ul class="navbar-nav ">
-                    <img src="assets/img/my_logo.jpeg" alt="" width="70" height="70">			
-                </ul>		  
-                </div>
-            </div>
-        </div>
-    </nav>
-    <?php
-        require ('config.php');
-    ?>
-    <br>
+<body>
+
+  <!-- ======= Top and Side Bar ======= -->
+      <?php 
+            include 'imports/nav-stud.php';
+            require ('config.php');
+      ?>
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>MCQ Examination</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+          <li class="breadcrumb-item active">Home Page</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
     <?php
         $conn=mysqli_connect($server_name,$username,$password,$database_name);
         $num=0;
@@ -55,17 +64,17 @@
             $flag=1;
         }
         if ($flag==1){
-            echo '<div class="container jumbotron">';
-                echo '<h1>Enter Your Details!</h1>';
+            echo '<div class="card container jumbotron">';
+                echo '<br><h3>Enter Your Details!</h3><br>';
             echo '</div>';
         }
     ?>
     
     <br>
-    <div class="jumbotron container">
+    <div class="card jumbotron container">
         <?php
         if ($flag==1){
-            echo '<div class="form-group">';
+            echo '<br><div class="form-group">';
                 echo '<form action="scheckregister.php" method="post">';
                     echo '<center>';
                         echo '<input type="email" class="form-control" name="email" id="" placeholder="Email Id">';
@@ -79,13 +88,31 @@
                         echo '<input type="submit" name="srsubmit" style="font-size:20px" class="btn btn-outline-success" value="Next">';
                     echo '</center>';
                 echo '</form>';
-            echo '</div>';
+            echo '<br></div>';
         }
         else{
-            echo "<h2>No Quizzes Available!";
+            echo "<br><h3>No Quizzes Available!<h3><br>";
         }
         ?>
     </div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script><br><br>
+
+  </main><!-- End #main -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/chart.js/chart.min.js"></script>
+  <script src="../assets/vendor/echarts/echarts.min.js"></script>
+  <script src="../assets/vendor/quill/quill.min.js"></script>
+  <script src="../assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="../assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../assets/js/main.js"></script>
+
 </body>
+
+</html>

@@ -1,32 +1,13 @@
-<?php
-    session_start();
-
-    if(isset($_SESSION['uname'])){
-        $a=0;
-    }
-    else{
-        ob_start();
-        header('Location: '.'login.php');
-        ob_end_flush();
-        die();
-    }
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Students not Submitted</title>
+    <title>Submitted!</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
 
-    <style>
-        th, td {
-            padding: 15px;
-        }
-    </style>
     <style>
         .bodycolor{
             background: #9053c7;
@@ -48,12 +29,9 @@
         <div class="container-fluid"><a class="navbar-brand" href="" style="color:aliceblue">MCQ Software</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link active" href="dashboard.php" style="color:aliceblue">Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link" href="allresult.php" style="color:aliceblue">Complete Result</a></li>
-                    <li class="nav-item"><a class="nav-link" href="studresult.php" style="color:aliceblue">Student Result</a></li>
-                    <li class="nav-item"><a class="nav-link" href="graph.php" style="color:aliceblue">Graphical View</a></li>
-                    <li class="nav-item"><a class="nav-link" href="studnots.php" style="color:aliceblue">Not Submitted</a></li>
-                    <li class="nav-item"><a class="nav-link" href="malicious.php" style="color:aliceblue">Malicious Activity</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="index.php" style="color:aliceblue">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" style="color:aliceblue">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" style="color:aliceblue">Contact Us</a></li>     
                 </ul>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav ">
@@ -67,66 +45,128 @@
         require ('config.php');
     ?>
     <br>
+    <div class="jumbotron container">
+    <?php
+        $conn=mysqli_connect($server_name,$username,$password,$database_name);
 
-    <div class="container jumbotron">
-        <?php
-            $conn=mysqli_connect($server_name,$username,$password,$database_name);
+        $sql_query = "SELECT * from activated";
+        $records = mysqli_query($conn,$sql_query);
+        while($data = mysqli_fetch_array($records)){
+            $aqz=$data['quizname'];
+        }
 
-            $sql_query = "SELECT quizname from tempresult";
+        if (isset($_POST['final']) && $aqz==$_POST['squiznameforsave']){
+
+            $qz=$_POST['squiznameforsave'];
+            $quesno=$_POST['squesno'];
+            $sname=$_POST['sname'];
+            $semail=$_POST['semail'];
+            $sroll=$_POST['sroll'];
+
+            $tmarks=0;
+            $marks=0;
+
+            $sql_query = "SELECT done from student where quizname='$qz' and email=\"$semail\"";
             $records = mysqli_query($conn,$sql_query);
             while($data = mysqli_fetch_array($records)){
-                $qz=$data['quizname'];
+                $status=$data['done'];
             }
+
+            if ($status=="no"){
+                for ($i=0;$i<$quesno;$i++){
+                    $w="text".$i;
+                    $w1="radio".$i;
+                    $ques=$_POST[$w];
+                    $ques=str_replace("'","\'",$ques);
             
-            echo "<center><h1>Students who are giving ".$qz." quiz</h1></center>";
-            mysqli_close($conn);
-        ?>
-    </div>
-
-    <div class="container jumbotron">
-        <?php
-            $n=1;
-            $conn=mysqli_connect($server_name,$username,$password,$database_name);
+                    $w11="opt".$i."1";
+                    $w12="opt".$i."2";
+                    $w13="opt".$i."3";
+                    $w14="opt".$i."4";
+                    
+                    $opt1=$_POST[$w11];
+                    $opt2=$_POST[$w12];
+                    $opt3=$_POST[$w13];
+                    $opt4=$_POST[$w14];
             
-            $sql_query = "SELECT * from student where quizname='$qz' and done='no'";
-            $records = mysqli_query($conn, $sql_query);
+                    if (isset($_POST[$w1])){
+                        $ans=$_POST[$w1];
+                    }
+                    else{
+                        $ans=' ';
+                    }
+                    
+                    $sql_query = "SELECT ans from questions where quizname='$qz' and question='$ques' and opt1='$opt1' and opt2='$opt2' and opt3='$opt3' and opt4='$opt4'";
+                    $records = mysqli_query($conn,$sql_query);
+                    while($data = mysqli_fetch_array($records)){
+                        $ca=$data['ans'];
+                    }
+            
+                    $tmarks+=1;
+                    if ($ca==$ans){
+                        $marks+=1;
+                        $cw="correct";
+                    }
+                    else{
+                        $cw="wrong";
+                    }
 
-            echo '<table class="table">';
-                echo '<thead class="thead-dark">';
-                    echo '<tr>';
-                    echo '<th scope="col">#</th>';
-                    echo '<th scope="col">Name</th>';
-                    echo '<th scope="col">Roll Number</th>';
-                    echo '<th scope="col">Email</th>';
-                    echo '<th scope="col">Mobile Number</th>';
-                    echo '</tr>';
-                echo '</thead>';
-
-            while($data = mysqli_fetch_array($records)){
-                $roll=$data['roll'];
-                $email=$data['email'];
-                $name=$data['ename'];
-                $mobile=$data['mobile'];
-
-                echo '<tbody>
-                        <tr>
-                        <th scope="row">'.$n.'</th>
-                        <td>'.$name.'</td>
-                        <td>'.$roll.'</td>
-                        <td>'.$email.'</td>
-                        <td>'.$mobile.'</td>
-                        </tr>';
-                $n+=1;
+                    $sql_query = "INSERT INTO submission (rollno,email,quizname,ques,opt1,opt2,opt3,opt4,cans,gans,cw)
+                    VALUES ('$sroll','$semail','$qz','$ques','$opt1','$opt2','$opt3','$opt4','$ca','$ans','$cw')";
+                    mysqli_query($conn, $sql_query);
+                }
             }
-            echo '</tbody>
-            </table>';
 
-            mysqli_close($conn);
-        ?>
+            $per=($marks/($quesno))*100;
+            $per=number_format($per, 2, '.', '');
+            $t=date("d/m/y h:i:sa");
+
+            $sql_query = "UPDATE student SET done='yes',marks=$marks,per=$per,ttime='$t' WHERE email='$semail' and roll='$sroll' and quizname='$qz'";
+            mysqli_query($conn, $sql_query);
+
+            $cdata=$_POST['cheated'];
+            $ctdata=$_POST['changetabs'];
+            //echo $ctdata;
+            $myarray=explode(" ",$cdata);
+            if ($cdata=="" and $ctdata=="no"){
+                //echo "Not Cheated!";
+                $mali="Not Cheated!";
+            }elseif($ctdata!="no"){
+                $mali = "Changed Tab $ctdata times!";
+                $sql_query = "INSERT INTO malicious (ename,email,roll,quizname,emessage)
+                    VALUES ('$sname','$semail','$sroll','$qz','$mali')";
+                mysqli_query($conn, $sql_query);
+            }elseif(count($myarray)==2){
+                //echo "Tried to Cheat, Pressed some of Shortcut Keys!";
+                $mali="Tried to Cheat, Pressed one of Shortcut Key once!";
+                $sql_query = "INSERT INTO malicious (ename,email,roll,quizname,emessage)
+                    VALUES ('$sname','$semail','$sroll','$qz','$mali')";
+                mysqli_query($conn, $sql_query);
+            }else{
+                //echo "Cheated, Pressed some of Shortcut Keys many times!";
+                $mali="Cheated, Pressed some of Shortcut Keys many times!";
+                $sql_query = "INSERT INTO malicious (ename,email,roll,quizname,emessage)
+                    VALUES ('$sname','$semail','$sroll','$qz','$mali')";
+                mysqli_query($conn, $sql_query);
+            }
+
+            session_start();
+            session_destroy();
+            echo "<center><h1>Your Response has been recored!</h1></center><br>";
+            echo "<br><center><h3>Thank You $sname!</h3></center>";
+        }
+        else{
+            echo "<center><h1>Sorry You where late!</h1></center><br>";
+            echo "<center><h3>If any issues please contact Admin!</h3></center>";
+        }
+
+        mysqli_close($conn);
+    ?>
     </div>
-    <br><br>
 
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
 </body>
+
 </html>
