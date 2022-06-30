@@ -1,8 +1,4 @@
 <!--#dde2ec-->
-<?php
-    session_start();
-    if ($_SESSION['erole']=="admin"){
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -83,14 +79,3 @@
 </body>
 
 </html>
-
-<?php
-            #print("Op");
-        }
-        else{
-            ob_start();
-            header('Location: '.'../index.php');
-            ob_end_flush();
-            die();
-        }
-    ?>

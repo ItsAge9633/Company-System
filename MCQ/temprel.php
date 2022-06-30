@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    if(isset($_SESSION['uname'])){
+    if ($_SESSION['erole']=="admin"){
         $a=0;
     }
     else{

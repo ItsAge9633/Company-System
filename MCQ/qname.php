@@ -2,12 +2,12 @@
 
     session_start();
 
-    if(isset($_SESSION['uname'])){
+    if ($_SESSION['erole']=="admin"){
         $a=0;
     }
     else{
         ob_start();
-        header('Location: '.'login.php');
+        header('Location: '.'../index.php');
         ob_end_flush();
         die();
     }

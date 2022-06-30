@@ -1,7 +1,7 @@
 <!--#dde2ec-->
 <?php
     session_start();
-    if(isset($_SESSION['sname'])){
+    if(isset($_SESSION['sname'])  or isset($_POST['semail'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -100,6 +100,7 @@
     <div class="card jumbotron container">
         <br>
     <?php
+        error_reporting(0);
         $conn=mysqli_connect($server_name,$username,$password,$database_name);
 
         $sql_query = "SELECT * from activated";
@@ -248,7 +249,7 @@
         }
         else{
             ob_start();
-            header('Location: '.'../squizregister.php');
+            header('Location: '.'index.php');
             ob_end_flush();
             die();
         }

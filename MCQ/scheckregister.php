@@ -57,9 +57,9 @@
         <br>
         <h3>Instructions:-</h3><br>
         <ol>
-            <li>1.) Keep a Stable Internet Connection.</li>
-            <li>2.) Submit the Test in given Time.</li>
-            <li>3.) If any issues, please contact to Admin.</li>
+            <li>Keep a Stable Internet Connection.</li>
+            <li>Submit the Test in given Time.</li>
+            <li>If any issues, please contact to Admin.</li>
         </ol>
         
         <?php

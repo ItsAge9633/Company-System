@@ -1,7 +1,7 @@
 <!--#dde2ec-->
 <?php
     session_start();
-    if(isset($_SESSION['sname'])){
+    if(isset($_SESSION['sname']) or isset($_POST['semail'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -223,7 +223,7 @@
         }
         else{
             ob_start();
-            header('Location: '.'../squizregister.php');
+            header('Location: '.'index.php');
             ob_end_flush();
             die();
         }
