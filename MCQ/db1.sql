@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2022 at 10:58 PM
+-- Generation Time: Jun 30, 2022 at 04:37 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -31,6 +31,13 @@ CREATE TABLE `activated` (
   `quizname` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `activated`
+--
+
+INSERT INTO `activated` (`quizname`) VALUES
+('Unit-3');
+
 -- --------------------------------------------------------
 
 --
@@ -46,7 +53,7 @@ CREATE TABLE `activequiznames` (
 --
 
 INSERT INTO `activequiznames` (`quizname`) VALUES
-('Demo');
+('New Quiz 1');
 
 -- --------------------------------------------------------
 
@@ -63,7 +70,7 @@ CREATE TABLE `demoshow` (
 --
 
 INSERT INTO `demoshow` (`quizname`) VALUES
-('Unit-3');
+('New Quiz 1');
 
 -- --------------------------------------------------------
 
@@ -120,7 +127,8 @@ INSERT INTO `malicious` (`Id`, `ename`, `email`, `roll`, `quizname`, `emessage`)
 (33, 'Hrishikesh', 'hrishikesh.194034@gmail.com', '194034', 'Unit-3', 'Changed Tab 8 times!'),
 (34, 'Satyam', 'satyam.194059@gmail.com', '194059', 'Unit-3', 'Changed Tab 3 times!'),
 (35, 'Soham', 'soham.194037@gmail.com', '194037', 'Unit-3', 'Changed Tab 41 times!'),
-(36, 'Pranit bhalekar', 'pranit.194054@gmail.com', '194054', 'Unit-3', 'Changed Tab 2 times!');
+(36, 'Pranit bhalekar', 'pranit.194054@gmail.com', '194054', 'Unit-3', 'Changed Tab 2 times!'),
+(37, 'test1', 'test1@gmail.com', 'test1', 'Unit-3', 'Changed Tab 2 times!');
 
 -- --------------------------------------------------------
 
@@ -144,9 +152,6 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`Id`, `quizname`, `question`, `opt1`, `opt2`, `opt3`, `opt4`, `ans`) VALUES
-(21, 'Demo', 'Hello', '1', '2', '3', '4', '1'),
-(22, 'Demo', 'Hello\r\nHello\r\n', '1', '2', '3', '4', '2'),
-(23, 'Demo', 'Hello\r\nHello\r\nHello', '1', '2', '3', '4', '3'),
 (43, 'Unit-3', 'What will be output of following code if today’s Date is 18/12/2021?\r\n<?php\r\n$txt = \"PHP\";\r\necho date(\"dS F, Y\");\r\n?>', '18 Dec, 2021', '18th Dec, 2021', '18th December 2021', 'December 18, 2021', '18th December 2021'),
 (44, 'Unit-3', 'Which function is used to set a particular time zone?', 'time()', 'date_default_timezone_set()', 'timezone_set()', 'time_zone()', 'date_default_timezone_set()'),
 (45, 'Unit-3', 'Which function is used to producing a timestamp based on a given date and time?', 'time()', 'mrtime()', 'mtime()', 'mktime()', 'mktime()'),
@@ -165,7 +170,8 @@ INSERT INTO `questions` (`Id`, `quizname`, `question`, `opt1`, `opt2`, `opt3`, `
 (58, 'Unit-3', 'Which of the following are valid function names?\r\n\r\ni) function() \r\nii) .function() \r\niii) €() \r\niv) $function()', 'Only iv)', 'Only ii) and i)', 'Only iii)', 'None of Above', 'Only iii)'),
 (59, 'Unit-3', 'What will be the output of the code?\r\n\r\n<?php \r\nfunction sub(...$numbers) {\r\n$sub = 0; \r\nforeach ($numbers as $n) { \r\n$sub -= $n; \r\n} return $sub; \r\n} \r\necho sub(1, 2, 3, 4);\r\necho sub(1,10);  \r\n?>', '1011', '10 Error', '-10-11', 'Error', '-10-11'),
 (60, 'Unit-3', 'PHP supports variable length argument function with the help of which operator?', 'Tilde Operator', 'Ellipses Operator', 'Bacticks Operator', 'PHP Supports no such Feature', 'Ellipses Operator'),
-(61, 'Unit-3', 'Which predefined variable is used to get data from a POST method?', '$POST', '$_POST', '$_POST_METHOD', 'None of Above', '$_POST');
+(61, 'Unit-3', 'Which predefined variable is used to get data from a POST method?', '$POST', '$_POST', '$_POST_METHOD', 'None of Above', '$_POST'),
+(62, 'New Quiz 1', 'What is Full Form of NA?', 'Network Area', 'Network Admin', 'Network Administration', 'None of the Above', 'Network Administration');
 
 -- --------------------------------------------------------
 
@@ -252,7 +258,10 @@ INSERT INTO `student` (`Id`, `email`, `ename`, `roll`, `mobile`, `done`, `marks`
 (59, 'hrishikesh.194034@gmail.com', 'Hrishikesh Chaudhari', '194034', '8379976638', 'yes', 5, 25, '25/12/21 07:18:31am', 'Unit-3'),
 (60, 'anisha.194027@gmail.com', 'Anisha Bansode ', '27', '7499575290', 'yes', 8, 40, '25/12/21 07:17:39am', 'Unit-3'),
 (61, 'adityaubale6585@gmail.com', 'Aditya Ubale', '204096', '8237866585', 'yes', 10, 50, '25/12/21 07:21:07am', 'Unit-3'),
-(62, '194009@cusrowwadiapune.onmicrosoft.com', 'Sarvesh Mankar', '321', '8208419540', 'no', 0, 0, '', 'Demo');
+(62, '194009@cusrowwadiapune.onmicrosoft.com', 'Sarvesh Mankar', '321', '8208419540', 'no', 0, 0, '', 'Demo'),
+(63, 'aa@gmail.com', 'a', 'a', '9876543212', 'yes', 11, 57.89, '29/06/22 08:56:54pm', 'Unit-3'),
+(64, 'aaa@gmail.com', 'a', 'aa', '9876543212', 'no', 0, 0, '', 'Unit-3'),
+(65, 'test1@gmail.com', 'test1', 'test1', '9876543212', 'yes', 0, 0, '30/06/22 10:21:58am', 'Unit-3');
 
 -- --------------------------------------------------------
 
@@ -265,6 +274,13 @@ CREATE TABLE `studentresult` (
   `quizname` varchar(255) NOT NULL,
   `setting` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `studentresult`
+--
+
+INSERT INTO `studentresult` (`Id`, `quizname`, `setting`) VALUES
+(1, 'Unit-3', 'Complete Result with Question Evaluation');
 
 -- --------------------------------------------------------
 
@@ -1392,7 +1408,45 @@ INSERT INTO `submission` (`Id`, `rollno`, `email`, `quizname`, `ques`, `opt1`, `
 (1092, '194054', 'pranit.194054@gmail.com', 'Unit-3', 'What are advantages of Functions?', 'Makes code less Complex', 'Enhances Readability', 'Saves coding time', 'All of Above', 'All of Above', 'All of Above', 'correct'),
 (1093, '194054', 'pranit.194054@gmail.com', 'Unit-3', 'Which predefined variable is used to get data from a POST method?', '$POST', '$_POST', '$_POST_METHOD', 'None of Above', '$_POST', '$_POST', 'correct'),
 (1094, '194054', 'pranit.194054@gmail.com', 'Unit-3', 'What will be the output of given code?\r\n<?php\r\nfunction sub($n1,$n2=10){\r\n	echo $n1-$n2;\r\n}\r\n\r\nsub (30);\r\nsub (10,20);\r\n?> \r\n', '2030', '3010', '20-10', 'Error', '20-10', '3010', 'wrong'),
-(1095, '194054', 'pranit.194054@gmail.com', 'Unit-3', 'To create an object and set the date to December 18, 2022, which one of the following statement should be executed?', '$date = Date(“18 December 2022“)', '$date = new Date(“December 18 2022“)', '$date = new DateTime(“18 December 2022“)', '$date = ToDate (“18 December 2022“)', '$date = new DateTime(“18 December 2022“)', '$date = new DateTime(“18 December 2022“)', 'correct');
+(1095, '194054', 'pranit.194054@gmail.com', 'Unit-3', 'To create an object and set the date to December 18, 2022, which one of the following statement should be executed?', '$date = Date(“18 December 2022“)', '$date = new Date(“December 18 2022“)', '$date = new DateTime(“18 December 2022“)', '$date = ToDate (“18 December 2022“)', '$date = new DateTime(“18 December 2022“)', '$date = new DateTime(“18 December 2022“)', 'correct'),
+(1096, 'a', 'aa@gmail.com', 'Unit-3', 'What will be output of following code?\r\n<?php\r\n$txt = \"I am cwitain!\";\r\necho ucword($txt);\r\n?>\r\n', 'I Am Cwitain!', 'I am cwitain!', 'i am cwitain!', 'None of above', 'None of above', 'None of above', 'correct'),
+(1097, 'a', 'aa@gmail.com', 'Unit-3', 'Which functions is used to find position of first occurrence of a particular character in a string?', 'strpostion()', 'pos()', 'strpos()', 'None of the above', 'strpos()', ' ', 'wrong'),
+(1098, 'a', 'aa@gmail.com', 'Unit-3', 'Which method is usually used when we have to save a website as a Bookmark?', 'GET Method', 'POST Method', 'PUT Method', 'None of Above', 'GET Method', 'POST Method', 'wrong'),
+(1099, 'a', 'aa@gmail.com', 'Unit-3', 'Which predefined variable is used to get data from a POST method?', '$POST', '$_POST', '$_POST_METHOD', 'None of Above', '$_POST', '$_POST_METHOD', 'wrong'),
+(1100, 'a', 'aa@gmail.com', 'Unit-3', 'Which function is used to count number of words in a string?', 'str_count()', 'str_word_count()', 'word_count()', 'count()', 'str_word_count()', 'str_word_count()', 'correct'),
+(1101, 'a', 'aa@gmail.com', 'Unit-3', 'Which of the following are valid function names?\r\n\r\ni) function() \r\nii) .function() \r\niii) €() \r\niv) $function()', 'Only iv)', 'Only ii) and i)', 'Only iii)', 'None of Above', 'Only iii)', 'None of Above', 'wrong'),
+(1102, 'a', 'aa@gmail.com', 'Unit-3', 'Which function is used to producing a timestamp based on a given date and time?', 'time()', 'mrtime()', 'mtime()', 'mktime()', 'mktime()', 'mktime()', 'correct'),
+(1103, 'a', 'aa@gmail.com', 'Unit-3', 'PHP supports variable length argument function with the help of which operator?', 'Tilde Operator', 'Ellipses Operator', 'Bacticks Operator', 'PHP Supports no such Feature', 'Ellipses Operator', 'Ellipses Operator', 'correct'),
+(1104, 'a', 'aa@gmail.com', 'Unit-3', 'What will be the output of given code?\r\n<?php\r\nfunction hello($name){\r\n	return \"Hello $name\";\r\n}\r\n\r\nhello(\"Suresh\");\r\n?>\r\n', 'Hello Suresh!', 'Hello $name!', 'No Output', 'Error', 'No Output', 'Hello Suresh!', 'wrong'),
+(1105, 'a', 'aa@gmail.com', 'Unit-3', 'Which method is for user authentication?', 'GET Method', 'POST Method', 'PUT Method', 'None of Above', 'POST Method', 'POST Method', 'correct'),
+(1106, 'a', 'aa@gmail.com', 'Unit-3', 'What will be the output of the code?\r\n\r\n<?php \r\nfunction sub(...$numbers) {\r\n$sub = 0; \r\nforeach ($numbers as $n) { \r\n$sub -= $n; \r\n} return $sub; \r\n} \r\necho sub(1, 2, 3, 4);\r\necho sub(1,10);  \r\n?>', '1011', '10 Error', '-10-11', 'Error', '-10-11', '-10-11', 'correct'),
+(1107, 'a', 'aa@gmail.com', 'Unit-3', 'What will be the output of given code?\r\n<?php\r\nfunction sub($n1,$n2=10){\r\n	echo $n1-$n2;\r\n}\r\n\r\nsub (30);\r\nsub (10,20);\r\n?> \r\n', '2030', '3010', '20-10', 'Error', '20-10', '2030', 'wrong'),
+(1108, 'a', 'aa@gmail.com', 'Unit-3', 'What will be output of following code if today’s Date is 18/12/2021?\r\n<?php\r\n$txt = \"PHP\";\r\necho date(\"dS F, Y\");\r\n?>', '18 Dec, 2021', '18th Dec, 2021', '18th December 2021', 'December 18, 2021', '18th December 2021', '18th December 2021', 'correct'),
+(1109, 'a', 'aa@gmail.com', 'Unit-3', 'Which type of Function calling is used in given code?\r\n<?php\r\n function calc($price, $tax){ \r\n$total = $price + $tax; \r\n} \r\n$pricetag = 15; \r\n$taxtag = 3; \r\ncalc($pricetag, $taxtag);\r\n?>', 'Call By Value', 'Call By Reference', 'Default Argument Value', 'Type Hinting', 'Call By Value', 'Call By Value', 'correct'),
+(1110, 'a', 'aa@gmail.com', 'Unit-3', 'Which function is used to set a particular time zone?', 'time()', 'date_default_timezone_set()', 'timezone_set()', 'time_zone()', 'date_default_timezone_set()', 'timezone_set()', 'wrong'),
+(1111, 'a', 'aa@gmail.com', 'Unit-3', 'How to define a function in PHP?', 'function {function body}', 'data type functionName(parameters) {function body}', 'function functionName(parameters) {function body}', 'functionName(parameters) {function body}', 'function functionName(parameters) {function body}', 'function functionName(parameters) {function body}', 'correct'),
+(1112, 'a', 'aa@gmail.com', 'Unit-3', 'What is output of following code?\r\n<?php  \r\n$a = 15;  \r\nfunction show(){  \r\n$a = 20;  \r\necho \"$a\";  \r\n}  \r\nshow();  \r\necho \"$a\";  \r\n?>  ', '1520', '2020', '2015', '1515', '2015', '1520', 'wrong'),
+(1113, 'a', 'aa@gmail.com', 'Unit-3', 'What are advantages of Functions?', 'Makes code less Complex', 'Enhances Readability', 'Saves coding time', 'All of Above', 'All of Above', 'All of Above', 'correct'),
+(1114, 'a', 'aa@gmail.com', 'Unit-3', 'To create an object and set the date to December 18, 2022, which one of the following statement should be executed?', '$date = Date(“18 December 2022“)', '$date = new Date(“December 18 2022“)', '$date = new DateTime(“18 December 2022“)', '$date = ToDate (“18 December 2022“)', '$date = new DateTime(“18 December 2022“)', '$date = new DateTime(“18 December 2022“)', 'correct'),
+(1115, 'test1', 'test1@gmail.com', 'Unit-3', 'What will be output of following code if today’s Date is 18/12/2021?\r\n<?php\r\n$txt = \"PHP\";\r\necho date(\"dS F, Y\");\r\n?>', '18 Dec, 2021', '18th Dec, 2021', '18th December 2021', 'December 18, 2021', '18th December 2021', ' ', 'wrong'),
+(1116, 'test1', 'test1@gmail.com', 'Unit-3', 'Which function is used to count number of words in a string?', 'str_count()', 'str_word_count()', 'word_count()', 'count()', 'str_word_count()', ' ', 'wrong'),
+(1117, 'test1', 'test1@gmail.com', 'Unit-3', 'Which function is used to set a particular time zone?', 'time()', 'date_default_timezone_set()', 'timezone_set()', 'time_zone()', 'date_default_timezone_set()', ' ', 'wrong'),
+(1118, 'test1', 'test1@gmail.com', 'Unit-3', 'What will be the output of given code?\r\n<?php\r\nfunction sub($n1,$n2=10){\r\n	echo $n1-$n2;\r\n}\r\n\r\nsub (30);\r\nsub (10,20);\r\n?> \r\n', '2030', '3010', '20-10', 'Error', '20-10', ' ', 'wrong'),
+(1119, 'test1', 'test1@gmail.com', 'Unit-3', 'What will be the output of given code?\r\n<?php\r\nfunction hello($name){\r\n	return \"Hello $name\";\r\n}\r\n\r\nhello(\"Suresh\");\r\n?>\r\n', 'Hello Suresh!', 'Hello $name!', 'No Output', 'Error', 'No Output', ' ', 'wrong'),
+(1120, 'test1', 'test1@gmail.com', 'Unit-3', 'Which method is usually used when we have to save a website as a Bookmark?', 'GET Method', 'POST Method', 'PUT Method', 'None of Above', 'GET Method', ' ', 'wrong'),
+(1121, 'test1', 'test1@gmail.com', 'Unit-3', 'To create an object and set the date to December 18, 2022, which one of the following statement should be executed?', '$date = Date(“18 December 2022“)', '$date = new Date(“December 18 2022“)', '$date = new DateTime(“18 December 2022“)', '$date = ToDate (“18 December 2022“)', '$date = new DateTime(“18 December 2022“)', ' ', 'wrong'),
+(1122, 'test1', 'test1@gmail.com', 'Unit-3', 'How to define a function in PHP?', 'function {function body}', 'data type functionName(parameters) {function body}', 'function functionName(parameters) {function body}', 'functionName(parameters) {function body}', 'function functionName(parameters) {function body}', ' ', 'wrong'),
+(1123, 'test1', 'test1@gmail.com', 'Unit-3', 'What will be the output of the code?\r\n\r\n<?php \r\nfunction sub(...$numbers) {\r\n$sub = 0; \r\nforeach ($numbers as $n) { \r\n$sub -= $n; \r\n} return $sub; \r\n} \r\necho sub(1, 2, 3, 4);\r\necho sub(1,10);  \r\n?>', '1011', '10 Error', '-10-11', 'Error', '-10-11', ' ', 'wrong'),
+(1124, 'test1', 'test1@gmail.com', 'Unit-3', 'What are advantages of Functions?', 'Makes code less Complex', 'Enhances Readability', 'Saves coding time', 'All of Above', 'All of Above', ' ', 'wrong'),
+(1125, 'test1', 'test1@gmail.com', 'Unit-3', 'PHP supports variable length argument function with the help of which operator?', 'Tilde Operator', 'Ellipses Operator', 'Bacticks Operator', 'PHP Supports no such Feature', 'Ellipses Operator', ' ', 'wrong'),
+(1126, 'test1', 'test1@gmail.com', 'Unit-3', 'Which type of Function calling is used in given code?\r\n<?php\r\n function calc($price, $tax){ \r\n$total = $price + $tax; \r\n} \r\n$pricetag = 15; \r\n$taxtag = 3; \r\ncalc($pricetag, $taxtag);\r\n?>', 'Call By Value', 'Call By Reference', 'Default Argument Value', 'Type Hinting', 'Call By Value', ' ', 'wrong'),
+(1127, 'test1', 'test1@gmail.com', 'Unit-3', 'Which of the following are valid function names?\r\n\r\ni) function() \r\nii) .function() \r\niii) €() \r\niv) $function()', 'Only iv)', 'Only ii) and i)', 'Only iii)', 'None of Above', 'Only iii)', ' ', 'wrong'),
+(1128, 'test1', 'test1@gmail.com', 'Unit-3', 'Which function is used to producing a timestamp based on a given date and time?', 'time()', 'mrtime()', 'mtime()', 'mktime()', 'mktime()', ' ', 'wrong'),
+(1129, 'test1', 'test1@gmail.com', 'Unit-3', 'What will be output of following code?\r\n<?php\r\n$txt = \"I am cwitain!\";\r\necho ucword($txt);\r\n?>\r\n', 'I Am Cwitain!', 'I am cwitain!', 'i am cwitain!', 'None of above', 'None of above', ' ', 'wrong'),
+(1130, 'test1', 'test1@gmail.com', 'Unit-3', 'Which method is for user authentication?', 'GET Method', 'POST Method', 'PUT Method', 'None of Above', 'POST Method', ' ', 'wrong'),
+(1131, 'test1', 'test1@gmail.com', 'Unit-3', 'What is output of following code?\r\n<?php  \r\n$a = 15;  \r\nfunction show(){  \r\n$a = 20;  \r\necho \"$a\";  \r\n}  \r\nshow();  \r\necho \"$a\";  \r\n?>  ', '1520', '2020', '2015', '1515', '2015', ' ', 'wrong'),
+(1132, 'test1', 'test1@gmail.com', 'Unit-3', 'Which predefined variable is used to get data from a POST method?', '$POST', '$_POST', '$_POST_METHOD', 'None of Above', '$_POST', ' ', 'wrong'),
+(1133, 'test1', 'test1@gmail.com', 'Unit-3', 'Which functions is used to find position of first occurrence of a particular character in a string?', 'strpostion()', 'pos()', 'strpos()', 'None of the above', 'strpos()', ' ', 'wrong');
 
 -- --------------------------------------------------------
 
@@ -1453,31 +1507,31 @@ ALTER TABLE `submission`
 -- AUTO_INCREMENT for table `malicious`
 --
 ALTER TABLE `malicious`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `studentresult`
 --
 ALTER TABLE `studentresult`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `submission`
 --
 ALTER TABLE `submission`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1096;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1134;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
