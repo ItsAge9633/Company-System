@@ -233,7 +233,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.php">
+        <a class="nav-link " href="../admin/index.php">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -242,7 +242,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="allsalary.php">
+        <a class="nav-link " href="../admin/allsalary.php">
         <i class="bi bi-grid"></i>
         <span>Finance</span>
         </a>
@@ -250,14 +250,14 @@
 
       
       <li class="nav-item">
-        <a class="nav-link " href="attendance.php">
+        <a class="nav-link " href="../admin/attendance.php">
           <i class="bi bi-people"></i>
           <span>Attendance</span>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link " href="../MCQ/dashboard.php">
+        <a class="nav-link " href="dashboard.php">
           <i class="bi bi-people"></i>
           <span>MCQ Test</span>
         </a>
@@ -269,22 +269,22 @@
         </a>
         <ul id="client-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="view_cli.php">
+            <a href="../admin/view_cli.php">
               <i class="bi bi-circle"></i><span>View All Clients</span>
             </a>
           </li>
           <li>
-            <a href="add_cli.php">
+            <a href="../admin/add_cli.php">
               <i class="bi bi-circle"></i><span>Add Client</span>
             </a>
           </li>
           <li>
-            <a href="browse_cli.php">
+            <a href="../admin/browse_cli.php">
               <i class="bi bi-circle"></i><span>Browse Client</span>
             </a>
           </li>
           <li>
-            <a href="payment.php">
+            <a href="../admin/payment.php">
               <i class="bi bi-circle"></i><span>Payment Received</span>
             </a>
           </li>

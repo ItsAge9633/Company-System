@@ -78,7 +78,7 @@
                             <label for="payment_details">Payment Details</label>
                             <input type="text" class="form-control" id="payment_details" name="payment_details" placeholder="Enter Payment Details">
                         </div><br>
-                        <center><button type="submit" class="btn btn-primary">Submit</button></center>
+                        <center><button type="submit" name="payment_entry" class="btn btn-primary">Submit</button></center>
                     </form>
                     </div>
                 </div>
@@ -139,6 +139,38 @@
       </div>
 
     </section>
+
+    <?php
+		if (isset($_POST['payment_entry'])){
+			$client_id = $_POST['client_id'];
+			$amount = $_POST['amount'];
+			$payment_date = $_POST['payment_date'];
+			$a=explode("-",$payment_date);
+			$payment_date=$a[2]."-".$a[1]."-".$a[0];
+            $payment_date = date("Y-m-d", strtotime($payment_date));
+
+			$payment_details = $_POST['payment_details'];
+
+			include '../imports/config.php';
+			$conn=mysqli_connect($server_name,$username,$password,$database_name);
+
+			$sql_query = "UPDATE clientt SET received='$payment_date' WHERE Id='$client_id'";
+			mysqli_query($conn, $sql_query);
+
+			$sql_query = "INSERT INTO financet (ddate,ffrom,tto,amt,narration,deptname) VALUES ('$payment_date','$client_id','Company','$amount','$payment_details','Project')";
+
+			if(mysqli_query($conn, $sql_query)){
+				echo '<script>alert("Payment Successful")</script>';
+				echo '<script>window.location.href="payment.php"</script>';
+			}
+			else{
+				echo '<script>alert("Payment Failed")</script>';
+				echo '<script>window.location.href="payment.php"</script>';
+			}
+
+			mysqli_close($conn);
+		} 
+    ?>
 
   </main><!-- End #main -->
 
