@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2022 at 04:37 PM
+-- Generation Time: Jul 01, 2022 at 05:07 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -70,7 +70,7 @@ CREATE TABLE `clientt` (
   `ddate` date NOT NULL,
   `descrip` longtext NOT NULL,
   `pstatus` varchar(20) NOT NULL,
-  `cdate` datetime(6) DEFAULT NULL,
+  `cdate` date DEFAULT NULL,
   `charges` int(7) NOT NULL,
   `received` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -80,12 +80,12 @@ CREATE TABLE `clientt` (
 --
 
 INSERT INTO `clientt` (`Id`, `cname`, `pname`, `mobile`, `email`, `aaddress`, `pdate`, `ddate`, `descrip`, `pstatus`, `cdate`, `charges`, `received`) VALUES
-(1, 'Sam Technologies', 'Portfolio', '+918208419540', 'sarvesh@samtech2543.co', 'Pune', '2022-02-16', '2022-02-25', 'Redesign samtech2543.co', 'Completed', '2022-02-19 00:00:00.000000', 5000, NULL),
-(2, 'Sarvesh Software Provider', 'MCQ Platform', '8928115445', 'aparna@sarveshmankar2543.co', '', '2022-02-17', '2022-03-01', 'MCQ Examination Platform', 'Completed', '2022-02-19 00:00:00.000000', 4500, NULL),
-(4, 'Abc', 'abc', '8928115445', 'abc@abc.com', '', '2022-02-18', '0000-00-00', 'Testing of Mobile App', 'Completed', '2022-03-27 00:00:00.000000', 6000, NULL),
+(1, 'Sam Technologies', 'Portfolio', '+918208419540', 'sarvesh@samtech2543.co', 'Pune', '2022-02-16', '2022-02-25', 'Redesign samtech2543.co', 'Completed', '2022-02-19', 5000, NULL),
+(2, 'Sarvesh Software Provider', 'MCQ Platform', '8928115445', 'aparna@sarveshmankar2543.co', '', '2022-02-17', '2022-03-01', 'MCQ Examination Platform', 'Completed', '2022-02-19', 4500, NULL),
+(4, 'Abc', 'abc', '8928115445', 'abc@abc.com', '', '2022-02-18', '0000-00-00', 'Testing of Mobile App', 'Completed', '2022-03-27', 6000, NULL),
 (5, 'test1', 'test1-Proj', '1234567890', 'test1@gmail.com', '', '2022-03-25', '0000-00-00', 'Test1\r\nmain\r\nproject', 'Working', NULL, 0, NULL),
 (6, 'Test2', 'Test2', '0987654321', 'Test2@gmail.com', '', '2022-03-27', '2022-04-05', 'Test2\r\nTest2\r\nTest2', 'Working', NULL, 0, NULL),
-(7, 'test', 'test', '9911991199', 'test9911@gmail.com', '', '2022-05-17', '2022-06-17', 'A test project ', 'Completed', '2022-05-18 00:00:00.000000', 1000, NULL),
+(7, 'test', 'test', '9911991199', 'test9911@gmail.com', '', '2022-05-17', '2022-06-17', 'A test project ', 'Completed', '2022-05-18', 1000, NULL),
 (8, 'a1', 'a1', '9876543212', 'mankarsarvesh2543@gmail.com', '', '2022-06-29', '0000-00-00', 'a1', 'Pending', NULL, 0, NULL);
 
 -- --------------------------------------------------------
@@ -181,6 +181,7 @@ CREATE TABLE `financet` (
   `ffrom` varchar(255) NOT NULL,
   `tto` varchar(255) NOT NULL,
   `amt` int(7) NOT NULL,
+  `narration` varchar(255) NOT NULL,
   `deptname` varchar(255) NOT NULL,
   `ffile` longblob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

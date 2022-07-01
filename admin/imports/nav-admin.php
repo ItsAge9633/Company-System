@@ -283,6 +283,11 @@
               <i class="bi bi-circle"></i><span>Browse Client</span>
             </a>
           </li>
+          <li>
+            <a href="payment.php">
+              <i class="bi bi-circle"></i><span>Payment Received</span>
+            </a>
+          </li>
         </ul>
       </li><!-- End Components Nav -->
 
