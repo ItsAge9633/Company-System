@@ -2,14 +2,6 @@
     session_start();
 
     if ($_SESSION['erole'] == "admin"){
-
-        include '../imports/config.php';
-        $conn = mysqli_connect($server_name, $username, $password, $database_name);
-        if(!$conn){
-            die("Connection failed: " . mysqli_connect_error());
-        }
-        include './imports/nav-admin.php';
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +39,33 @@
 
 <body>
 
-<?php
+  <!-- ======= Top and Side Bar ======= -->
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Salary</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+          <li class="breadcrumb-item active">Salary</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-12">
+          <div class="row">
+
+          <?php
+include '../imports/config.php';
+$conn = mysqli_connect($server_name, $username, $password, $database_name);
+if(!$conn){
+    die("Connection failed: " . mysqli_connect_error());
+}
+include './imports/nav-admin.php';
 
 $sql = "SELECT SUM(bsalary) as salary from salaryt";
 $result = mysqli_query($conn, $sql);
@@ -95,25 +113,6 @@ while (mysqli_fetch_array($result3)) {
 
 $total_sal_this_month = intval($total_salary / 12);
 ?>
-  <!-- ======= Top and Side Bar ======= -->
-  <main id="main" class="main">
-
-    <div class="pagetitle">
-      <h1>Financial Status</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="user-sal.php">Home</a></li>
-          <li class="breadcrumb-item active">Financial Status</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
-
-    <section class="section dashboard">
-      <div class="row">
-
-        <!-- Left side columns -->
-        <div class="col-lg-12">
-          <div class="row">
 
             <!-- Sales Card -->
             <div class="col-xxl-4 col-md-4">

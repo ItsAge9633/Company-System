@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2022 at 05:07 PM
+-- Generation Time: Jul 02, 2022 at 10:30 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -80,7 +80,7 @@ CREATE TABLE `clientt` (
 --
 
 INSERT INTO `clientt` (`Id`, `cname`, `pname`, `mobile`, `email`, `aaddress`, `pdate`, `ddate`, `descrip`, `pstatus`, `cdate`, `charges`, `received`) VALUES
-(1, 'Sam Technologies', 'Portfolio', '+918208419540', 'sarvesh@samtech2543.co', 'Pune', '2022-02-16', '2022-02-25', 'Redesign samtech2543.co', 'Completed', '2022-02-19', 5000, NULL),
+(1, 'Sam Technologies', 'Portfolio', '+918208419540', 'sarvesh@samtech2543.co', 'Pune', '2022-02-16', '2022-02-25', 'Redesign samtech2543.co', 'Completed', '2022-02-19', 5000, '2022-07-01'),
 (2, 'Sarvesh Software Provider', 'MCQ Platform', '8928115445', 'aparna@sarveshmankar2543.co', '', '2022-02-17', '2022-03-01', 'MCQ Examination Platform', 'Completed', '2022-02-19', 4500, NULL),
 (4, 'Abc', 'abc', '8928115445', 'abc@abc.com', '', '2022-02-18', '0000-00-00', 'Testing of Mobile App', 'Completed', '2022-03-27', 6000, NULL),
 (5, 'test1', 'test1-Proj', '1234567890', 'test1@gmail.com', '', '2022-03-25', '0000-00-00', 'Test1\r\nmain\r\nproject', 'Working', NULL, 0, NULL),
@@ -129,6 +129,21 @@ CREATE TABLE `deptt` (
   `Id` int(11) NOT NULL,
   `deptname` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `deptt`
+--
+
+INSERT INTO `deptt` (`Id`, `deptname`) VALUES
+(1, 'HR'),
+(2, 'Development'),
+(3, 'Hardware'),
+(4, 'Software'),
+(5, 'Material'),
+(6, 'Stationery'),
+(7, 'Sales'),
+(8, 'Marketing'),
+(9, 'Tax');
 
 -- --------------------------------------------------------
 
@@ -185,6 +200,14 @@ CREATE TABLE `financet` (
   `deptname` varchar(255) NOT NULL,
   `ffile` longblob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `financet`
+--
+
+INSERT INTO `financet` (`Id`, `ddate`, `ffrom`, `tto`, `amt`, `narration`, `deptname`, `ffile`) VALUES
+(1, '2022-07-01', '1', 'Company', 5000, 'Test', 'Project', ''),
+(2, '2022-07-02', 'Company', 'Sam Technologies', 8000, 'Company System', 'Software', '');
 
 -- --------------------------------------------------------
 
@@ -393,7 +416,7 @@ ALTER TABLE `dayst`
 -- AUTO_INCREMENT for table `deptt`
 --
 ALTER TABLE `deptt`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `empt`
@@ -405,7 +428,7 @@ ALTER TABLE `empt`
 -- AUTO_INCREMENT for table `financet`
 --
 ALTER TABLE `financet`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `logint`

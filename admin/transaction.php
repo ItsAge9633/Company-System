@@ -43,11 +43,11 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1><a href="payment.php">Payment</a></h1>
+      <h1><a href="transaction.php">Finance Transaction</a></h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-          <li class="breadcrumb-item active"><a href="payment.php">Payment from Client</a></li>
+          <li class="breadcrumb-item active"><a href="transaction.php">Finance</a></li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -56,23 +56,43 @@
 
       <div id="input" name="input" class="card">
         <div class="card-body">
-          <h5 class="card-title">Client Payment</h5>
+          <h5 class="card-title">Tranasaction Entry</h5>
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="container jumbotron">
                     <form action="" method="post">
                         <div class="form-group">
-                            <label for="client_id">Client ID</label>
-                            <input type="text" class="form-control" id="client_id" name="client_id" placeholder="Enter Client ID">
+                            <label for="payment_date">Payment Date</label>
+                            <input type="date" class="form-control" id="payment_date" name="payment_date" placeholder="Enter Payment Date">
+                        </div><br>
+                        <div class="form-group">
+                            <label for="ffrom">From</label>
+                            <input type="text" class="form-control" id="ffrom" name="ffrom" placeholder="From (Debitor)">
+                        </div><br>
+                        <div class="form-group">
+                            <label for="tto">To</label>
+                            <input type="text" class="form-control" id="tto" name="tto" placeholder="To (Creditor)">
                         </div><br>
                         <div class="form-group">
                             <label for="amount">Amount</label>
                             <input type="text" class="form-control" id="amount" name="amount" placeholder="Enter Amount">
                         </div><br>
+                        <!--Combobox for Department names-->
                         <div class="form-group">
-                            <label for="payment_date">Payment Date</label>
-                            <input type="date" class="form-control" id="payment_date" name="payment_date" placeholder="Enter Payment Date">
+                            <label for="department">Department</label>
+                            <select class="form-control" id="department" name="department">
+                                <?php
+                                    include '../imports/config.php';
+                                    $conn=mysqli_connect($server_name,$username,$password,$database_name);
+
+                                    $sql = "SELECT * FROM deptt";
+                                    $result = mysqli_query($conn, $sql);
+                                    while($row = mysqli_fetch_assoc($result)){
+                                        echo "<option value='".$row['deptname']."'>".$row['deptname']."</option>";
+                                    }
+                                ?>
+                            </select>
                         </div><br>
                         <div class="form-group">
                             <label for="payment_details">Payment Details</label>
@@ -80,57 +100,6 @@
                         </div><br>
                         <center><button type="submit" name="payment_entry" class="btn btn-primary">Submit</button></center>
                     </form>
-                    </div>
-                </div>
-                
-                <div class="col-md-6">
-                    <div class="container jumbotron">
-                        <?php
-                            include '../imports/config.php';
-                            $conn=mysqli_connect($server_name,$username,$password,$database_name);
-                            $sql_query = "SELECT * from clientt where received is NULL and pstatus='Completed'";
-                            $records = mysqli_query($conn, $sql_query);
-                            $n=1;
-                            echo '<div class="table-responsive">';
-                            echo '<table class="table table-hover">';
-                                echo '<thead class="thead-dark">';
-                                    echo '<tr>';
-                                    echo '<th scope="col">#</th>';
-                                    echo '<th scope="col">ID</th>';
-                                    echo '<th scope="col">Client Name</th>';
-                                    echo '<th scope="col">Project Name</th>';
-                                    echo '<th scope="col">Completed Date</th>';
-                                    echo '<th scope="col">Charges</th>';
-                                    echo '</tr>';
-                                echo '</thead>';
-                
-                                echo '<tbody>';
-                                while($data = mysqli_fetch_array($records)){
-                                    $cid=$data['Id'];
-                                    $cname=$data['cname'];
-                                    $pname=$data['pname'];
-                                    $cdate=$data['cdate'];
-                                    $charges=$data['charges'];
-                    
-                                    //$dob1=explode(" ",$dob);
-                                    //$dob=$dob1[0];
-                                    
-                                    echo '<tr>
-                                            <th scope="row">'.$n.'</th>
-                                            <td>'.$cid.'</td>
-                                            <td>'.$cname.'</td>
-                                            <td>'.$pname.'</td>
-                                            <td>'.$cdate.'</td>
-                                            <td>'.$charges.'</td>
-                                            </tr>';
-                                    $n+=1;
-                                }
-                                echo '</tbody>
-                                </table>';
-                            echo '</div>';
-                    
-                            mysqli_close($conn);
-                        ?>
                     </div>
                 </div>
             </div>
@@ -142,8 +111,11 @@
 
     <?php
 		if (isset($_POST['payment_entry'])){
-			$client_id = $_POST['client_id'];
+			$ffrom = $_POST['ffrom'];
+			$tto = $_POST['tto'];
 			$amount = $_POST['amount'];
+			$department = $_POST['department'];
+
 			$payment_date = $_POST['payment_date'];
 			$a=explode("-",$payment_date);
 			$payment_date=$a[2]."-".$a[1]."-".$a[0];
@@ -151,21 +123,16 @@
 
 			$payment_details = $_POST['payment_details'];
 
-			include '../imports/config.php';
-			$conn=mysqli_connect($server_name,$username,$password,$database_name);
 
-			$sql_query = "UPDATE clientt SET received='$payment_date' WHERE Id='$client_id'";
-			mysqli_query($conn, $sql_query);
-
-			$sql_query = "INSERT INTO financet (ddate,ffrom,tto,amt,narration,deptname) VALUES ('$payment_date','$client_id','Company','$amount','$payment_details','Project')";
+			$sql_query = "INSERT INTO financet (ddate,ffrom,tto,amt,narration,deptname) VALUES ('$payment_date','$ffrom','$tto','$amount','$payment_details','$department')";
 
 			if(mysqli_query($conn, $sql_query)){
 				echo '<script>alert("Payment Successful")</script>';
-				echo '<script>window.location.href="payment.php"</script>';
+				echo '<script>window.location.href="transaction.php"</script>';
 			}
 			else{
 				echo '<script>alert("Payment Failed")</script>';
-				echo '<script>window.location.href="payment.php"</script>';
+				echo '<script>window.location.href="transaction.php"</script>';
 			}
 
 			mysqli_close($conn);
