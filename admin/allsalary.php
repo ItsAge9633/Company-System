@@ -60,59 +60,59 @@
           <div class="row">
 
           <?php
-include '../imports/config.php';
-$conn = mysqli_connect($server_name, $username, $password, $database_name);
-if(!$conn){
-    die("Connection failed: " . mysqli_connect_error());
-}
-include './imports/nav-admin.php';
+              include '../imports/config.php';
+              $conn = mysqli_connect($server_name, $username, $password, $database_name);
+              if(!$conn){
+                  die("Connection failed: " . mysqli_connect_error());
+              }
+              include './imports/nav-admin.php';
 
-$sql = "SELECT SUM(bsalary) as salary from salaryt";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
-$total_salary = $row['salary'];
+              $sql = "SELECT SUM(bsalary) as salary from salaryt";
+              $result = mysqli_query($conn, $sql);
+              $row = mysqli_fetch_assoc($result);
+              $total_salary = $row['salary'];
 
-$sql2 = "SELECT * from dayst";
-$result2 = mysqli_query($conn, $sql2);
-$row2 = mysqli_fetch_assoc($result2);
-$td = $row2['td'];
-$work_days = $row2['wd'];
+              $sql2 = "SELECT * from dayst";
+              $result2 = mysqli_query($conn, $sql2);
+              $row2 = mysqli_fetch_assoc($result2);
+              $td = $row2['td'];
+              $work_days = $row2['wd'];
 
-//salary permonth
-$salary_thismonth = intval($total_salary / 12);
-$salary_perday = intval($salary_thismonth / $work_days);
+              //salary permonth
+              $salary_thismonth = intval($total_salary / 12);
+              $salary_perday = intval($salary_thismonth / $work_days);
 
-//total number of paid employees
-$sql5 = "SELECT COUNT(euid) as euid from salaryt";
-$result5 = mysqli_query($conn, $sql5);
-$row5 = mysqli_fetch_assoc($result5);
-$total_employees = $row5['euid'];
+              //total number of paid employees
+              $sql5 = "SELECT COUNT(euid) as euid from salaryt";
+              $result5 = mysqli_query($conn, $sql5);
+              $row5 = mysqli_fetch_assoc($result5);
+              $total_employees = $row5['euid'];
 
-//amount to be paid
-$sql3 = "SELECT empid from attendancet";
-$result3 = mysqli_query($conn, $sql3);
-$row3 = mysqli_fetch_assoc($result3);
+              //amount to be paid
+              $sql3 = "SELECT empid from attendancet";
+              $result3 = mysqli_query($conn, $sql3);
+              $row3 = mysqli_fetch_assoc($result3);
 
-$to_be_paid = 0;
+              $to_be_paid = 0;
 
-while (mysqli_fetch_array($result3)) {
+              while (mysqli_fetch_array($result3)) {
 
-    $sql4T = "SELECT COUNT(*) as cnt from attendancet where fullday = 'True' and empid = '$row3[empid]'";
-    $result4T = mysqli_query($conn, $sql4T);
-    $row4T = mysqli_fetch_assoc($result4T);
-    $sal_full_day = $row4T['cnt'];
+                  $sql4T = "SELECT COUNT(*) as cnt from attendancet where fullday = 'True' and empid = '$row3[empid]'";
+                  $result4T = mysqli_query($conn, $sql4T);
+                  $row4T = mysqli_fetch_assoc($result4T);
+                  $sal_full_day = $row4T['cnt'];
 
-    $sql4F = "SELECT COUNT(*) as cnt from attendancet where fullday = 'False' and empid = '$row3[empid]'";
-    $result4F = mysqli_query($conn, $sql4F);
-    $row4F = mysqli_fetch_assoc($result4F);
-    $sal_half_day = $row4F['cnt'];
+                  $sql4F = "SELECT COUNT(*) as cnt from attendancet where fullday = 'False' and empid = '$row3[empid]'";
+                  $result4F = mysqli_query($conn, $sql4F);
+                  $row4F = mysqli_fetch_assoc($result4F);
+                  $sal_half_day = $row4F['cnt'];
 
-    $to_be_paid += ($salary_perday * $sal_full_day) + ($salary_perday / 2 * $sal_half_day);
+                  $to_be_paid += ($salary_perday * $sal_full_day) + ($salary_perday / 2 * $sal_half_day);
 
-}
+              }
 
-$total_sal_this_month = intval($total_salary / 12);
-?>
+              $total_sal_this_month = intval($total_salary / 12);
+            ?>
 
             <!-- Sales Card -->
             <div class="col-xxl-4 col-md-4">

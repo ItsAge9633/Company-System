@@ -239,7 +239,19 @@
         </a>
       </li><!-- End Dashboard Nav -->
 
-    <ul class="sidebar-nav" id="sidebar-nav">
+      <li class="nav-item">
+        <a class="nav-link " href="../admin/finance.php">
+          <i class="bi bi-grid"></i>
+          <span>Finance</span>
+        </a>
+      </li><!-- End Finance Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link " href="../admin/transaction.php">
+        <i class="bi bi-grid"></i>
+        <span>Transaction Entry</span>
+        </a>
+      </li><!-- End Finance Nav -->
 
       <li class="nav-item">
         <a class="nav-link " href="../admin/allsalary.php">
@@ -247,13 +259,6 @@
         <span>Salary</span>
         </a>
       </li><!-- End Salary Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link " href="../admin/transaction.php">
-        <i class="bi bi-grid"></i>
-        <span>Finance</span>
-        </a>
-      </li><!-- End Finance Nav -->
 
       <li class="nav-item">
         <a class="nav-link " href="../admin/attendance.php">
