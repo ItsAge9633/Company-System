@@ -43,7 +43,7 @@ error_reporting(0);
   <link href="../assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="../assets/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css?v=<?php echo time(); ?>">
 
 
 </head>
