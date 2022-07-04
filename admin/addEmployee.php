@@ -72,6 +72,29 @@
               <input type="text" class="form-control" name="emprole" id="emprole" required="">
             </div>
 
+            <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">Join Date</label>
+                <input type="date" class="form-control" id="jdate" name="jdate" placeholder="Date" required="">
+            </div>
+            
+            <div class="col-md-6">
+
+            <?php
+              $conn = new mysqli("localhost", "root", "", "autoclick");
+              
+              echo "<label for='inputState' class='form-label'>Department</label>";
+              echo '<select id="deptname" name="deptname" class="form-select">';
+
+              $sqldept = "SELECT * FROM deptt";
+              $resultdept = mysqli_query($conn, $sqldept);
+              while($rowdept = mysqli_fetch_assoc($resultdept)){
+                echo '<option> '.$rowdept['deptname'].' </option>';
+              }
+              echo '</select>';
+
+            ?>
+            </div>
+
             <div class="col-12">
                 <label for="yourUsername" class="form-label">Username</label>
                 <div class="input-group has-validation">
@@ -81,13 +104,13 @@
                 </div>
              </div>
 
-             <div class="col-12">
+             <div class="col-6">
                 <label for="yourPassword" class="form-label">Password</label>
                 <input type="password" class="form-control" required="" id="password" name="pwd"/>
                 <div class="invalid-feedback">Please enter your password!</div>
             </div>
 
-            <div class="col-12">
+            <div class="col-6">
                 <label for="yourPassword" class="form-label"> Re-type Password</label>
                 <input type="password" class="form-control" required="" id="repassword" name="repwd"/>
                 <div class="invalid-feedback">Please enter your password!</div>
@@ -98,21 +121,15 @@
               <input type="text" class="form-control" name="bsalary" id="bsalary" required="">
             </div>
 
-            <div class="col-12">
+            <div class="col-6">
               <label for="bankname" class="form-label">Bank Name</label>
               <input type="text" class="form-control" name="bankname" id="bankname" required="">
             </div>
 
-            <div class="col-12">
+            <div class="col-6">
               <label for="bankacc" class="form-label">Bank Account number</label>
               <input type="text" class="form-control" name="bankacc" id="bankacc" required="">
             </div>
-
-            <div class="col-md-6">
-                <label for="inputEmail4" class="form-label">Join Date</label>
-                <input type="date" class="form-control" id="jdate" name="jdate" placeholder="Date" required="">
-            </div>
-            
 
             <br>
             <div class="text-center">

@@ -188,58 +188,42 @@
               <h5 class="card-title">Finance Structure</h5>
 
               <!-- Default Table -->
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Empid</th>
-                    <th scope="col">Month</th>
-                    <th scope="col">Days Worked</th>
-                    <th scope="col">Late/ Half Day</th>
-                    <th scope="col">Absent Days</th>
-                    <th scope="col">Salary - Credit</th>
-                    <th scope="col">Salary - Debit</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php 
+              <?php
+
+                $monthNum = date('m');
+                $monthName = date('F', mktime(0, 0, 0, $monthNum, 10)); // March
+                echo "<table class='table table-bordered table-striped'>";
+                echo "<thead>";
+                  echo"<tr>";
+                    echo"<th>#</th>";
+                    echo"<th>Emp ID</th>";
+                    echo"<th>Month</th>";
+                    echo"<th>Full Day</th>";
+                    echo"<th>Late/Half Day</th>";
+                    echo"<th>Salary Credit</th>";
+                    echo"<th>Salary Deducted</th>";
+                  echo"</tr>";
+                echo"</thead>";
+                echo"<tbody>";
                   
-                  $sql22 = "SELECT empid from attendancet";
-                    $result22 = mysqli_query($conn, $sql22);
-                    $row22 = mysqli_fetch_assoc($result22);
-                    $empid = $row22['empid'];
-
-                    $currmonth = date('m');
-                    while(mysqli_fetch_array($result)) {
-                        $sql2 = "SELECT COUNT(*) as cnt from attendancet where fullday = 'True' and empid = '$row22[empid]'";
-                        $result2 = mysqli_query($conn, $sql2);
-                        $row2 = mysqli_fetch_assoc($result2);
-                        $sal_full_day = $row2['cnt'];
-
-                        $sql3 = "SELECT COUNT(*) as cnt from attendancet where fullday = 'False' and empid = '$row22[empid]'";
-                        $result3 = mysqli_query($conn, $sql3);
-                        $row3 = mysqli_fetch_assoc($result3);
-                        $sal_half_day = $row3['cnt'];
-                        
-
-                      echo "<tr>";
-                      echo "<th scope='row'>1</th>";
-                      echo "<td>$row[empid]</td>";
-                      echo "<td> $currmonth </td>";
-                      echo "<td>$sal_full_day</td>";
-                      echo "<td>$sal_half_day</td>";
-                      echo "<td>$absent_days</td>";
-                      echo "<td>₹$till_date_sal</td>";
-                      echo "<td>₹$deducted_sal</td>";
-                      echo "</tr>";
-                    }
-
                     
 
+                      echo "<tr>";
+                        echo "<td>1</td>";
+                        echo "<td>".$row3['empid']."</td>";
+                        echo "<td>".$monthName."</td>";
+                        echo "<td>".$row4T['cnt']."</td>";
+                        echo "<td>".$row4F['cnt']."</td>";
+                        echo "<td>".$salary_perday."</td>";
+                        echo "<td>".$salary_perday."</td>";
+                      echo "</tr>";
+
+            
                     ?>
                 </tbody>
               </table>
               <!-- End Default Table Example -->
+
                 
             </div>
           </div>
