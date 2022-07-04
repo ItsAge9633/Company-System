@@ -16,6 +16,7 @@ if($_SESSION['erole'] =='admin'){
         $bankname = $_POST['bankname'];
         $bankacc = $_POST['bankacc'];
         $bsalary = $_POST['bsalary'];
+        $deptname = $_POST['deptname'];
 
 
         if($pwd == $repwd){
@@ -47,7 +48,7 @@ if($_SESSION['erole'] =='admin'){
                 }
             
             else{
-            $sql = "INSERT INTO `logint`(`uname`, `pswd`, `erole`, `euid`, `jdate`) VALUES ('$uname','$pwd','$emprole','$euid', '$jdate')";
+            $sql = "INSERT INTO `logint`(`uname`, `pswd`, `erole`, `euid`, `jdate`, `deptname`) VALUES ('$uname','$pwd','$emprole','$euid', '$jdate', '$deptname')";
             $result = mysqli_query($conn,$sql);
 
             $sql2 = "INSERT INTO `salaryt`(`euid`, `bankname`, `bankacc`, `bsalary`) VALUES ('$euid','$bankname','$bankacc','$bsalary')";
