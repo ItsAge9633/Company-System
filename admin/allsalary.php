@@ -24,7 +24,7 @@
 
   <!-- Vendor CSS Files -->
   <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/vendor/bootstrap-icons/bootstrap-icons.css?v=<?php echo time(); ?>">
   <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="../assets/vendor/quill/quill.snow.css" rel="stylesheet">
   <link href="../assets/vendor/quill/quill.bubble.css" rel="stylesheet">
@@ -203,7 +203,7 @@
                 </thead>
                 <tbody>
                   <?php 
-/*
+                  
                   $sql22 = "SELECT empid from attendancet";
                     $result22 = mysqli_query($conn, $sql22);
                     $row22 = mysqli_fetch_assoc($result22);
@@ -234,51 +234,6 @@
                       echo "</tr>";
                     }
 
-                    */
-
-                    echo "<tr>";
-                    echo "<th scope='row'>1</th>";
-                    echo "<td>1</td>";
-                    echo "<td> June </td>";
-                    echo "<td>2</td>";
-                    echo "<td>5</td>";
-                    echo "<td>12</td>";
-                    echo "<td>₹28125</td>";
-                    echo "<td>₹15625</td>";
-                    echo "</tr>";
-
-                    echo "<tr>";
-                    echo "<th scope='row'>2</th>";
-                    echo "<td>2</td>";
-                    echo "<td> June </td>";
-                    echo "<td>0</td>";
-                    echo "<td>1</td>";
-                    echo "<td>18</td>";
-                    echo "<td>₹1458</td>";
-                    echo "<td>₹1458</td>";
-                    echo "</tr>";
-
-                    echo "<tr>";
-                    echo "<th scope='row'>3</th>";
-                    echo "<td>3</td>";
-                    echo "<td> June </td>";
-                    echo "<td>2</td>";
-                    echo "<td>5</td>";
-                    echo "<td>12</td>";
-                    echo "<td>₹15000</td>";
-                    echo "<td>₹15000</td>";
-                    echo "</tr>";
-
-                    echo "<tr>";
-                    echo "<th scope='row'>4</th>";
-                    echo "<td>4</td>";
-                    echo "<td> June </td>";
-                    echo "<td>10</td>";
-                    echo "<td>8</td>";
-                    echo "<td>12</td>";
-                    echo "<td>₹180000</td>";
-                    echo "<td>₹120000</td>";
-                    echo "</tr>";
                     
 
                     ?>
