@@ -1,3 +1,4 @@
+
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -240,6 +241,20 @@
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
+        <a class="nav-link " href="../MCQ/dashboard.php">
+          <i class="bi bi-people"></i>
+          <span>MCQ Test</span>
+        </a>
+      </li>
+
+            <li class="nav-item">
+        <a class="nav-link " href="attendance.php">
+          <i class="bi bi-people"></i>
+          <span>Attendance</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link " href="finance.php">
           <i class="bi bi-grid"></i>
           <span>Finance</span>
@@ -253,26 +268,28 @@
         </a>
       </li><!-- End Finance Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link " href="allsalary.php">
-        <i class="bi bi-grid"></i>
-        <span>Salary</span>
-        </a>
-      </li><!-- End Salary Nav -->
 
+      
       <li class="nav-item">
-        <a class="nav-link " href="attendance.php">
-          <i class="bi bi-people"></i>
-          <span>Attendance</span>
+        <a class="nav-link collapsed" data-bs-target="#salary-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Salary</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-      </li>
+        <ul id="salary-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 
-      <li class="nav-item">
-        <a class="nav-link " href="../MCQ/dashboard.php">
-          <i class="bi bi-people"></i>
-          <span>MCQ Test</span>
-        </a>
+        <li>
+            <a href="allsalary.php">
+              <i class="bi bi-circle"></i><span>View Salary</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="salpayment.php">
+              <i class="bi bi-circle"></i><span>Salary Payment</span>
+            </a>
+          </li>
+          </ul>
       </li>
+    <!-- End Salary Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#client-nav" data-bs-toggle="collapse" href="#">
