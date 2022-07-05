@@ -34,6 +34,17 @@
         <!-- ======= Top and Side Bar ======= -->
         <?php include 'imports/nav-admin.php'; ?>
         <main id="main" class="main">
+
+        <div class="pagetitle">
+                <h1>Attendance</h1>
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                        <li class="breadcrumb-item active">Attendance</li>
+                    </ol>
+                </nav>
+            </div>
+            
             <div class="row">
             <div class="col-lg-6 col-md-6" style="float:left; width:50%;">
                 <div class="card" >
@@ -108,15 +119,6 @@
             </div>
             <br>
             <br>
-            <div class="pagetitle">
-                <h1>Attendance</h1>
-                <nav>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                        <li class="breadcrumb-item active">Attendance</li>
-                    </ol>
-                </nav>
-            </div>
             <!-- End Page Title -->
             <section class="section dashboard">
                 <div class="row">
