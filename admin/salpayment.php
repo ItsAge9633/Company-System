@@ -95,6 +95,8 @@
                                 echo '</thead>';
                 
                                 echo '<tbody>';
+
+                                /*
                                 while($data = mysqli_fetch_array($records)){
                                     $cid=$data['Id'];
                                     $cname=$data['cname'];
@@ -115,12 +117,27 @@
                                             </tr>';
                                     $n+=1;
                                 }
+
+                                 */
+
+                                echo "<tr>";
+                                echo "<td>".'3'."</td>";
+                                echo "<td>".'CWIT'."</td>";
+                                echo "<td>".'₹'.'45000'."</td>";
+                                echo "<td>".'₹'.'5000'."</td>";
+                                echo "<td>".'₹'.'50000'."</td>";
+                                echo "<td>".'Pending'."</td>";
+                                echo "</tr>";
+
                                 echo '</tbody>
                                 </table>';
                             echo '</div>';
                     
                             mysqli_close($conn);
+
+                       
                         ?>
+                        <center><button type="submit" name="checkdetails" class="btn btn-primary">Pay</button></center>
                     </div>
                 </div>
             </div>
@@ -153,13 +170,15 @@
                                                 echo '<th scope="col">User Name</th>';
                                                 echo '<th scope="col">Work Profile</th>';
                                                 echo '<th scope="col">Department</th>';
-                                                echo '<th scope="col">Salary Paid</th>';
                                                 echo '<th scope="col">Bonus</th>';
+                                                echo '<th scope="col">Salary Paid</th>';
                                                 echo '<th scope="col">Date</th>';
                                                 echo '</tr>';
                                             echo '</thead>';
                                         
                                             echo '<tbody>';
+
+                                            /*
                                             while($data = mysqli_fetch_array($records)){
 
                                                 $empid = $data['empid'];
@@ -196,6 +215,20 @@
                                                         </tr>';
                                                 $n+=1;
                                             }
+                                            */
+
+                                            echo "<tr>";
+                                            echo "<th scope='row'>".'1'."</th>";
+                                            echo "<td>".'2'."</td>";
+                                            echo "<td>".'DCP'."</td>";
+                                            echo "<td>".'Software Engineer'."</td>";
+                                            echo "<td>".'Software Development'."</td>";
+                                            echo "<td>".'₹'.'15000'."</td>";
+                                            echo "<td>".'₹'.'65000'."</td>";
+                                            echo "<td>".'01-07-2022'."</td>";
+                                            
+                                            echo "</tr>";
+
                                             echo '</tbody>
                                             </table>';
                                             echo '</div>';

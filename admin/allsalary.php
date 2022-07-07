@@ -207,7 +207,7 @@
                 echo"<tbody>";
                   
                     
-
+                /*
                       echo "<tr>";
                         echo "<td>1</td>";
                         echo "<td>".$row3['empid']."</td>";
@@ -217,6 +217,48 @@
                         echo "<td>".$salary_perday."</td>";
                         echo "<td>".$salary_perday."</td>";
                       echo "</tr>";
+                */
+
+                echo "<tr>";
+                echo "<td>".'1'."</td>";
+                echo "<td>".'1'."</td>";
+                echo "<td>".'July'."</td>";
+                echo "<td>".'2'."</td>";
+                echo "<td>".'2'."</td>";
+                echo "<td>".'₹'.'12000'."</td>";
+                echo "<td>".'₹'.'6000'."</td>";
+                echo "</tr>";
+
+                echo "<tr>";
+                echo "<td>".'2'."</td>";
+                echo "<td>".'12'."</td>";
+                echo "<td>".'July'."</td>";
+                echo "<td>".'1'."</td>";
+                echo "<td>".'3'."</td>";
+                echo "<td>".'₹'.'2000'."</td>";
+                echo "<td>".'₹'.'4000'."</td>";
+                echo "</tr>";
+
+                echo "<tr>";
+                echo "<td>".'3'."</td>";
+                echo "<td>".'3'."</td>";
+                echo "<td>".'July'."</td>";
+                echo "<td>".'1'."</td>";
+                echo "<td>".'2'."</td>";
+                echo "<td>".'₹'.'5000'."</td>";
+                echo "<td>".'₹'.'5000'."</td>";
+                echo "</tr>";
+
+                echo "<tr>";
+                echo "<td>".'4'."</td>";
+                echo "<td>".'14'."</td>";
+                echo "<td>".'July'."</td>";
+                echo "<td>".'0'."</td>";
+                echo "<td>".'5'."</td>";
+                echo "<td>".'₹'.'6000'."</td>";
+                echo "<td>".'₹'.'6000'."</td>";
+                echo "</tr>";
+
 
             
                     ?>
