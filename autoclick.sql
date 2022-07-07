@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 07, 2022 at 03:55 PM
+-- Generation Time: Jul 07, 2022 at 05:36 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -44,8 +44,8 @@ CREATE TABLE `attendancet` (
 INSERT INTO `attendancet` (`Id`, `uname`, `empid`, `ddate`, `intime`, `outtime`, `fullday`) VALUES
 (15, 'b', '1', '2022-06-13', '08:27:00', '18:27:00', 'True'),
 (16, 'b', '1', '2022-06-01', '11:39:00', '18:53:00', 'False'),
-(53, 'b', '1', '2022-07-01', '08:59:00', '15:57:00', 'False'),
-(54, 'c', '2', '2022-07-01', '10:22:00', '18:24:00', 'False');
+(54, 'c', '2', '2022-07-01', '10:22:00', '18:24:00', 'False'),
+(55, 'b', '1', '2022-07-01', '11:50:00', '19:52:00', 'False');
 
 -- --------------------------------------------------------
 
@@ -284,8 +284,8 @@ CREATE TABLE `salpayt` (
 --
 
 INSERT INTO `salpayt` (`Id`, `euid`, `month`, `year`, `daysworked`, `bonus`, `tsalary`, `dsalary`, `gsalary`, `gdate`) VALUES
-(12, '1', 7, 2022, 1, 0, 5952, 2976, NULL, NULL),
-(13, '2', 7, 2022, 1, 0, 2777, 1388, NULL, NULL);
+(13, '2', 7, 2022, 1, 0, 2777, 1388, 2777, '2022-07-07'),
+(14, '1', 7, 2022, 1, 0, 5952, 2976, 5952, '2022-07-07');
 
 -- --------------------------------------------------------
 
@@ -407,7 +407,7 @@ ALTER TABLE `workt`
 -- AUTO_INCREMENT for table `attendancet`
 --
 ALTER TABLE `attendancet`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `clientt`
@@ -455,7 +455,7 @@ ALTER TABLE `salaryt`
 -- AUTO_INCREMENT for table `salpayt`
 --
 ALTER TABLE `salpayt`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `timingt`
