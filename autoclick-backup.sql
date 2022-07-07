@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 07, 2022 at 11:08 AM
+-- Generation Time: Jul 07, 2022 at 02:34 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -42,18 +42,24 @@ CREATE TABLE `attendancet` (
 --
 
 INSERT INTO `attendancet` (`Id`, `uname`, `empid`, `ddate`, `intime`, `outtime`, `fullday`) VALUES
-(12, 'b', '1', '2022-06-28', '11:55:00', '13:55:00', 'False'),
 (13, 'b', '1', '2022-06-12', '03:37:00', '15:38:00', 'False'),
 (14, 'b', '1', '2022-06-18', '05:15:00', '11:27:00', 'False'),
 (15, 'b', '1', '2022-06-13', '08:27:00', '18:27:00', 'True'),
 (16, 'b', '1', '2022-06-01', '11:39:00', '18:53:00', 'False'),
 (17, 'b', '1', '2022-05-11', '12:45:00', '16:47:00', 'False'),
 (18, 'we', '1111', '2022-06-28', '09:32:00', '20:32:00', 'True'),
-(23, 'b', '1', '2022-07-01', '06:27:00', '18:27:00', 'True'),
-(24, 'b', '1', '2022-07-02', '09:32:00', '17:35:00', 'False'),
-(25, 'b', '1', '2022-07-03', '07:35:00', '19:38:00', 'True'),
-(26, 'b', '1', '2022-07-04', '14:34:00', '17:37:00', 'False'),
-(27, 'b', '1', '2022-07-05', '06:35:00', '19:41:00', 'True');
+(29, 'd', '3', '2022-07-04', '20:27:00', '22:30:00', 'False'),
+(30, 'gourav', '9175', '2022-07-01', '07:30:00', '22:40:00', 'True'),
+(31, 'gourav', '9175', '2022-07-02', '10:34:00', '21:34:00', 'False'),
+(32, 'gourav', '9175', '2022-07-03', '09:34:00', '21:30:00', 'True'),
+(33, 'gourav', '9175', '2022-07-04', '15:31:00', '17:32:00', 'False'),
+(34, 'gourav', '9175', '2022-07-05', '14:34:00', '17:34:00', 'False'),
+(35, 'gourav', '9175', '2022-07-06', '13:39:00', '20:42:00', 'False'),
+(36, 'd', '3', '2022-07-03', '14:41:00', '18:43:00', 'False'),
+(37, 'b', '1', '2022-07-01', '08:53:00', '21:57:00', 'True'),
+(38, 'b', '1', '2022-07-02', '15:54:00', '17:55:00', 'False'),
+(39, 'b', '1', '2022-07-03', '07:56:00', '20:59:00', 'True'),
+(40, 'b', '1', '2022-07-04', '14:00:00', '17:58:00', 'False');
 
 -- --------------------------------------------------------
 
@@ -282,6 +288,7 @@ CREATE TABLE `salpayt` (
   `daysworked` int(7) NOT NULL,
   `bonus` int(12) DEFAULT 0,
   `tsalary` int(11) NOT NULL,
+  `dsalary` int(12) NOT NULL,
   `gsalary` int(7) DEFAULT NULL,
   `gdate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -290,8 +297,11 @@ CREATE TABLE `salpayt` (
 -- Dumping data for table `salpayt`
 --
 
-INSERT INTO `salpayt` (`Id`, `euid`, `month`, `year`, `daysworked`, `bonus`, `tsalary`, `gsalary`, `gdate`) VALUES
-(1, '1', 7, 2022, 4, 0, 20832, NULL, NULL);
+INSERT INTO `salpayt` (`Id`, `euid`, `month`, `year`, `daysworked`, `bonus`, `tsalary`, `dsalary`, `gsalary`, `gdate`) VALUES
+(2, '1', 6, 2022, 1, 0, 6250, 0, NULL, NULL),
+(3, '3', 7, 2022, 2, 0, 714, 0, NULL, NULL),
+(4, '9175', 7, 2022, 6, 0, 19042, 0, NULL, NULL),
+(5, '1', 7, 2022, 3, 0, 17856, 5952, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -413,7 +423,7 @@ ALTER TABLE `workt`
 -- AUTO_INCREMENT for table `attendancet`
 --
 ALTER TABLE `attendancet`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `clientt`
@@ -461,7 +471,7 @@ ALTER TABLE `salaryt`
 -- AUTO_INCREMENT for table `salpayt`
 --
 ALTER TABLE `salpayt`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `timingt`
