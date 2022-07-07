@@ -67,6 +67,7 @@
               }
               include './imports/nav-admin.php';
 
+              /*
               $sql = "SELECT SUM(bsalary) as salary from salaryt";
               $result = mysqli_query($conn, $sql);
               $row = mysqli_fetch_assoc($result);
@@ -112,6 +113,26 @@
               }
 
               $total_sal_this_month = intval($total_salary / 12);
+              */
+
+              //total salary of this month
+              $sqltotalpay = "SELECT SUM(tsalary + dsalary) from salpayt";
+              $resulttotalpay = mysqli_query($conn, $sqltotalpay);
+              $rowtotalpay = mysqli_fetch_assoc($resulttotalpay);
+              $total_pay = $rowtotalpay['SUM(tsalary + dsalary)'];
+
+              //total salary to be paid 
+              $sqltopay = "SELECT SUM(tsalary) from salpayt";
+              $resulttopay = mysqli_query($conn, $sqltopay);
+              $rowtopay = mysqli_fetch_assoc($resulttopay);
+              $to_be_paid_salary = $rowtopay['SUM(tsalary)'];
+
+              //total salary deducted 
+              //$sqldeduct = "SELECT SUM(dsalary) from salpayt";
+              //$resultdeduct = mysqli_query($conn, $sqldeduct);
+              //$rowdeduct = mysqli_fetch_assoc($resultdeduct);
+              //$to_be_deducted = $rowdeduct['SUM(dsalary)'];
+
             ?>
 
             <!-- Sales Card -->
@@ -125,7 +146,7 @@
                       <i class="bi bi-cart"></i>
                     </div>
                     <div class="ps-3">
-                      <h6> <?php echo '₹', $to_be_paid;  ?> </h6>
+                      <h6> <?php echo '₹', $total_pay;  ?> </h6>
                       <span class="text-success small pt-1 fw-bold">Total </span>
 
                     </div>
@@ -148,7 +169,7 @@
                       <i class="bi bi-currency-dollar"></i>
                     </div>
                     <div class="ps-3">
-                      <h6> <?php echo '₹',  $total_sal_this_month ; ?> </h6>
+                      <h6> <?php echo '₹',  $to_be_paid_salary ; ?> </h6>
                       <span class="text-success small pt-1 fw-bold"> To be paid </span>
 
                     </div>
@@ -171,7 +192,7 @@
                       <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <h6> <?php echo '₹', ( $to_be_paid - $total_sal_this_month); ?></h6>
+                      <h6> <?php echo '₹', ($total_pay - $to_be_paid_salary); ?></h6>
                       <span class="text-danger small pt-1 fw-bold">Half day loss</span> 
                     </div>
                   </div>
@@ -199,13 +220,36 @@
                     echo"<th>#</th>";
                     echo"<th>Emp ID</th>";
                     echo"<th>Month</th>";
-                    echo"<th>Full Day</th>";
-                    echo"<th>Late/Half Day</th>";
+                    echo"<th>Days worked</th>";
                     echo"<th>Salary Credit</th>";
                     echo"<th>Salary Deducted</th>";
+                    echo"<th>Payment Status</th>";
                   echo"</tr>";
                 echo"</thead>";
                 echo"<tbody>";
+
+                $curmonth = date('m');
+                $sql = "SELECT * from salpayt where month = '$curmonth'";
+                $result = mysqli_query($conn, $sql);
+                $i = 1;
+                while($row = mysqli_fetch_assoc($result)){
+                  echo"<tr>";
+                    echo"<th row>".$i."</th>";
+                    echo"<td>".$row['euid']."</td>";
+                    echo"<td>".$row['month']."</td>";
+                    echo"<td>".$row['daysworked']."</td>";
+                    echo"<td>".$row['tsalary']."</td>";
+                    echo"<td>".$row['dsalary']."</td>";
+
+                    if(is_null($row['gdate'])){
+                      echo"<td>Pending</td>";
+                    }else{
+                      echo"<td>Paid on $row[gdate]</td>";
+                    }
+
+                  echo"</tr>";
+                  $i++;
+                }
 
                 
                   
