@@ -92,8 +92,15 @@ if ($_SESSION['erole']=="admin"){
                 $empthismonthperdaysal = intval($empsal / $wd);
 
                 if($countsal == 0){
+
+                    $daysworked = 1;
+                    if ($boolval == 'False'){
+                        $dsalary = intval($empthismonthperdaysal / 2);
+                    }else{
+                        $dsalary = 0;
+                    }
                     
-                    $sql = "INSERT INTO `salpayt`(`euid`, `month`,`year`, `daysworked`, `bonus`, `tsalary`) VALUES ('$empid', '$month', '$year', '$daysworked', '$bonus', '$empthismonthperdaysal')";
+                    $sql = "INSERT INTO `salpayt`(`euid`, `month`,`year`, `daysworked`, `bonus`, `tsalary`, `dsalary`) VALUES ('$empid', '$month', '$year', '$daysworked', '$bonus', '$empthismonthperdaysal', '$dsalary')";
                     $result = mysqli_query($conn,$sql);
                     } else{
                         
