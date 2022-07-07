@@ -80,6 +80,7 @@ error_reporting(0);
   $sal_day = intval($sal_month / $total_days);
   $this_month_sal = $sal_day * $total_days;
 
+/*
   //salary till date 
   $sql4T = "SELECT COUNT(*) as cnt from attendancet where fullday = 'True' and empid = '$euid'";
   $result4T = mysqli_query($conn, $sql4T);
@@ -94,15 +95,18 @@ error_reporting(0);
 
   $till_date_sal = $row4T['cnt'] * $sal_day;
   $till_date_sal += $row4F['cnt'] * intval($sal_day / 2);
+*/
+
+  //salary till date
+  $sqltilldate = "SELECT * from salpayt where euid = '$euid' and month = '$curmonth'";
+  $resulttilldate = mysqli_query($conn, $sqltilldate);
+  $rowtilldate = mysqli_fetch_assoc($resulttilldate);
+  $till_date_sal = $rowtilldate['tsalary'];
 
   //salary deducted 
-  $emp_worked = $sal_full_day + $sal_half_day;
-  $remaining_days = $total_days - $emp_worked;
-  $deducted_sal = $row4F['cnt'] * intval($sal_day / 2);
+  $empdaysworked = $rowtilldate['daysworked'];
+  $deducted_sal = ($till_date_sal - $empdaysworked * $sal_day ) * -1; 
 
-  //Absent days 
-  $remaining_working_days = $total_month_days - $curdate;
-  $absent_days = $total_days - $emp_worked - $remaining_working_days; 
 
 
 ?>
@@ -206,23 +210,56 @@ error_reporting(0);
                     <th scope="col">#</th>
                     <th scope="col">Month</th>
                     <th scope="col">Days Worked</th>
-                    <th scope="col">Late/ Half Day</th>
-                    <th scope="col">Absent Days</th>
+                    <th scope="col">Absent days</th>
                     <th scope="col">Salary - Credit</th>
-                    <th scope="col">Salary - Debit</th>
+                    <th scope="col">Salary - Loss </th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php 
+
+                  $sqlwhile = "SELECT * from salpayt where euid = '$euid'";
+                  $resultwhile = mysqli_query($conn, $sqlwhile);
+                  $i = 1;
+                  while($rowwhile = mysqli_fetch_assoc($resultwhile)) {
+
+                    $month = $rowwhile['month'];
+                    $sqlwd = "SELECT wd from dayst where month = '$month'";
+                    $resultwd = mysqli_query($conn, $sqlwd);
+                    $rowwd = mysqli_fetch_assoc($resultwd);
+                    $wd = $rowwd['wd'];
+
+                    $absent_days = $wd - $rowwhile['daysworked'];
+
                       echo "<tr>";
-                      echo "<th scope='row'>1</th>";
-                      echo "<td>$tmonth</td>";
-                      echo "<td>$sal_full_day</td>";
-                      echo "<td>$sal_half_day</td>";
-                      echo "<td>$absent_days</td>";
-                      echo "<td>₹$till_date_sal</td>";
-                      echo "<td>₹$deducted_sal</td>";
+                      echo "<th scope='row'>$i</th>";
+                      echo "<td>$month</td>";
+                      echo "<td>$rowwhile[daysworked]</td>"; 
+
+                      if($curmonth == $month){
+                        echo "<td><i>Calculated at month end </i></td>";
+                      }else{
+                        $sqldec = "SELECT wd from dayst where month = '$rowwhile[month]'";
+                        $resultdec = mysqli_query($conn, $sqldec);
+                        $rowdec = mysqli_fetch_assoc($resultdec);
+                        $wd = $rowdec['wd'];
+
+                        $absent_days = $wd - $rowwhile['daysworked'];
+                        echo "<td>$absent_days</td>";
+                      }
+
+                      echo "<td>₹$rowwhile[tsalary]</td>";
+
+                      if ($curmonth == $month) {
+                        echo "<td>₹$deducted_sal</td>";
+                      }
+                      else{
+                        $deducted_sal = $sal_month - $rowwhile['tsalary'];
+                        echo "<td>₹$deducted_sal</td>";
+                      }
                       echo "</tr>";
+                      $i++;
+                  }
                     ?>
                 </tbody>
               </table>

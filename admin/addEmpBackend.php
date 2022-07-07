@@ -50,8 +50,9 @@ if($_SESSION['erole'] =='admin'){
             else{
             $sql = "INSERT INTO `logint`(`uname`, `pswd`, `erole`, `euid`, `jdate`, `deptname`) VALUES ('$uname','$pwd','$emprole','$euid', '$jdate', '$deptname')";
             $result = mysqli_query($conn,$sql);
+            
 
-            $sql2 = "INSERT INTO `salaryt`(`euid`, `bankname`, `bankacc`, `bsalary`) VALUES ('$euid','$bankname','$bankacc','$bsalary')";
+            $sql2 = "INSERT INTO `salaryt`(`euid`, `bsalary`, `bankname`, `bankacc`, ) VALUES ('$euid','$bsalary', '$bankname','$bankacc')";
             $result2 = mysqli_query($conn,$sql2);
 
             if($result && $result2){
