@@ -255,18 +255,25 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link " href="finance.php">
-          <i class="bi bi-grid"></i>
-          <span>Finance</span>
+        <a class="nav-link collapsed" data-bs-target="#finance-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Finance</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-      </li><!-- End Finance Dashboard Nav -->
+        <ul id="finance-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
 
-      <li class="nav-item">
-        <a class="nav-link " href="transaction.php">
-        <i class="bi bi-grid"></i>
-        <span>Transaction Entry</span>
-        </a>
-      </li><!-- End Finance Nav -->
+        <li>
+            <a href="finance.php">
+              <i class="bi bi-circle"></i><span>Dashboard</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="transaction.php">
+              <i class="bi bi-circle"></i><span>Transaction Entry</span>
+            </a>
+          </li>
+          </ul>
+      </li>
+
 
 
       
