@@ -93,9 +93,6 @@ if ($_SESSION['erole']=="admin"){
 
                 if($countsal == 0){
                     
-                    $daysworked = 1;
-                    $bonus = 0;
-
                     $sql = "INSERT INTO `salpayt`(`euid`, `month`,`year`, `daysworked`, `bonus`, `tsalary`) VALUES ('$empid', '$month', '$year', '$daysworked', '$bonus', '$empthismonthperdaysal')";
                     $result = mysqli_query($conn,$sql);
                     } else{
@@ -106,7 +103,7 @@ if ($_SESSION['erole']=="admin"){
                         }
                         else{
                             $halfdaysal = intval($empthismonthperdaysal / 2);
-                            $sql = "UPDATE `salpayt` SET `daysworked`=`daysworked`+1, `tsalary`=`tsalary`+$halfdaysal WHERE euid='$empid' and month='$month'";
+                            $sql = "UPDATE `salpayt` SET `daysworked`=`daysworked`+1, `tsalary`=`tsalary`+$halfdaysal, `dsalary`=`dsalary`+$halfdaysal WHERE euid='$empid' and month='$month'";
                             $result = mysqli_query($conn,$sql);
                         }
 

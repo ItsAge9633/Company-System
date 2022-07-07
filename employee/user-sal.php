@@ -104,8 +104,7 @@ error_reporting(0);
   $till_date_sal = $rowtilldate['tsalary'];
 
   //salary deducted 
-  $empdaysworked = $rowtilldate['daysworked'];
-  $deducted_sal = ($till_date_sal - $empdaysworked * $sal_day ) * -1; 
+  $deducted_sal = $rowtilldate['dsalary'];
 
 
 
@@ -251,7 +250,7 @@ error_reporting(0);
                       echo "<td>₹$rowwhile[tsalary]</td>";
 
                       if ($curmonth == $month) {
-                        echo "<td>₹$deducted_sal</td>";
+                        echo "<td>₹$rowtilldate[dsalary]</td>";
                       }
                       else{
                         $deducted_sal = $sal_month - $rowwhile['tsalary'];
