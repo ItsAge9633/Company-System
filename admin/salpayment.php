@@ -131,14 +131,13 @@
                                             </div>";
                                         error_reporting(0);
                                         
-                                    }else{
-                                $salary = $rowcheck['tsalary'];
-                                    }
-                                $total = $salary + $bonus;
+                                    }else{ $salary = $rowcheck['tsalary']; }
+                                    
+                                    $total = $salary + $bonus;
 
                             }else{
-                                echo "<script>alert('Employee ID doesn't exist');</script>";
-                                echo "<script>window.location.href='salpayment.php';</script>";
+                                echo "<script>alert('Employee ID not found')</script>";
+                                echo "<script>window.location.href='salpayment.php'</script>";
                             }
                             
 
@@ -164,7 +163,7 @@
                                 echo '<td>'.$bonus.'</td>';
                                 echo '<td>'.$total.'</td>';
 
-                                if(!is_null($rowcheck['tdate'])){
+                                if(!is_null($rowcheck['gdate'])){
                                     echo '<td>'.'Paid on '.$rowcheck['gdate'].'</td>';
                                 }else{
                                     echo '<td>Not Paid</td>';
@@ -244,7 +243,7 @@
                 echo "<script>alert('Salary Already Paid');</script>"; 
                 echo "<script>window.location.href='salpayment.php';</script>"; 
             }else{
-                $sql = "UPDATE `salpayt` SET `gsalary`= '$total', `gdate`= '$todaydate' WHERE euid = '$empid'";
+                $sql = "UPDATE `salpayt` SET `gsalary`= '$total', `gdate`= '$todaydate', `bonus` = '$bonus' WHERE euid = '$empid'";
                 $result = mysqli_query($conn,$sql);
                 if($result){
                     echo "<script>alert('Salary Paid Successfully');</script>";
@@ -289,6 +288,7 @@
                                                 echo '<th scope="col">Salary Paid</th>';
                                                 echo '<th scope="col">Bonus</th>';
                                                 echo '<th scope="col">Date</th>';
+                                                echo '<th scope="col">Invoice</th>';
                                                 echo '</tr>';
                                             echo '</thead>';
 
@@ -323,6 +323,7 @@
                                                         <td>'.$sal_paid.'</td>
                                                         <td>'.$bonuspaid.'</td>
                                                         <td>'.$gdate.'</td>
+                                                        <td><a href="invoice-salary.php?empid='.$empid.'"> Invoice </a></td>
                                         
                                                         </tr>';
                                                 $n+=1;
