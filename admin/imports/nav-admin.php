@@ -30,69 +30,49 @@
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
+            <span class="badge bg-primary badge-number">
+
+              <?php
+                include '../imports/config.php';
+                
+                $sql_query = "SELECT * FROM notift WHERE euid='admin' ORDER BY id DESC LIMIT 4;";
+                $result = mysqli_query($conn,$sql_query);
+                $count = mysqli_num_rows($result);
+                echo $count;
+              ?>
+
+            </span>
           </a><!-- End Notification Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
-              You have 4 new notifications
+              <?php
+                echo "You have $count new Recent Activites";
+              ?>
               <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Lorem Ipsum</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
-              </div>
-            </li>
+            <?php
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+              $sql_query = "SELECT * FROM notift WHERE euid='admin' ORDER BY id DESC LIMIT 4;";
+              $result = mysqli_query($conn,$sql_query);
+              while($row = mysqli_fetch_assoc($result)){
+                echo '<li class="notification-item">
+                <i class="bi bi-check-circle text-success"></i>';
+                echo '<div><h4>'.$row['ttype'].'</h4>';
+                echo '<p class="notification-text">'.$row['nmsg'].'</p>';
+                $newdate = date("d M, Y", strtotime($row['ddate']));
+                echo '<p class="notification-text">'.$newdate.'</p>';
+                echo '</li></div>';
 
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Atque rerum nesciunt</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
+                echo '<li><hr class="dropdown-divider"></li>';
+              }
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            ?>
 
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Sit rerum fuga</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
             <li class="dropdown-footer">
               <a href="#">Show all notifications</a>
             </li>

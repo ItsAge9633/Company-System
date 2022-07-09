@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 07, 2022 at 05:36 PM
+-- Generation Time: Jul 09, 2022 at 10:57 AM
 -- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -80,7 +80,9 @@ INSERT INTO `clientt` (`Id`, `cname`, `pname`, `mobile`, `email`, `aaddress`, `p
 (5, 'test1', 'test1-Proj', '1234567890', 'test1@gmail.com', '', '2022-03-25', '0000-00-00', 'Test1\r\nmain\r\nproject', 'Working', NULL, 0, NULL),
 (6, 'Test2', 'Test2', '0987654321', 'Test2@gmail.com', '', '2022-03-27', '2022-04-05', 'Test2\r\nTest2\r\nTest2', 'Working', NULL, 0, NULL),
 (7, 'test', 'test', '9911991199', 'test9911@gmail.com', '', '2022-05-17', '2022-06-17', 'A test project ', 'Completed', '2022-05-18', 1000, NULL),
-(8, 'a1', 'a1', '9876543212', 'mankarsarvesh2543@gmail.com', '', '2022-06-29', '0000-00-00', 'a1', 'Pending', NULL, 0, NULL);
+(8, 'a1', 'a1', '9876543212', 'mankarsarvesh2543@gmail.com', '', '2022-06-29', '0000-00-00', 'a1', 'Pending', NULL, 0, NULL),
+(11, 'Test3', 'Test3', '9876543210', 'test3@gmail.com', '', '2022-07-09', '0000-00-00', 'Test-3', 'Pending', NULL, 0, NULL),
+(12, 'Test4', 'Test4', '9876543210', 'test4@gmail.com', '', '2022-07-09', '0000-00-00', 'Test-4', 'Pending', NULL, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -237,6 +239,28 @@ INSERT INTO `logint` (`Id`, `uname`, `pswd`, `erole`, `euid`, `jdate`, `deptname
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `notift`
+--
+
+CREATE TABLE `notift` (
+  `Id` int(11) NOT NULL,
+  `euid` varchar(255) NOT NULL,
+  `ttype` varchar(255) NOT NULL,
+  `nmsg` mediumtext NOT NULL,
+  `ddate` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `notift`
+--
+
+INSERT INTO `notift` (`Id`, `euid`, `ttype`, `nmsg`, `ddate`) VALUES
+(1, 'admin', 'Client', 'New Client Test3 Added! Project: Test3', '2022-07-09'),
+(2, 'admin', 'Client', 'New Client Test4 Added! Project: Test4', '2022-07-09');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `salaryt`
 --
 
@@ -376,6 +400,12 @@ ALTER TABLE `logint`
   ADD PRIMARY KEY (`Id`);
 
 --
+-- Indexes for table `notift`
+--
+ALTER TABLE `notift`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- Indexes for table `salaryt`
 --
 ALTER TABLE `salaryt`
@@ -413,7 +443,7 @@ ALTER TABLE `attendancet`
 -- AUTO_INCREMENT for table `clientt`
 --
 ALTER TABLE `clientt`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `dayst`
@@ -444,6 +474,12 @@ ALTER TABLE `financet`
 --
 ALTER TABLE `logint`
   MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `notift`
+--
+ALTER TABLE `notift`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `salaryt`

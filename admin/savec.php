@@ -25,8 +25,12 @@
                             ('$cname','$pname','$mobile','$email','$pdate','$descrip','$status')";
             }
             
-
             $conn=mysqli_connect($server_name,$username,$password,$database_name);
+            
+            mysqli_query($conn,$sql_query);
+
+            $nmsg = "New Client $cname Added! Project: $pname";
+            $sql_query = "INSERT into notift (euid,ttype,nmsg,ddate) VALUES ('admin','Client','$nmsg','$pdate')";
             
             if(mysqli_query($conn,$sql_query)){
                 echo "New record created successfully";
@@ -35,6 +39,7 @@
             else{
                 echo "Error: ".$sql_query."<br>".mysqli_error($conn);
             }
+
             mysqli_close($conn);
         }
     }

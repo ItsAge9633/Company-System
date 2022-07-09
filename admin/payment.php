@@ -147,7 +147,7 @@
 			$payment_date = $_POST['payment_date'];
 			$a=explode("-",$payment_date);
 			$payment_date=$a[2]."-".$a[1]."-".$a[0];
-            $payment_date = date("Y-m-d", strtotime($payment_date));
+      $payment_date = date("Y-m-d", strtotime($payment_date));
 
 			$payment_details = $_POST['payment_details'];
 
