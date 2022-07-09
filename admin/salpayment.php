@@ -30,6 +30,23 @@
         <link rel="stylesheet" href="../assets/css/style.css?v=<?php echo time(); ?>">
 
     </head>
+
+    <style>
+
+.feedback {
+  background-color : #31B0D5;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  border-color: #46b8da;
+}
+
+#mybutton {
+  position: fixed;
+  bottom: -4px;
+  right: 10px;
+}
+    </style>
     <body>
         <!-- ======= Top and Side Bar ======= -->
         <?php include 'imports/nav-admin.php'; ?>
@@ -120,7 +137,7 @@
                                 $total = $salary + $bonus;
 
                             }else{
-                                echo "<script>alert('Employee ID not found');</script>";
+                                echo "<script>alert('Employee ID doesn't exist');</script>";
                                 echo "<script>window.location.href='salpayment.php';</script>";
                             }
                             
@@ -192,6 +209,7 @@
 
                         ?>
                         <center><button type="submit" name="payemp" class="btn btn-primary">Pay</button></center>
+                        <button type="submit" name="payallemp" class="btn btn-primary">Pay All</button>
                         </form>
                     </div>
                     
