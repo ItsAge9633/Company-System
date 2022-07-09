@@ -53,20 +53,23 @@
 
                     include '../imports/config.php';
                     $conn=mysqli_connect($server_name,$username,$password,$database_name);
+
                     $sql_query="INSERT into workt (pid,empid,wstatus) VALUES ('$pid','$eid','Working')";
                     mysqli_query($conn,$sql_query);
+
                     $sql_query="UPDATE empt SET wstatus='Working' WHERE empid='$eid'";
                     mysqli_query($conn,$sql_query);
+
                     $sql_query="UPDATE clientt SET pstatus='Working' WHERE Id='$pid'";
+                    mysqli_query($conn,$sql_query);
                     
-                    if (mysqli_query($conn,$sql_query)){
+                    /*if (mysqli_query($conn,$sql_query)){
                         echo "<script>alert('Assigned Successfully');</script>";
                         header('Location: assign.php');
                     }
                     else{
                         echo "<script>alert('Assignment Failed');</script>";
-                    }
-                    //echo "Ok";
+                    }*/
                 }
                 echo '<div class="container jumbotron"><h2>Work Assigned!!</h2></div>';
             }

@@ -323,7 +323,7 @@
                                                         <td>'.$sal_paid.'</td>
                                                         <td>'.$bonuspaid.'</td>
                                                         <td>'.$gdate.'</td>
-                                                        <td><a href="invoice-salary.php?empid='.$empid.'"> Invoice </a></td>
+                                                        <td><a href="invoice-salary.php?empid='.$empid.'" target="_blank"> Invoice </a></td>
                                         
                                                         </tr>';
                                                 $n+=1;
