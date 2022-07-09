@@ -216,7 +216,8 @@
                 }
 
                 echo '<div class="table-responsive">';
-                echo '<table class="table table-hover">';
+                echo "<table class='table table-hover table-bordered table-striped'>";
+                echo '<table class="table datatable">';
                     echo '<thead class="thead-dark">';
                         echo '<tr>';
                         echo '<th scope="col">#</th>';
@@ -228,6 +229,7 @@
                         echo '<th scope="col">Amount</th>';
                         echo '<th scope="col">Narration</th>';
                         echo '<th scope="col">Balance</th>';
+                        echo '<th scope="col">Receipt</th>';
                         echo '</tr>';
                     echo '</thead>';
     
@@ -244,6 +246,7 @@
                             echo '<td>'.$m[$i][5].'</td>';
                             echo '<td>'.$m[$i][6].'</td>';
                             echo '<td>'.$m[$i][7].'</td>';
+                            echo '<td><a href="">Receipt</a></td>';
                         echo '</tr>';
                     }
 
