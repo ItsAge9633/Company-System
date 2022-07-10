@@ -40,13 +40,31 @@
 <body>
 
   <!-- ======= Top and Side Bar ======= -->
-  <?php include 'imports/nav-admin.php'; ?>
+    <?php include 'imports/nav-admin.php'; ?>
 
-    <?php
+    <main id="main" class="main">
+
+        <div class="pagetitle">
+        <h1>Work Assignment</h1>
+        <nav>
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+            <li class="breadcrumb-item active">Work Assigned</li>
+            </ol>
+        </nav>
+        </div><!-- End Page Title -->
+
+        <?php
             if (isset($_POST['assign'])){
                 $pid=$_POST['pid'];
                 //echo $pid."<br>";
                 $nos=$_POST['quesno'];
+
+                $sql_query="SELECT pname from clientt WHERE Id='$pid'";
+                $result=mysqli_query($conn,$sql_query);
+                $row=mysqli_fetch_array($result);
+                $pname=$row['pname'];
+
                 for($i=0;$i<=$nos-1;$i++){
                     $eid=$_POST['text'.$i];
                     //echo $eid."<br>";
@@ -62,6 +80,11 @@
 
                     $sql_query="UPDATE clientt SET pstatus='Working' WHERE Id='$pid'";
                     mysqli_query($conn,$sql_query);
+
+                    $nmsg="$pname Project Work Assigned to You!";
+                    $pdate=date('Y-m-d');
+                    $sql_query="INSERT into notift (euid,ttype,nmsg,ddate) VALUES ('$eid','Project','$nmsg','$pdate')";
+                    mysqli_query($conn,$sql_query);
                     
                     /*if (mysqli_query($conn,$sql_query)){
                         echo "<script>alert('Assigned Successfully');</script>";
@@ -71,17 +94,38 @@
                         echo "<script>alert('Assignment Failed');</script>";
                     }*/
                 }
-                echo '<div class="container jumbotron"><h2>Work Assigned!!</h2></div>';
+
+                $nmsg="$pname Project Work Assigned!";
+                $pdate=date('Y-m-d');
+                $sql_query="INSERT into notift (euid,ttype,nmsg,ddate) VALUES ('admin','Project','$nmsg','$pdate')";
+                mysqli_query($conn,$sql_query);
+
+                echo '<div class="card jumbotron container"><br><h4>Project Work Assigned!</h4><br></div>';
             }
-        }
-        else{
-            ob_start();
-            header('Location: '.'../login.php');
-            ob_end_flush();
-            die();
-        }
-    ?>
-    <script src="../assets/js/jquery.min.js"></script>
-    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+            }
+            else{
+                ob_start();
+                header('Location: '.'../login.php');
+                ob_end_flush();
+                die();
+            }
+        ?>
+
+    </main><!-- End #main -->
+    
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="../assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/vendor/chart.js/chart.min.js"></script>
+    <script src="../assets/vendor/echarts/echarts.min.js"></script>
+    <script src="../assets/vendor/quill/quill.min.js"></script>
+    <script src="../assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="../assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="../assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="../assets/js/main.js"></script>
 </body>
 </html>

@@ -93,7 +93,7 @@
                             $pname=$data['pname'];
                             $ddate=$data['ddate'];
                             $status=$data['pstatus'];
-                            if($ddate=="0000-00-00 00:00:00"){
+                            if($ddate=="0000-00-00"){
                                 $ddate="No Due Date";
                             }
                             echo '<tr>
@@ -115,7 +115,7 @@
         </div>
       </div>
 
-        <div class="row card" style="padding-left: 2%;">
+        <div class="card jumbotron container">
             <br>
             <?php
                 if (isset($_POST['psubmit'])){
@@ -216,8 +216,10 @@
                                     echo '<p style="color: #111111;">Deadline:</p>';
                                 echo '</div>';
                                 echo '<div class="col-md-8">';
-                                    $dd1=explode(' ', $ddate);
-                                    echo '<p style="color: #111111;">'.$dd1[0].'</p>';
+                                    if($ddate=="0000-00-00"){
+                                        $ddate="No Due Date";
+                                    }
+                                    echo '<p style="color: #111111;">'.$ddate.'</p>';
                                 echo '</div>';
                             echo '</div>';
                             echo '<div class="row">';
