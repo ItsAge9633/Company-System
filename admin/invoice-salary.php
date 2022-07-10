@@ -9,6 +9,8 @@
 
   session_start();
   $empid = $_GET['empid'];
+  $month = $_GET['month'];
+  $year = $_GET['year'];
 
 
   //uname 
@@ -24,7 +26,7 @@
   $address = $row2['eaddress'];
 
   //invoice number
-  $sql3 = "SELECT id, gdate, gsalary, tsalary, bonus, dsalary FROM salpayt WHERE euid = '$empid' and month = '".date('m')."' and year = '".date('Y')."'";
+  $sql3 = "SELECT id, gdate, gsalary, tsalary, bonus, dsalary FROM salpayt WHERE euid = '$empid' and month = '$month' and year = '$year'";
   $result3 = $conn->query($sql3);
   $row3 = $result3->fetch_assoc();
   $invoice_number = $row3['id'];

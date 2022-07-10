@@ -231,14 +231,16 @@
                 echo"<tbody>";
 
                 $curmonth = date('m');
-                $sql = "SELECT * from salpayt where month = '$curmonth'";
+                $sql = "SELECT * from salpayt";
                 $result = mysqli_query($conn, $sql);
                 $i = 1;
                 while($row = mysqli_fetch_assoc($result)){
+
+                  $monthNameW = date('F', mktime(0, 0, 0, $row['month'], 10)); // March
                   echo"<tr>";
                     echo"<th row>".$i."</th>";
                     echo"<td>".$row['euid']."</td>";
-                    echo"<td>".$row['month']."</td>";
+                    echo"<td>".$monthNameW."</td>";
                     echo"<td>".$row['daysworked']."</td>";
                     echo"<td>".$row['tsalary']."</td>";
                     echo"<td>".$row['dsalary']."</td>";

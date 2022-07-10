@@ -312,6 +312,8 @@
                                                 $sal_paid = $data['gsalary'];
                                                 $bonuspaid = $data['bonus'];
                                                 $gdate = $data['gdate'];
+                                                $gmonth = $data['month'];
+                                                $gyear = $data['year'];
 
 
                                                 echo '<tr>
@@ -323,7 +325,7 @@
                                                         <td>'.$sal_paid.'</td>
                                                         <td>'.$bonuspaid.'</td>
                                                         <td>'.$gdate.'</td>
-                                                        <td><a href="invoice-salary.php?empid='.$empid.'" target="_blank"> Invoice </a></td>
+                                                        <td><a href="invoice-salary.php?empid='.$empid.'&month='.$gmonth.'&year='.$gyear.'" target="_blank"> Invoice </a></td>
                                         
                                                         </tr>';
                                                 $n+=1;

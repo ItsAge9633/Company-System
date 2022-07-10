@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2022 at 02:31 PM
+-- Generation Time: Jul 10, 2022 at 04:01 PM
 -- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -45,7 +45,8 @@ INSERT INTO `attendancet` (`Id`, `uname`, `empid`, `ddate`, `intime`, `outtime`,
 (15, 'b', '1', '2022-06-13', '08:27:00', '18:27:00', 'True'),
 (16, 'b', '1', '2022-06-01', '11:39:00', '18:53:00', 'False'),
 (54, 'c', '2', '2022-07-01', '10:22:00', '18:24:00', 'False'),
-(55, 'b', '1', '2022-07-01', '11:50:00', '19:52:00', 'False');
+(55, 'b', '1', '2022-07-01', '11:50:00', '19:52:00', 'False'),
+(56, 'b', '1', '2022-06-10', '11:23:00', '22:26:00', 'False');
 
 -- --------------------------------------------------------
 
@@ -268,7 +269,9 @@ INSERT INTO `notift` (`Id`, `euid`, `ttype`, `nmsg`, `ddate`) VALUES
 (8, 'admin', 'Project', 'test1-Proj Project Completed!', '2022-07-11'),
 (9, 'admin', 'Payment', 'Payment of Rs. 4500 received from Client Sarvesh Software Provider for Project MCQ Platform.', '2022-07-10'),
 (10, 'admin', 'Expenses', 'Payment of Rs. 1000 has been made from Company to FunTech Furniture. Details: Chair', '2022-07-10'),
-(11, 'admin', 'Employee', 'New Employee of Username emp1 with emp Role has been Added!', '2022-07-10');
+(11, 'admin', 'Employee', 'New Employee of Username emp1 with emp Role has been Added!', '2022-07-10'),
+(12, 'admin', 'Employee', 'New Employee of Username yeah with emp Role has been Added!', '2022-07-09'),
+(13, 'admin', 'Employee', 'New Employee of Username ig with emp Role has been Added!', '2022-07-10');
 
 -- --------------------------------------------------------
 
@@ -279,7 +282,7 @@ INSERT INTO `notift` (`Id`, `euid`, `ttype`, `nmsg`, `ddate`) VALUES
 CREATE TABLE `salaryt` (
   `Id` int(7) NOT NULL,
   `euid` varchar(255) NOT NULL,
-  `bsalary` int(10) NOT NULL,
+  `bsalary` varchar(10) NOT NULL,
   `bankname` varchar(255) NOT NULL,
   `bankacc` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -289,12 +292,12 @@ CREATE TABLE `salaryt` (
 --
 
 INSERT INTO `salaryt` (`Id`, `euid`, `bsalary`, `bankname`, `bankacc`) VALUES
-(1, '1', 1500000, 'Bank Of Baroda', '1234567890'),
-(2, '1111', 1500000, 'Bank Of Baroda', '12345678903'),
-(3, '2', 700000, 'Bank Of India', '91912222'),
-(4, '3', 120000, 'Bank Of India', '91913333'),
-(5, '4', 1000000, 'HDFC', '98746321031456'),
-(6, '9175', 1200000, 'BOB', '91755719');
+(1, '1', '1500000', 'Bank Of Baroda', '1234567890'),
+(2, '1111', '1500000', 'Bank Of Baroda', '12345678903'),
+(3, '2', '700000', 'Bank Of India', '91912222'),
+(4, '3', '120000', 'Bank Of India', '91913333'),
+(5, '4', '1000000', 'HDFC', '98746321031456'),
+(6, '9175', '1200000', 'BOB', '91755719');
 
 -- --------------------------------------------------------
 
@@ -321,7 +324,8 @@ CREATE TABLE `salpayt` (
 
 INSERT INTO `salpayt` (`Id`, `euid`, `month`, `year`, `daysworked`, `bonus`, `tsalary`, `dsalary`, `gsalary`, `gdate`) VALUES
 (13, '2', 7, 2022, 1, 0, 2777, 1388, 2777, '2022-07-07'),
-(14, '1', 7, 2022, 1, 0, 5952, 2976, 5952, '2022-07-07');
+(14, '1', 7, 2022, 1, 0, 5952, 2976, 5952, '2022-07-07'),
+(15, '1', 6, 2022, 1, 0, 6250, 3125, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -452,7 +456,7 @@ ALTER TABLE `workt`
 -- AUTO_INCREMENT for table `attendancet`
 --
 ALTER TABLE `attendancet`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `clientt`
@@ -488,25 +492,25 @@ ALTER TABLE `financet`
 -- AUTO_INCREMENT for table `logint`
 --
 ALTER TABLE `logint`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `notift`
 --
 ALTER TABLE `notift`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `salaryt`
 --
 ALTER TABLE `salaryt`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `salpayt`
 --
 ALTER TABLE `salpayt`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `timingt`
