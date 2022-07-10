@@ -47,7 +47,7 @@
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
               <?php
-                echo "You have $count new Recent Activites";
+                echo "You have $count new Recent Activites &emsp;&emsp;&emsp;";
               ?>
               <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>

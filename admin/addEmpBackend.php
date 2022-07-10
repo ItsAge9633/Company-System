@@ -55,6 +55,10 @@ if($_SESSION['erole'] =='admin'){
             $sql2 = "INSERT INTO `salaryt`(`euid`, `bsalary`, `bankname`, `bankacc`, ) VALUES ('$euid','$bsalary', '$bankname','$bankacc')";
             $result2 = mysqli_query($conn,$sql2);
 
+            $nmsg="New Employee of Username ".$uname." with ".$emprole." Role has been Added!";
+            $sql_query="INSERT into notift (euid,ttype,nmsg,ddate) VALUES ('admin','Employee','$nmsg','$jdate')";
+            mysqli_query($conn,$sql_query);
+
             if($result && $result2){
                 
                 echo "<script>alert('Employee Added Successfully');</script>";

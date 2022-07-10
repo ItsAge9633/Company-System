@@ -168,6 +168,16 @@
 				echo '<script>window.location.href="payment.php"</script>';
 			}
 
+      $sql_query="SELECT * from clientt WHERE Id='$client_id'";
+      $result=mysqli_query($conn,$sql_query);
+      $row=mysqli_fetch_array($result);
+      $pname=$row['pname'];
+      $cname=$row['cname'];
+
+      $nmsg="Payment of Rs. ".$amount." received from Client ".$cname." for Project ".$pname."." ;
+      $sql_query="INSERT into notift (euid,ttype,nmsg,ddate) VALUES ('admin','Payment','$nmsg','$payment_date')";
+      mysqli_query($conn,$sql_query);
+
 			mysqli_close($conn);
 		} 
     ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2022 at 12:19 PM
+-- Generation Time: Jul 10, 2022 at 02:31 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -75,7 +75,7 @@ CREATE TABLE `clientt` (
 
 INSERT INTO `clientt` (`Id`, `cname`, `pname`, `mobile`, `email`, `aaddress`, `pdate`, `ddate`, `descrip`, `pstatus`, `cdate`, `charges`, `received`) VALUES
 (1, 'Sam Technologies', 'Portfolio', '+918208419540', 'sarvesh@samtech2543.co', 'Pune', '2022-02-16', '2022-02-25', 'Redesign samtech2543.co', 'Completed', '2022-02-19', 5000, '2022-07-01'),
-(2, 'Sarvesh Software Provider', 'MCQ Platform', '8928115445', 'aparna@sarveshmankar2543.co', '', '2022-02-17', '2022-03-01', 'MCQ Examination Platform', 'Completed', '2022-02-19', 4500, NULL),
+(2, 'Sarvesh Software Provider', 'MCQ Platform', '8928115445', 'aparna@sarveshmankar2543.co', '', '2022-02-17', '2022-03-01', 'MCQ Examination Platform', 'Completed', '2022-02-19', 4500, '2022-07-10'),
 (4, 'Abc', 'abc', '8928115445', 'abc@abc.com', '', '2022-02-18', '0000-00-00', 'Testing of Mobile App', 'Completed', '2022-03-27', 6000, NULL),
 (5, 'test1', 'test1-Proj', '1234567890', 'test1@gmail.com', '', '2022-03-25', '0000-00-00', 'Test1\r\nmain\r\nproject', 'Completed', '2022-07-11', 7000, NULL),
 (6, 'Test2', 'Test2', '0987654321', 'Test2@gmail.com', '', '2022-03-27', '2022-04-05', 'Test2\r\nTest2\r\nTest2', 'Working', NULL, 0, NULL),
@@ -205,7 +205,9 @@ CREATE TABLE `financet` (
 
 INSERT INTO `financet` (`Id`, `ddate`, `ffrom`, `tto`, `amt`, `narration`, `deptname`, `ffile`) VALUES
 (1, '2022-07-01', '1', 'Company', 5000, 'Test', 'Project', ''),
-(2, '2022-07-02', 'Company', 'Sam Technologies', 8000, 'Company System', 'Software', '');
+(2, '2022-07-02', 'Company', 'Sam Technologies', 8000, 'Company System', 'Software', ''),
+(3, '2022-07-10', '2', 'Company', 4500, 'MCQ Examination Platform', 'Project', ''),
+(4, '2022-07-10', 'Company', 'FunTech Furniture', 1000, 'Chair', 'Material', '');
 
 -- --------------------------------------------------------
 
@@ -234,7 +236,8 @@ INSERT INTO `logint` (`Id`, `uname`, `pswd`, `erole`, `euid`, `jdate`, `deptname
 (4, 'd', 'd', 'emp', '3', '2022-05-22', 'Software'),
 (17, 'we', 'we', 'emp', '1111', '2022-06-28', 'Software'),
 (18, 'test1', 'a', 'emp', '4', '2022-06-29', 'Software'),
-(19, 'gourav', 'gg', 'emp', '9175', '2022-07-04', 'Security');
+(19, 'gourav', 'gg', 'emp', '9175', '2022-07-04', 'Security'),
+(20, 'emp1', 'a', 'emp', '8', '2022-07-10', 'Software');
 
 -- --------------------------------------------------------
 
@@ -262,7 +265,10 @@ INSERT INTO `notift` (`Id`, `euid`, `ttype`, `nmsg`, `ddate`) VALUES
 (5, 'admin', 'Project', 'Test3 Project Work Assigned!', '2022-07-10'),
 (6, '9175', 'Project', 'Test4 Project Work Assigned to You!', '2022-07-10'),
 (7, 'admin', 'Project', 'Test4 Project Work Assigned!', '2022-07-10'),
-(8, 'admin', 'Project', 'test1-Proj Project Completed!', '2022-07-11');
+(8, 'admin', 'Project', 'test1-Proj Project Completed!', '2022-07-11'),
+(9, 'admin', 'Payment', 'Payment of Rs. 4500 received from Client Sarvesh Software Provider for Project MCQ Platform.', '2022-07-10'),
+(10, 'admin', 'Expenses', 'Payment of Rs. 1000 has been made from Company to FunTech Furniture. Details: Chair', '2022-07-10'),
+(11, 'admin', 'Employee', 'New Employee of Username emp1 with emp Role has been Added!', '2022-07-10');
 
 -- --------------------------------------------------------
 
@@ -476,19 +482,19 @@ ALTER TABLE `empt`
 -- AUTO_INCREMENT for table `financet`
 --
 ALTER TABLE `financet`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `logint`
 --
 ALTER TABLE `logint`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `notift`
 --
 ALTER TABLE `notift`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `salaryt`
