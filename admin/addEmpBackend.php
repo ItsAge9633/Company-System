@@ -52,7 +52,7 @@ if($_SESSION['erole'] =='admin'){
             $result = mysqli_query($conn,$sql);
             
 
-            $sql2 = "INSERT INTO `salaryt`(`euid`, `bsalary`, `bankname`, `bankacc`, ) VALUES ('$euid','$bsalary', '$bankname','$bankacc')";
+            $sql2 = "INSERT INTO `salaryt`(`bankname`, `bankacc`, `bsalary`, `euid`) VALUES ('$bankname','$bankacc','$bsalary','$euid')";
             $result2 = mysqli_query($conn,$sql2);
 
             $nmsg="New Employee of Username ".$uname." with ".$emprole." Role has been Added!";
