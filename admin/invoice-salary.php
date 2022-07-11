@@ -13,6 +13,11 @@
   $year = $_GET['year'];
 
 
+  $monthNum  = $month;
+  $dateObj   = DateTime::createFromFormat('!m', $monthNum);
+  $monthName = $dateObj->format('F'); // March
+
+
   //uname 
   $sql = "SELECT * FROM logint WHERE euid = '$empid'";
   $result = $conn->query($sql);
@@ -61,7 +66,7 @@
   //invoice Products
   $products_info=[
     [
-      "name"=>"Salary for the month of ".date('F') ." ".date('Y'),
+      "name"=>"Salary for the month of ".$monthName ." ".date('Y'),
       "salary"=>"$main_salary",
       "bonus"=>"$bonus",
       "deducted"=>"$dsalary"
@@ -117,7 +122,7 @@
       $this->SetX(10);
       $this->SetFont('Arial','B',12);
       $this->Cell(80,9,"DESCRIPTION",1,0);
-      $this->Cell(40,9,"BASE SALRY",1,0,"C");
+      $this->Cell(40,9,"BASE SALARY",1,0,"C");
       $this->Cell(30,9,"DEDUCTED",1,0,"C");
       $this->Cell(40,9,"BONUS",1,1,"C");
       $this->SetFont('Arial','',12);

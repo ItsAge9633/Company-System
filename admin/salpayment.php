@@ -31,22 +31,6 @@
 
     </head>
 
-    <style>
-
-.feedback {
-  background-color : #31B0D5;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 4px;
-  border-color: #46b8da;
-}
-
-#mybutton {
-  position: fixed;
-  bottom: -4px;
-  right: 10px;
-}
-    </style>
     <body>
         <!-- ======= Top and Side Bar ======= -->
         <?php include 'imports/nav-admin.php'; ?>
@@ -66,10 +50,10 @@
 
         <div id="input" name="input" class="card">
         <div class="card-body">
-          <h5 class="card-title">Employee Payment</h5>
+          <h5 class="card-title">Employee Payment - This month</h5>
 
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <div class="container jumbotron">
                     <form action="" method="post">
                         <div class="form-group">
@@ -208,7 +192,6 @@
 
                         ?>
                         <center><button type="submit" name="payemp" class="btn btn-primary">Pay</button></center>
-                        <button type="submit" name="payallemp" class="btn btn-primary">Pay All</button>
                         </form>
                     </div>
                     
@@ -217,6 +200,40 @@
 
         </div>
       </div>
+
+    <div id="input" name="input" class="card">
+        <div class="card-body">
+            <h5 class="card-title">Employee Payment - Pending </h5>
+                <div class="row">
+                <div class="col-md-2">
+                <div class="container jumbotron">
+                    <form action="" method="post">
+                    <div class="form-group">
+                    <label for="empid">Employee ID</label>
+                    <input type="text" class="form-control" id="empid" name="empid" placeholder="Enter Employee ID" required = "">
+                    </div><br>
+
+                    <div class="form-group">
+                    <label for="bonus">Month</label>
+                    <input type="text" class="form-control" id="bonus" name="bonus" placeholder="If any">
+                    </div><br>
+
+                    <div class="form-group">
+                    <label for="bonus">Bonus</label>
+                    <input type="text" class="form-control" id="bonus" name="bonus" placeholder="If any">
+                    </div><br>
+
+
+                    <center><button type="submit" name="checkdetails" class="btn btn-primary">Checkout</button></center>
+
+                </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+                            
 
       <?php
       
@@ -261,6 +278,7 @@
 
             <!-- End Page Title -->
             <section class="section dashboard">
+                <p></p>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
