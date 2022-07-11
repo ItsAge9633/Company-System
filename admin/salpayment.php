@@ -53,7 +53,7 @@
           <h5 class="card-title">Employee Payment - This month</h5>
 
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-4">
                     <div class="container jumbotron">
                     <form action="" method="post">
                         <div class="form-group">
@@ -205,7 +205,7 @@
         <div class="card-body">
             <h5 class="card-title">Employee Payment - Pending </h5>
                 <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-4">
                 <div class="container jumbotron">
                     <form action="" method="post">
                     <div class="form-group">
@@ -262,6 +262,12 @@
             }else{
                 $sql = "UPDATE `salpayt` SET `gsalary`= '$total', `gdate`= '$todaydate', `bonus` = '$bonus' WHERE euid = '$empid'";
                 $result = mysqli_query($conn,$sql);
+
+                /*$tdate = date("M, Y");
+                $nmsg = "Salary Paid for $tdate";
+                $sql_query = "INSERT into notift (euid,ttype,nmsg,ddate) VALUES ('admin','Salary','$nmsg','$tdate')";
+                $result11 = mysqli_query($conn,$sql);*/
+
                 if($result){
                     echo "<script>alert('Salary Paid Successfully');</script>";
                     echo "<script>window.location.href='salpayment.php';</script>";
