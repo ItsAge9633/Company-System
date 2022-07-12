@@ -113,7 +113,7 @@
                                                     <h4>No Salary Payment Found</h4>
                                                 </center>
                                             </div>";
-                                        error_reporting(0);
+                                        //error_reporting(0);
                                         
                                     }else{ $salary = $rowcheck['tsalary']; }
                                     
@@ -410,6 +410,12 @@
 
               $sqlupdate = "UPDATE `salpayt` SET `gsalary`= '$total', `gdate`= '$todaydate', `bonus` = '$bonus' WHERE euid = '$empid' and month = '$monthnum'";
                 $resultupdate = mysqli_query($conn,$sqlupdate);
+
+                $tdate = date("M, Y");
+                $nmsg = "Salary Paid for $tdate on $todaydate";
+                $sql_query = "INSERT into notift (euid,ttype,nmsg,ddate) VALUES ('$empid','Salary','$nmsg','$todaydate')";
+                $result11 = mysqli_query($conn,$sql);
+                
                 if($resultupdate){
                     echo "<script>alert('Salary Paid To All Successfully');</script>";
                     echo "<script>window.location.href='salpayment.php';</script>";
@@ -420,6 +426,12 @@
 
 
           }
+
+            $tdate = date("M, Y");
+            $nmsg = "Salary Paid for $tdate on $todaydate";
+            $sql_query = "INSERT into notift (euid,ttype,nmsg,ddate) VALUES ('admin','Salary','$nmsg','$todaydate')";
+            $result11 = mysqli_query($conn,$sql);   
+
           mysqli_close($conn);
       }
 
