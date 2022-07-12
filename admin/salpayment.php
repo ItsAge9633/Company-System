@@ -53,7 +53,7 @@
           <h5 class="card-title">Employee Payment - This month</h5>
 
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-4">
                     <div class="container jumbotron">
                     <form action="" method="post">
                         <div class="form-group">
@@ -207,7 +207,7 @@
           <h5 class="card-title">Employee Payment - Pending</h5>
 
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-4">
                     <div class="container jumbotron">
                     <form action="" method="post">
                         <div class="col-md-12">
@@ -403,18 +403,18 @@
           $result = mysqli_query($conn,$sql);
           while($row = mysqli_fetch_assoc($result)){
 
-              $empid = $row['euid'];
-              $salary = $row['tsalary'];
+                $empid = $row['euid'];
+                $salary = $row['tsalary'];
 
-              $total = intval($bonus) + intval($salary);
+                $total = intval($bonus) + intval($salary);
 
-              $sqlupdate = "UPDATE `salpayt` SET `gsalary`= '$total', `gdate`= '$todaydate', `bonus` = '$bonus' WHERE euid = '$empid' and month = '$monthnum'";
+                $sqlupdate = "UPDATE `salpayt` SET `gsalary`= '$total', `gdate`= '$todaydate', `bonus` = '$bonus' WHERE euid = '$empid' and month = '$monthnum'";
                 $resultupdate = mysqli_query($conn,$sqlupdate);
 
-                $tdate = date("M, Y");
+                $tdate = date("M, Y", strtotime($month));
                 $nmsg = "Salary Paid for $tdate on $todaydate";
                 $sql_query = "INSERT into notift (euid,ttype,nmsg,ddate) VALUES ('$empid','Salary','$nmsg','$todaydate')";
-                $result11 = mysqli_query($conn,$sql);
+                $result11 = mysqli_query($conn,$sql_query);
                 
                 if($resultupdate){
                     echo "<script>alert('Salary Paid To All Successfully');</script>";
@@ -427,10 +427,10 @@
 
           }
 
-            $tdate = date("M, Y");
+            $tdate = date("M, Y", strtotime($month));
             $nmsg = "Salary Paid for $tdate on $todaydate";
             $sql_query = "INSERT into notift (euid,ttype,nmsg,ddate) VALUES ('admin','Salary','$nmsg','$todaydate')";
-            $result11 = mysqli_query($conn,$sql);   
+            $result11 = mysqli_query($conn,$sql_query);   
 
           mysqli_close($conn);
       }
