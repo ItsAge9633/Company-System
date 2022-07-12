@@ -113,7 +113,7 @@
                                                     <h4>No Salary Payment Found</h4>
                                                 </center>
                                             </div>";
-                                        //error_reporting(0);
+                                        error_reporting(0);
                                         
                                     }else{ $salary = $rowcheck['tsalary']; }
                                     
