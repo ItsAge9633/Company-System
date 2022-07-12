@@ -201,37 +201,153 @@
         </div>
       </div>
 
-    <div id="input" name="input" class="card">
+
+      <div id="input" name="input" class="card">
         <div class="card-body">
-            <h5 class="card-title">Employee Payment - Pending </h5>
-                <div class="row">
+          <h5 class="card-title">Employee Payment - Pending</h5>
+
+            <div class="row">
                 <div class="col-md-2">
-                <div class="container jumbotron">
+                    <div class="container jumbotron">
                     <form action="" method="post">
-                    <div class="form-group">
-                    <label for="empid">Employee ID</label>
-                    <input type="text" class="form-control" id="empid" name="empid" placeholder="Enter Employee ID" required = "">
-                    </div><br>
+                        <div class="col-md-12">
+                            <label for="inputState" class="form-label">Month</label>
+                            <select id="monthall" name="monthall" class="form-select" required = "">
 
-                    <div class="form-group">
-                    <label for="bonus">Month</label>
-                    <input type="text" class="form-control" id="bonus" name="bonus" placeholder="If any">
-                    </div><br>
+                            <?php
+                                if(!$_POST['monthall']){
+                                    $monthall = date('m'). ' - ' .date('F');
+                                }else{
+                                    $monthall = $_POST['monthall'];
+                                }
+                            ?>
+                                <option selected> <?php echo $monthall; ?> </option>
+                                <option>01 - Janauary</option>
+                                <option>02 - February</option>
+                                <option>03 - March</option>
+                                <option>04 - April</option>
+                                <option>05 - May</option>
+                                <option>06 - June</option>
+                                <option>07 - July</option>
+                                <option>08 - August</option>
+                                <option>09 - September</option>
+                                <option>10 - October</option>
+                                <option>11 - November</option>
+                                <option>12 - December</option>  
+                            </select>
+                            </div><br>
 
-                    <div class="form-group">
-                    <label for="bonus">Bonus</label>
-                    <input type="text" class="form-control" id="bonus" name="bonus" placeholder="If any">
-                    </div><br>
+                        <div class="form-group">
+                            <label for="bonus">Bonus</label>
+                            <input type="text" class="form-control" id="bonusall" name="bonusall" placeholder="If any">
+                        </div><br>
 
 
-                    <center><button type="submit" name="checkdetails" class="btn btn-primary">Checkout</button></center>
-
+                        <center><button type="submit" name="checkalldetails" class="btn btn-primary">Checkout</button></center>
+                   
+                    </div>
                 </div>
+
+                <div class="col-md-8">
+                    <div class="container jumbotron">
+
+                    <?php
+                            include '../imports/config.php';
+                            $conn=mysqli_connect($server_name,$username,$password,$database_name);
+                            
+                            if(isset($_POST['checkalldetails'])){
+
+                                $month = $_POST['monthall'];
+                                $bonus = $_POST['bonusall'];
+                                
+                                $monthnum = date('m', strtotime($month));
+                                
+                                if(!$bonus){
+                                    $bonus = 0;
+                                }else{
+                                    $bonus = $_POST['bonusall'];
+                                }
+                                
+                            $sql = "SELECT * FROM salpayt WHERE month = '$monthnum'";
+                            $result = mysqli_query($conn, $sql);
+                            $resultcheck = mysqli_num_rows($result);
+
+                            $sqlpending = "SELECT * FROM salpayt WHERE month = '$monthnum' AND gdate IS NULL";
+                            $resultpending = mysqli_query($conn, $sqlpending);
+                            $resultcheckpending = mysqli_num_rows($resultpending);
+
+                            $sqlcountdone  = "SELECT COUNT(gdate) FROM salpayt WHERE month = '$monthnum' AND gdate IS NOT NULL";
+                            $resultcountdone = mysqli_query($conn, $sqlcountdone);
+                            $resultcountdonecheck = mysqli_fetch_assoc($resultcountdone);
+                            $countdone = $resultcountdonecheck['COUNT(gdate)'];
+
+                            $sqlsumbonus = "SELECT SUM(bonus) FROM salpayt WHERE month = '$monthnum'";
+                            $resultsumbonus = mysqli_query($conn, $sqlsumbonus);
+                            $resultsumbonuscheck = mysqli_fetch_assoc($resultsumbonus);
+                            $sumbonus = $resultsumbonuscheck['SUM(bonus)'];
+
+                            $sqlsumtotal = "SELECT SUM(tsalary) FROM salpayt WHERE month = '$monthnum'";
+                            $resultsumtotal = mysqli_query($conn, $sqlsumtotal);
+                            $resultsumtotalcheck = mysqli_fetch_assoc($resultsumtotal);
+                            $sumtotal = $resultsumtotalcheck['SUM(tsalary)'];
+
+
+                            echo '<div class="table-responsive">';
+                            echo '<table class="table table-hover">';
+                                echo '<thead class="thead-dark">';
+                                    echo '<tr>';
+                                    echo '<th scope="col">Total Employee</th>';
+                                    echo '<th scope="col">Month</th>';
+                                    echo '<th scope="col">Pending Payments</th>';
+                                    echo '<th scope="col">Completed Payments</th>';
+                                    echo '<th scope="col">Bonus</th>';
+                                    echo '<th scope="col">Total Salary</th>';
+                                    echo '</tr>';
+                                echo '</thead>';
+                
+                                echo '<tbody>';
+
+                                echo '<tr>';
+                                echo '<td>'.$resultcheck.'</td>';
+                                echo '<td>'.$month.'</td>';
+                                echo '<td>'.$resultcheckpending.'</td>';
+                                echo '<td>'.$countdone.'</td>';
+                                echo '<td>'.$sumbonus.'</td>';
+                                echo '<td>'.$sumtotal.'</td>';
+                                
+                                echo '</td>';
+                                echo '</tbody>
+                                </table>';
+                            echo '</div>';
+                            }else{
+
+                                echo '<div class="table-responsive">';
+                                echo '<table class="table table-hover">';
+                                    echo '<thead class="thead-dark">';
+                                        echo '<tr>';
+                                        echo '<th scope="col">Total Employee</th>';
+                                        echo '<th scope="col">Month</th>';
+                                        echo '<th scope="col">Pending Payments</th>';
+                                        echo '<th scope="col">Completed Payments</th>';
+                                        echo '<th scope="col">Bonus</th>';
+                                        echo '<th scope="col">Total Salary</th>';
+                                        echo '</tr>';
+                                    echo '</thead>';
+                                    echo '</table>';
+                                echo '</div>';
+
+                            }
+
+                        ?>
+                        <center><button type="submit" name="payempall" class="btn btn-primary">Pay All</button></center>
+                        </form>
+                    </div>
+                    
                 </div>
-                </form>
             </div>
+
         </div>
-    </div>
+      </div>
 
                             
 
@@ -270,6 +386,40 @@
                     echo "<script>window.location.href='salpayment.php';</script>";
                 }
             }
+          mysqli_close($conn);
+      }
+
+      if(isset($_POST['payempall'])){
+          include '../imports/config.php';
+          $conn=mysqli_connect($server_name,$username,$password,$database_name);
+
+          $month = $_POST['monthall'];
+          $monthnum = date("m", strtotime($month));
+          $todaydate = date("Y-m-d");
+
+          $bonus = $_POST['bonusall'];
+          
+          $sql = "SELECT * from salpayt where month = '$monthnum' and gsalary IS NULL";
+          $result = mysqli_query($conn,$sql);
+          while($row = mysqli_fetch_assoc($result)){
+
+              $empid = $row['euid'];
+              $salary = $row['tsalary'];
+
+              $total = intval($bonus) + intval($salary);
+
+              $sqlupdate = "UPDATE `salpayt` SET `gsalary`= '$total', `gdate`= '$todaydate', `bonus` = '$bonus' WHERE euid = '$empid' and month = '$monthnum'";
+                $resultupdate = mysqli_query($conn,$sqlupdate);
+                if($resultupdate){
+                    echo "<script>alert('Salary Paid To All Successfully');</script>";
+                    echo "<script>window.location.href='salpayment.php';</script>";
+                }else{
+                    echo "<script>alert('Error');</script>";
+                    echo "<script>window.location.href='salpayment.php';</script>";
+                }
+
+
+          }
           mysqli_close($conn);
       }
 
