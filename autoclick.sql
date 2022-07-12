@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2022 at 04:01 PM
+-- Generation Time: Jul 12, 2022 at 09:51 PM
 -- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -46,7 +46,9 @@ INSERT INTO `attendancet` (`Id`, `uname`, `empid`, `ddate`, `intime`, `outtime`,
 (16, 'b', '1', '2022-06-01', '11:39:00', '18:53:00', 'False'),
 (54, 'c', '2', '2022-07-01', '10:22:00', '18:24:00', 'False'),
 (55, 'b', '1', '2022-07-01', '11:50:00', '19:52:00', 'False'),
-(56, 'b', '1', '2022-06-10', '11:23:00', '22:26:00', 'False');
+(56, 'b', '1', '2022-06-10', '11:23:00', '22:26:00', 'False'),
+(57, 'we', '1111', '2022-05-12', '09:07:00', '20:07:00', 'True'),
+(58, 'gourav', '9175', '2022-07-12', '06:13:00', '20:14:00', 'True');
 
 -- --------------------------------------------------------
 
@@ -271,7 +273,11 @@ INSERT INTO `notift` (`Id`, `euid`, `ttype`, `nmsg`, `ddate`) VALUES
 (10, 'admin', 'Expenses', 'Payment of Rs. 1000 has been made from Company to FunTech Furniture. Details: Chair', '2022-07-10'),
 (11, 'admin', 'Employee', 'New Employee of Username emp1 with emp Role has been Added!', '2022-07-10'),
 (12, 'admin', 'Employee', 'New Employee of Username yeah with emp Role has been Added!', '2022-07-09'),
-(13, 'admin', 'Employee', 'New Employee of Username ig with emp Role has been Added!', '2022-07-10');
+(13, 'admin', 'Employee', 'New Employee of Username ig with emp Role has been Added!', '2022-07-10'),
+(14, '1111', 'Salary', 'Salary Paid for Jul, 2022 on 2022-07-12', '2022-07-12'),
+(15, 'admin', 'Salary', 'Salary Paid for Jul, 2022 on 2022-07-12', '2022-07-12'),
+(16, '9175', 'Salary', 'Salary Paid for Jul, 2022 on 2022-07-12', '2022-07-12'),
+(17, 'admin', 'Salary', 'Salary Paid for Jul, 2022 on 2022-07-12', '2022-07-12');
 
 -- --------------------------------------------------------
 
@@ -325,7 +331,9 @@ CREATE TABLE `salpayt` (
 INSERT INTO `salpayt` (`Id`, `euid`, `month`, `year`, `daysworked`, `bonus`, `tsalary`, `dsalary`, `gsalary`, `gdate`) VALUES
 (13, '2', 7, 2022, 1, 0, 2777, 1388, 2777, '2022-07-07'),
 (14, '1', 7, 2022, 1, 0, 5952, 2976, 5952, '2022-07-07'),
-(15, '1', 6, 2022, 1, 0, 6250, 3125, NULL, NULL);
+(15, '1', 6, 2022, 1, 0, 6250, 3125, NULL, NULL),
+(16, '1111', 5, 2022, 1, 0, 5952, 0, 5952, '2022-07-12'),
+(17, '9175', 7, 2022, 1, 0, 4761, 0, 4761, '2022-07-12');
 
 -- --------------------------------------------------------
 
@@ -456,7 +464,7 @@ ALTER TABLE `workt`
 -- AUTO_INCREMENT for table `attendancet`
 --
 ALTER TABLE `attendancet`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `clientt`
@@ -498,7 +506,7 @@ ALTER TABLE `logint`
 -- AUTO_INCREMENT for table `notift`
 --
 ALTER TABLE `notift`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `salaryt`
@@ -510,7 +518,7 @@ ALTER TABLE `salaryt`
 -- AUTO_INCREMENT for table `salpayt`
 --
 ALTER TABLE `salpayt`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `timingt`
