@@ -226,6 +226,7 @@
                     echo"<th>Salary Credit</th>";
                     echo"<th>Salary Deducted</th>";
                     echo"<th>Payment Status</th>";
+                    echo"<th>Receipt</th>";
                   echo"</tr>";
                 echo"</thead>";
                 echo"<tbody>";
@@ -237,6 +238,18 @@
                 while($row = mysqli_fetch_assoc($result)){
 
                   $monthNameW = date('F', mktime(0, 0, 0, $row['month'], 10)); // March
+
+                  $empid = $row['euid'];
+
+                  $sqlinvoice = "SELECT `month`, `year` from salpayt where euid = '$empid'";
+                  $resultinvoice = mysqli_query($conn, $sqlinvoice);
+                  $rowinvoice = mysqli_fetch_assoc($resultinvoice);
+                  $gmonth = $row['month'];
+                  $gyear = $rowinvoice['year'];
+
+
+
+
                   echo"<tr>";
                     echo"<th row>".$i."</th>";
                     echo"<td>".$row['euid']."</td>";
@@ -251,6 +264,9 @@
                       echo"<td>Paid on $row[gdate]</td>";
                     }
 
+                    echo'<td><a href="invoice-salary.php?empid='.$empid.'&month='.$gmonth.'&year='.$gyear.'" target="_blank"> Receipt </a></td>';
+
+                  
                   echo"</tr>";
                   $i++;
                 }
