@@ -131,7 +131,7 @@ error_reporting(0);
 
             <!-- Sales Card -->
             <div class="col-xxl-4 col-md-4">
-              <div class="card info-card sales-card">
+              <div class="fcard info-card sales-card">
                 <div class="card-body">
                   <h5 class="card-title">Salary <span>| This month</span></h5>
 
@@ -152,7 +152,7 @@ error_reporting(0);
 
             <!-- Revenue Card -->
             <div class="col-xxl-4 col-md-6">
-              <div class="card info-card revenue-card">
+              <div class="fcard info-card revenue-card">
 
 
                 <div class="card-body">
@@ -176,7 +176,7 @@ error_reporting(0);
             <!-- Customers Card -->
             <div class="col-xxl-4 col-md-8">
 
-              <div class="card info-card customers-card">
+              <div class="fcard info-card customers-card">
 
                 <div class="card-body">
                   <h5 class="card-title">Salary <span>| Deducted</span></h5>
