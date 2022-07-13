@@ -33,14 +33,18 @@
   //invoice number
   $sql3 = "SELECT id, gdate, gsalary, tsalary, bonus, dsalary FROM salpayt WHERE euid = '$empid' and month = '$month' and year = '$year'";
   $result3 = $conn->query($sql3);
-  $row3 = $result3->fetch_assoc();
-  $invoice_number = $row3['id'];
-  $gdate = $row3['gdate'];
-  $gsalary = $row3['gsalary'];
-  $main_salary = $row3['tsalary'];
-  $bonus = $row3['bonus'];
-  $dsalary = $row3['dsalary'];
-  
+
+  if($row3 = $result3->fetch_assoc()){
+    $invoice_number = $row3['id'];
+    $gdate = $row3['gdate'];
+    $gsalary = $row3['gsalary'];
+    $main_salary = $row3['tsalary'];
+    $bonus = $row3['bonus'];
+    $dsalary = $row3['dsalary'];
+    }else{
+        echo "<script>alert('Salary not found for given period');</script>";
+        echo "<script>window.location.href='../employee/user-sal.php';</script>";
+    }
 
   //bankacc details
   $sql4 = "SELECT bankname, bankacc FROM salaryt WHERE euid = '$empid'";
