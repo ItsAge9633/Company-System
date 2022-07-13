@@ -212,6 +212,8 @@ error_reporting(0);
                     <th scope="col">Absent days</th>
                     <th scope="col">Salary - Credit</th>
                     <th scope="col">Salary - Loss </th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Invoice</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -232,7 +234,9 @@ error_reporting(0);
 
                       echo "<tr>";
                       echo "<th scope='row'>$i</th>";
-                      echo "<td>$month</td>";
+                     
+                      $monthName = date('F', mktime(0, 0, 0, $month, 10));
+                      echo "<td>$monthName</td>";
                       echo "<td>$rowwhile[daysworked]</td>"; 
 
                       if($curmonth == $month){
@@ -256,6 +260,16 @@ error_reporting(0);
                         $deducted_sal = $sal_month - $rowwhile['tsalary'];
                         echo "<td>₹$deducted_sal</td>";
                       }
+
+                      if($rowwhile['gdate']){
+                        echo "<td>Paid on - $rowwhile[gdate]</td>";
+                      }else{
+                        echo "<td>Pending</td>";
+                      }
+
+                      $gyear = $rowwhile['year'];
+                      //echo '<td><a href="invoice-salary.php?empid='.$empid.'&month='.$month.'&year='.$gyear.'" target="_blank"> Invoice </a></td>';
+                      echo '<td><a href="user-sal-invoice.php?month='.$month.'&year='.$gyear.'" target="_blank"> Invoice </a></td>';
                       echo "</tr>";
                       $i++;
                   }
