@@ -246,7 +246,7 @@
                             echo '<td>'.$m[$i][5].'</td>';
                             echo '<td>'.$m[$i][6].'</td>';
                             echo '<td>'.$m[$i][7].'</td>';
-                            echo '<td><a href="">Receipt</a></td>';
+                            echo '<td><a href="invoice-client.php?projid='.$i.'" target="_blank">Receipt</a></td>';
                         echo '</tr>';
                     }
 
