@@ -123,7 +123,7 @@
       $this->SetFont('Arial','B',12);
       $this->Cell(80,9,"DESCRIPTION",1,0);
       $this->Cell(40,9,"BASE SALARY",1,0,"C");
-      $this->Cell(30,9,"DEDUCTED",1,0,"C");
+      $this->Cell(30,9,"DEDUCTION",1,0,"C");
       $this->Cell(40,9,"BONUS",1,1,"C");
       $this->SetFont('Arial','',12);
       

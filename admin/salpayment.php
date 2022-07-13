@@ -467,7 +467,8 @@
                                                 echo '<th scope="col">Department</th>';
                                                 echo '<th scope="col">Salary Paid</th>';
                                                 echo '<th scope="col">Bonus</th>';
-                                                echo '<th scope="col">Date</th>';
+                                                echo '<th scope="col">Paid Date</th>';
+                                                echo '<th scope="col">Month</th>';
                                                 echo '<th scope="col">Invoice</th>';
                                                 echo '</tr>';
                                             echo '</thead>';
@@ -495,6 +496,7 @@
                                                 $gmonth = $data['month'];
                                                 $gyear = $data['year'];
 
+                                                $monthName = date('F', mktime(0, 0, 0, $gmonth, 10));
 
                                                 echo '<tr>
                                                         <th scope="row">'.$n.'</th>
@@ -505,6 +507,7 @@
                                                         <td>'.$sal_paid.'</td>
                                                         <td>'.$bonuspaid.'</td>
                                                         <td>'.$gdate.'</td>
+                                                        <td>'.$monthName.'</td>
                                                         <td><a href="invoice-salary.php?empid='.$empid.'&month='.$gmonth.'&year='.$gyear.'" target="_blank"> Invoice </a></td>
                                         
                                                         </tr>';
