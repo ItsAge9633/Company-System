@@ -85,7 +85,7 @@
 
             <!-- Sales Card -->
             <div class="col-xxl-4 col-md-4">
-              <div class="card info-card revenue-card">
+              <div class="fcard info-card revenue-card">
                 <div class="card-body">
                   <h5 class="card-title">Income <span>| This month</span></h5>
 
@@ -106,7 +106,7 @@
 
             <!-- Revenue Card -->
             <div class="col-xxl-4 col-md-6">
-              <div class="card info-card sales-card">
+              <div class="fcard info-card sales-card">
 
 
                 <div class="card-body">
@@ -130,7 +130,7 @@
             <!-- Customers Card -->
             <div class="col-xxl-4 col-md-8">
 
-              <div class="card info-card customers-card">
+              <div class="fcard info-card customers-card">
 
                 <div class="card-body">
                   <h5 class="card-title"><?php if ($s=="p"){echo "Profit";}else{echo "Loss";}?> <span>| This Month</span></h5>

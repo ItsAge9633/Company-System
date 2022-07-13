@@ -63,7 +63,7 @@
 
             <!-- Sales Card -->
             <div class="col-xxl-4 col-md-6">
-              <div class="card info-card sales-card">
+              <div class="fcard info-card sales-card">
 
                 <div class="filter">
                   <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -98,7 +98,7 @@
 
             <!-- Revenue Card -->
             <div class="col-xxl-4 col-md-6">
-              <div class="card info-card revenue-card">
+              <div class="fcard info-card revenue-card">
 
                 <div class="filter">
                   <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
@@ -134,7 +134,7 @@
             <!-- Customers Card -->
             <div class="col-xxl-4 col-xl-12">
 
-              <div class="card info-card customers-card">
+              <div class="fcard info-card customers-card">
 
                 <div class="filter">
                   <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>

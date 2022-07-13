@@ -59,6 +59,17 @@ h1, h2, h3, h4, h5, h6 {
   color: #012970;
 }
 
+.fcard{
+  margin-bottom: 30px;
+  border-width: 1px;
+  border-color: #000033;
+  border-radius: 5px;
+  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+  background-color: white;
+  color: rgba(255,255,0,0);
+  box-shadow: inset 0px 0px 80px 5px rgba(0,0,0,0), 10px 10px 35px rgb(83, 83, 83);
+}
+
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
