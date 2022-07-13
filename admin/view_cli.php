@@ -83,7 +83,7 @@
                         $pname=$data['pname'];
                         $ddate=$data['ddate'];
                         $status=$data['pstatus'];
-                        if($ddate=="0000-00-00 00:00:00"){
+                        if($ddate=="0000-00-00"){
                             $ddate="No Due Date";
                         }else{
                             $array1 = explode(' ', $ddate);
@@ -139,7 +139,7 @@
                         $pname=$data['pname'];
                         $ddate=$data['ddate'];
                         $status=$data['pstatus'];
-                        if($ddate=="0000-00-00 00:00:00"){
+                        if($ddate=="0000-00-00"){
                             $ddate="No Due Date";
                         }else{
                             $array1 = explode(' ', $ddate);
@@ -197,8 +197,8 @@
                         $cdate=$data['cdate'];
                         $status=$data['pstatus'];
                         $charges=$data['charges'];
-                        if($ddate=="0000-00-00 00:00:00"){
-                            $ddate="No Due Date";
+                        if($cdate=="0000-00-00"){
+                            $cdate="No Due Date";
                         }else{
                             $array1 = explode(' ', $ddate);
                             $ddate = $array1[0];
@@ -208,7 +208,7 @@
                             <td>'.$n.'</td>
                             <td>'.$cname.'</td>
                             <td>'.$pname.'</td>
-                            <td>'.$ddate.'</td>
+                            <td>'.$cdate.'</td>
                             <td>'.$status.'</td>
                             <td>'.$charges.'</td>
                             </tr>';

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2022 at 09:51 PM
+-- Generation Time: Jul 13, 2022 at 07:45 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -48,7 +48,8 @@ INSERT INTO `attendancet` (`Id`, `uname`, `empid`, `ddate`, `intime`, `outtime`,
 (55, 'b', '1', '2022-07-01', '11:50:00', '19:52:00', 'False'),
 (56, 'b', '1', '2022-06-10', '11:23:00', '22:26:00', 'False'),
 (57, 'we', '1111', '2022-05-12', '09:07:00', '20:07:00', 'True'),
-(58, 'gourav', '9175', '2022-07-12', '06:13:00', '20:14:00', 'True');
+(58, 'gourav', '9175', '2022-07-12', '06:13:00', '20:14:00', 'True'),
+(59, 'b', '1', '2022-04-01', '09:00:00', '18:00:00', 'False');
 
 -- --------------------------------------------------------
 
@@ -277,7 +278,9 @@ INSERT INTO `notift` (`Id`, `euid`, `ttype`, `nmsg`, `ddate`) VALUES
 (14, '1111', 'Salary', 'Salary Paid for Jul, 2022 on 2022-07-12', '2022-07-12'),
 (15, 'admin', 'Salary', 'Salary Paid for Jul, 2022 on 2022-07-12', '2022-07-12'),
 (16, '9175', 'Salary', 'Salary Paid for Jul, 2022 on 2022-07-12', '2022-07-12'),
-(17, 'admin', 'Salary', 'Salary Paid for Jul, 2022 on 2022-07-12', '2022-07-12');
+(17, 'admin', 'Salary', 'Salary Paid for Jul, 2022 on 2022-07-12', '2022-07-12'),
+(18, '1', 'Salary', 'Salary Paid for Apr, 2022 on 2022-07-13', '2022-07-13'),
+(19, 'admin', 'Salary', 'Salary Paid for Apr, 2022 on 2022-07-13', '2022-07-13');
 
 -- --------------------------------------------------------
 
@@ -333,7 +336,8 @@ INSERT INTO `salpayt` (`Id`, `euid`, `month`, `year`, `daysworked`, `bonus`, `ts
 (14, '1', 7, 2022, 1, 0, 5952, 2976, 5952, '2022-07-07'),
 (15, '1', 6, 2022, 1, 0, 6250, 3125, NULL, NULL),
 (16, '1111', 5, 2022, 1, 0, 5952, 0, 5952, '2022-07-12'),
-(17, '9175', 7, 2022, 1, 0, 4761, 0, 4761, '2022-07-12');
+(17, '9175', 7, 2022, 1, 0, 4761, 0, 4761, '2022-07-12'),
+(18, '1', 4, 2022, 1, 0, 6250, 3125, 6250, '2022-07-13');
 
 -- --------------------------------------------------------
 
@@ -464,7 +468,7 @@ ALTER TABLE `workt`
 -- AUTO_INCREMENT for table `attendancet`
 --
 ALTER TABLE `attendancet`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `clientt`
@@ -506,7 +510,7 @@ ALTER TABLE `logint`
 -- AUTO_INCREMENT for table `notift`
 --
 ALTER TABLE `notift`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `salaryt`
@@ -518,7 +522,7 @@ ALTER TABLE `salaryt`
 -- AUTO_INCREMENT for table `salpayt`
 --
 ALTER TABLE `salpayt`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `timingt`
