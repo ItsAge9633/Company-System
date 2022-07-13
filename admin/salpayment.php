@@ -469,7 +469,7 @@
                                                 echo '<th scope="col">Bonus</th>';
                                                 echo '<th scope="col">Paid Date</th>';
                                                 echo '<th scope="col">Month</th>';
-                                                echo '<th scope="col">Invoice</th>';
+                                                echo '<th scope="col">Receipt</th>';
                                                 echo '</tr>';
                                             echo '</thead>';
 
@@ -508,7 +508,7 @@
                                                         <td>'.$bonuspaid.'</td>
                                                         <td>'.$gdate.'</td>
                                                         <td>'.$monthName.'</td>
-                                                        <td><a href="invoice-salary.php?empid='.$empid.'&month='.$gmonth.'&year='.$gyear.'" target="_blank"> Invoice </a></td>
+                                                        <td><a href="invoice-salary.php?empid='.$empid.'&month='.$gmonth.'&year='.$gyear.'" target="_blank"> Receipt </a></td>
                                         
                                                         </tr>';
                                                 $n+=1;

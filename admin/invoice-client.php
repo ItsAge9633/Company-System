@@ -29,6 +29,14 @@
     $narration = $row['narration'];
 
 
+  if ($tto=="Company"){
+    $sql_query="SELECT cname FROM clientt where Id=$ffrom";
+    $records = mysqli_query($conn, $sql_query);
+    while($data = mysqli_fetch_array($records)){
+        $ffrom = $data['cname'];
+    }
+  }
+
   //customer and invoice details
   $info=[
     "customer"=> $tto,
