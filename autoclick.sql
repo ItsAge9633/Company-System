@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2022 at 07:45 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Generation Time: Jul 14, 2022 at 11:24 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -46,10 +46,7 @@ INSERT INTO `attendancet` (`Id`, `uname`, `empid`, `ddate`, `intime`, `outtime`,
 (16, 'b', '1', '2022-06-01', '11:39:00', '18:53:00', 'False'),
 (54, 'c', '2', '2022-07-01', '10:22:00', '18:24:00', 'False'),
 (55, 'b', '1', '2022-07-01', '11:50:00', '19:52:00', 'False'),
-(56, 'b', '1', '2022-06-10', '11:23:00', '22:26:00', 'False'),
-(57, 'we', '1111', '2022-05-12', '09:07:00', '20:07:00', 'True'),
-(58, 'gourav', '9175', '2022-07-12', '06:13:00', '20:14:00', 'True'),
-(59, 'b', '1', '2022-04-01', '09:00:00', '18:00:00', 'False');
+(56, 'b', '1', '2022-06-10', '11:23:00', '22:26:00', 'False');
 
 -- --------------------------------------------------------
 
@@ -78,8 +75,8 @@ CREATE TABLE `clientt` (
 --
 
 INSERT INTO `clientt` (`Id`, `cname`, `pname`, `mobile`, `email`, `aaddress`, `pdate`, `ddate`, `descrip`, `pstatus`, `cdate`, `charges`, `received`) VALUES
-(1, 'Sam Technologies', 'Portfolio', '+918208419540', 'sarvesh@samtech2543.co', 'Pune', '2022-02-16', '2022-02-25', 'Redesign samtech2543.co', 'Completed', '2022-02-19', 5000, '2022-07-01'),
-(2, 'Sarvesh Software Provider', 'MCQ Platform', '8928115445', 'aparna@sarveshmankar2543.co', '', '2022-02-17', '2022-03-01', 'MCQ Examination Platform', 'Completed', '2022-02-19', 4500, '2022-07-10'),
+(1, 'CWIT Technologies', 'Portfolio', '+918208419540', 'sarvesh@samtech2543.co', 'Pune', '2022-02-16', '2022-02-25', 'Redesign cwitpune.com', 'Completed', '2022-02-19', 5000, '2022-07-01'),
+(2, 'DCP Software Provider', 'MCQ Platform', '8928115445', 'aparna@sarveshmankar2543.co', '', '2022-02-17', '2022-03-01', 'Examination Platform', 'Completed', '2022-02-19', 4500, '2022-07-10'),
 (4, 'Abc', 'abc', '8928115445', 'abc@abc.com', '', '2022-02-18', '0000-00-00', 'Testing of Mobile App', 'Completed', '2022-03-27', 6000, NULL),
 (5, 'test1', 'test1-Proj', '1234567890', 'test1@gmail.com', '', '2022-03-25', '0000-00-00', 'Test1\r\nmain\r\nproject', 'Completed', '2022-07-11', 7000, NULL),
 (6, 'Test2', 'Test2', '0987654321', 'Test2@gmail.com', '', '2022-03-27', '2022-04-05', 'Test2\r\nTest2\r\nTest2', 'Working', NULL, 0, NULL),
@@ -209,8 +206,8 @@ CREATE TABLE `financet` (
 
 INSERT INTO `financet` (`Id`, `ddate`, `ffrom`, `tto`, `amt`, `narration`, `deptname`, `ffile`) VALUES
 (1, '2022-07-01', '1', 'Company', 5000, 'Test', 'Project', ''),
-(2, '2022-07-02', 'Company', 'Sam Technologies', 8000, 'Company System', 'Software', ''),
-(3, '2022-07-10', '2', 'Company', 4500, 'MCQ Examination Platform', 'Project', ''),
+(2, '2022-07-02', 'Company', 'CWIT Technologies', 8000, 'Company System', 'Software', ''),
+(3, '2022-07-10', '2', 'Company', 4500, 'Examination Platform', 'Project', ''),
 (4, '2022-07-10', 'Company', 'FunTech Furniture', 1000, 'Chair', 'Material', '');
 
 -- --------------------------------------------------------
@@ -235,13 +232,14 @@ CREATE TABLE `logint` (
 
 INSERT INTO `logint` (`Id`, `uname`, `pswd`, `erole`, `euid`, `jdate`, `deptname`) VALUES
 (1, 'a', 'a', 'admin', '1234', '2022-05-22', 'Software'),
-(2, 'b', 'b', 'emp', '1', '2022-05-22', 'Software'),
+(2, 'cwit', 'cwit', 'emp', '1', '2022-05-22', 'Software'),
 (3, 'c', 'c', 'emp', '2', '2022-05-22', 'Software'),
 (4, 'd', 'd', 'emp', '3', '2022-05-22', 'Software'),
 (17, 'we', 'we', 'emp', '1111', '2022-06-28', 'Software'),
 (18, 'test1', 'a', 'emp', '4', '2022-06-29', 'Software'),
 (19, 'gourav', 'gg', 'emp', '9175', '2022-07-04', 'Security'),
-(20, 'emp1', 'a', 'emp', '8', '2022-07-10', 'Software');
+(20, 'emp1', 'a', 'emp', '8', '2022-07-10', 'Software'),
+(29, 'q', 'q', 'Pentester ', '7', '2022-07-13', 'Development');
 
 -- --------------------------------------------------------
 
@@ -270,17 +268,12 @@ INSERT INTO `notift` (`Id`, `euid`, `ttype`, `nmsg`, `ddate`) VALUES
 (6, '9175', 'Project', 'Test4 Project Work Assigned to You!', '2022-07-10'),
 (7, 'admin', 'Project', 'Test4 Project Work Assigned!', '2022-07-10'),
 (8, 'admin', 'Project', 'test1-Proj Project Completed!', '2022-07-11'),
-(9, 'admin', 'Payment', 'Payment of Rs. 4500 received from Client Sarvesh Software Provider for Project MCQ Platform.', '2022-07-10'),
+(9, 'admin', 'Payment', 'Payment of Rs. 4500 received from Client CWIT Software Provider for Project MCQ Platform.', '2022-07-10'),
 (10, 'admin', 'Expenses', 'Payment of Rs. 1000 has been made from Company to FunTech Furniture. Details: Chair', '2022-07-10'),
 (11, 'admin', 'Employee', 'New Employee of Username emp1 with emp Role has been Added!', '2022-07-10'),
 (12, 'admin', 'Employee', 'New Employee of Username yeah with emp Role has been Added!', '2022-07-09'),
 (13, 'admin', 'Employee', 'New Employee of Username ig with emp Role has been Added!', '2022-07-10'),
-(14, '1111', 'Salary', 'Salary Paid for Jul, 2022 on 2022-07-12', '2022-07-12'),
-(15, 'admin', 'Salary', 'Salary Paid for Jul, 2022 on 2022-07-12', '2022-07-12'),
-(16, '9175', 'Salary', 'Salary Paid for Jul, 2022 on 2022-07-12', '2022-07-12'),
-(17, 'admin', 'Salary', 'Salary Paid for Jul, 2022 on 2022-07-12', '2022-07-12'),
-(18, '1', 'Salary', 'Salary Paid for Apr, 2022 on 2022-07-13', '2022-07-13'),
-(19, 'admin', 'Salary', 'Salary Paid for Apr, 2022 on 2022-07-13', '2022-07-13');
+(14, 'admin', 'Employee', 'New Employee of Username q with Pentester  Role has been Added!', '2022-07-13');
 
 -- --------------------------------------------------------
 
@@ -306,7 +299,8 @@ INSERT INTO `salaryt` (`Id`, `euid`, `bsalary`, `bankname`, `bankacc`) VALUES
 (3, '2', '700000', 'Bank Of India', '91912222'),
 (4, '3', '120000', 'Bank Of India', '91913333'),
 (5, '4', '1000000', 'HDFC', '98746321031456'),
-(6, '9175', '1200000', 'BOB', '91755719');
+(6, '9175', '1200000', 'BOB', '91755719'),
+(9, '7', '50000', 'SBI', '87643514387213578');
 
 -- --------------------------------------------------------
 
@@ -334,10 +328,7 @@ CREATE TABLE `salpayt` (
 INSERT INTO `salpayt` (`Id`, `euid`, `month`, `year`, `daysworked`, `bonus`, `tsalary`, `dsalary`, `gsalary`, `gdate`) VALUES
 (13, '2', 7, 2022, 1, 0, 2777, 1388, 2777, '2022-07-07'),
 (14, '1', 7, 2022, 1, 0, 5952, 2976, 5952, '2022-07-07'),
-(15, '1', 6, 2022, 1, 0, 6250, 3125, NULL, NULL),
-(16, '1111', 5, 2022, 1, 0, 5952, 0, 5952, '2022-07-12'),
-(17, '9175', 7, 2022, 1, 0, 4761, 0, 4761, '2022-07-12'),
-(18, '1', 4, 2022, 1, 0, 6250, 3125, 6250, '2022-07-13');
+(15, '1', 6, 2022, 1, 0, 6250, 3125, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -468,7 +459,7 @@ ALTER TABLE `workt`
 -- AUTO_INCREMENT for table `attendancet`
 --
 ALTER TABLE `attendancet`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `clientt`
@@ -504,25 +495,25 @@ ALTER TABLE `financet`
 -- AUTO_INCREMENT for table `logint`
 --
 ALTER TABLE `logint`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `notift`
 --
 ALTER TABLE `notift`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `salaryt`
 --
 ALTER TABLE `salaryt`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `salpayt`
 --
 ALTER TABLE `salpayt`
-  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `Id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `timingt`
