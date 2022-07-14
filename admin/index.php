@@ -537,6 +537,24 @@
 
               <div id="trafficChart" style="min-height: 400px;" class="echart"></div>
 
+              <?php
+
+                $sqlval = "SELECT COUNT(pstatus) AS workcount FROM clientt where pstatus='Working';";
+                $resultval = mysqli_query($conn,$sqlval);
+                $rowval = mysqli_fetch_assoc($resultval);
+                $valwork = $rowval['workcount'];
+
+                $sqlval = "SELECT COUNT(pstatus) AS pendingcount FROM clientt where pstatus='Pending';";
+                $resultval = mysqli_query($conn,$sqlval);
+                $rowval = mysqli_fetch_assoc($resultval);
+                $valpending = $rowval['pendingcount'];
+
+                $sqlval = "SELECT COUNT(pstatus) AS donecount FROM clientt where pstatus='Completed';";
+                $resultval = mysqli_query($conn,$sqlval);
+                $rowval = mysqli_fetch_assoc($resultval);
+                $valdone = $rowval['donecount'];
+
+              ?>
               <script>
                 document.addEventListener("DOMContentLoaded", () => {
                   echarts.init(document.querySelector("#trafficChart")).setOption({
@@ -544,13 +562,13 @@
                       trigger: 'item'
                     },
                     legend: {
-                      top: '5%',
+                      top: '1%',
                       left: 'center'
                     },
                     series: [{
                       name: 'Access From',
                       type: 'pie',
-                      radius: ['40%', '70%'],
+                      radius: ['35%', '70%'],
                       avoidLabelOverlap: false,
                       label: {
                         show: false,
@@ -559,7 +577,7 @@
                       emphasis: {
                         label: {
                           show: true,
-                          fontSize: '18',
+                          fontSize: '20',
                           fontWeight: 'bold'
                         }
                       },
@@ -567,24 +585,23 @@
                         show: false
                       },
                       data: [{
-                          value: 1048,
-                          name: 'Search Engine'
+                          value: <?php echo $valpending; ?>,
+                          name: 'New Project'
                         },
                         {
-                          value: 735,
-                          name: 'Direct'
+                          value: <?php echo $valdone; ?>,
+                          name: 'Completed' 
                         },
                         {
-                          value: 580,
-                          name: 'Email'
+                          value: 0,
+                          name: ''
                         },
                         {
-                          value: 484,
-                          name: 'Union Ads'
-                        },
-                        {
-                          value: 300,
-                          name: 'Video Ads'
+                          value: <?php echo $valwork; ?>,
+                          name: 'Pending',
+                          itemStyle: {
+                            color: '#f5222d'
+                          }
                         }
                       ]
                     }]
