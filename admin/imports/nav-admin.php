@@ -321,6 +321,11 @@
               <i class="bi bi-circle"></i><span>Update Status</span>
             </a>
           </li>
+          <li>
+            <a href="project_report.php">
+              <i class="bi bi-circle"></i><span>Project Report</span>
+            </a>
+          </li>
         </ul>
       </li><!-- End Forms Nav -->
 
