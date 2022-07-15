@@ -106,13 +106,13 @@
 
              <div class="col-6">
                 <label for="yourPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" required="" id="password" name="pwd"/>
+                <input type="password" class="form-control" required="" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" name="pwd"/>
                 <div class="invalid-feedback">Please enter your password!</div>
             </div>
 
             <div class="col-6">
                 <label for="yourPassword" class="form-label"> Re-type Password</label>
-                <input type="password" class="form-control" required="" id="repassword" name="repwd"/>
+                <input type="password" class="form-control" required="" id="repassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" name="repwd"/>
                 <div class="invalid-feedback">Please enter your password!</div>
             </div>
             

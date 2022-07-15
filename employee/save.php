@@ -6,10 +6,8 @@
         if (isset($_POST['srsubmit'])){
             include '../imports/config.php';
             if ($_SESSION['new']){
-                print("Op");
                 if(!empty($_FILES["pp"]["name"])) { 
                     // Get file info 
-                    print("OP1");
                     $fileName = basename($_FILES["pp"]["name"]); 
                     $fileType = pathinfo($fileName, PATHINFO_EXTENSION); 
                      
@@ -38,7 +36,6 @@
                     mysqli_close($conn);
                 }
             }else{
-                print("Not NEw");
                 if(!empty($_FILES["pp"]["name"])) { 
                     // Get file info 
                     $fileName = basename($_FILES["pp"]["name"]); 
@@ -92,8 +89,14 @@
                     $sql_query = "UPDATE empt SET ename='$ename',email='$email',mobile='$mobile',dob='$dob',eaddress='$address',bio='$bio',pphoto='$imgContent',github='$github',linkedin='$linkedin',insta='$insta',twitter='$twitter'
                     WHERE uname='$uname'";
                 }else{
-                    $sql_query = "INSERT into empt (uname,empid,ename,email,mobile,dob,eaddress,pphoto,bio,wstatus,github,twitter,linkedin,insta) VALUES 
-                    ('$uname','$emp_id','$ename','$email','$mobile','$dob','$address','$imgContent','$bio','free','$github','$twitter','$linkedin','$insta');";
+
+                    $sqldept = "SELECT deptname from logint where uname='$uname'";
+                    $resultdept = mysqli_query($conn,$sqldept);
+                    $result = mysqli_fetch_assoc($resultdept);
+                    $deptname = $result['deptname'];
+
+                    $sql_query = "INSERT into empt (`uname`,`empid`,`ename`,`deptname`,`email`,`mobile`,`dob`,`eaddress`,`pphoto`,`bio`,`wstatus`,`github`,`twitter`,`linkedin`,`insta`) VALUES 
+                    ('$uname','$emp_id','$ename','$deptname','$email','$mobile','$dob','$address','$imgContent','$bio','free','$github','$twitter','$linkedin','$insta');";
                 }               
                 
                 if(mysqli_query($conn,$sql_query)){

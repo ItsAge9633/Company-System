@@ -30,11 +30,11 @@
   $row2 = $result2->fetch_assoc();
   $address = $row2['eaddress'];
 
-  //invoice number
+  //Receipt number
   $sql3 = "SELECT id, gdate, gsalary, tsalary, bonus, dsalary FROM salpayt WHERE euid = '$empid' and month = '$month' and year = '$year'";
   $result3 = $conn->query($sql3);
   if($row3 = $result3->fetch_assoc()){
-    $invoice_number = $row3['id'];
+    $Receipt_number = $row3['id'];
     $gdate = $row3['gdate'];
     $gsalary = $row3['gsalary'];
     $main_salary = $row3['tsalary'];
@@ -55,19 +55,19 @@
   
 
 
-  //customer and invoice details
+  //customer and Receipt details
   $info=[
     "customer"=> $uname,
     "address"=>"$address",
-    "invoice_no"=>"$invoice_number",
-    "invoice_date"=>"$gdate",
+    "Receipt_no"=>"$Receipt_number",
+    "Receipt_date"=>"$gdate",
     "total_amt"=>"$gsalary",
     "bankacc"=>"Bank Name : $bankname",
     "bankacc_no"=>"Bank Account Number : $bankacc"
   ];
   
   
-  //invoice Products
+  //Receipt Products
   $products_info=[
     [
       "name"=>"Salary for the month of ".$monthName ." ".date('Y'),
@@ -89,11 +89,11 @@
       $this->Cell(50,7,"Pune 411012.",0,1);
       $this->Cell(50,7,"PH : 9175315683",0,1);
       
-      //Display INVOICE text
+      //Display Receipt text
       $this->SetY(15);
       $this->SetX(-60);
       $this->SetFont('Arial','B',18);
-      $this->Cell(30,10," SALARY INVOICE",0,1);
+      $this->Cell(30,10," SALARY RECEIPT",0,1);
       
       //Display Horizontal line
       $this->Line(0,48,210,48);
@@ -111,15 +111,15 @@
       $this->Cell(50,7,$info["address"],0,1);
       //$this->Cell(50,7,$info["city"],0,1);
       
-      //Display Invoice no
+      //Display Receipt no
       $this->SetY(55);
       $this->SetX(-60);
-      $this->Cell(50,7,"Invoice No : ".$info["invoice_no"]);
+      $this->Cell(50,7,"Receipt No : ".$info["Receipt_no"]);
       
-      //Display Invoice date
+      //Display Receipt date
       $this->SetY(63);
       $this->SetX(-60);
-      $this->Cell(50,7,"Invoice Date : ".$info["invoice_date"]);
+      $this->Cell(50,7,"Receipt Date : ".$info["Receipt_date"]);
       
       //Display Table headings
       $this->SetY(95);
@@ -169,7 +169,7 @@
       $this->SetY(182);
       $this->SetX(10);
       $this->SetFont('Arial','',12);
-      $this->Cell(0,9,'Paid on : ' . strval($info["invoice_date"]),0,1);
+      $this->Cell(0,9,'Paid on : ' . strval($info["Receipt_date"]),0,1);
       
     }
     function Footer(){
@@ -184,7 +184,7 @@
       $this->SetFont('Arial','',10);
       
       //Display Footer Text
-      $this->Cell(340,10,"This is a computer generated invoice",10,5,"C");
+      $this->Cell(340,10,"This is a computer generated Receipt",10,5,"C");
       $this->Cell(340,0,"and doesn't require a signature",10,5,"C");
 
       

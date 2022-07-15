@@ -1,3 +1,4 @@
+
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -29,69 +30,49 @@
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
+            <span class="badge bg-primary badge-number">
+
+              <?php
+                include '../imports/config.php';
+                
+                $sql_query = "SELECT * FROM notift WHERE euid='admin' ORDER BY id DESC LIMIT 4;";
+                $result = mysqli_query($conn,$sql_query);
+                $count = mysqli_num_rows($result);
+                echo $count;
+              ?>
+
+            </span>
           </a><!-- End Notification Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
-              You have 4 new notifications
+              <?php
+                echo "You have $count new Recent Activites &emsp;&emsp;&emsp;";
+              ?>
               <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Lorem Ipsum</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
-              </div>
-            </li>
+            <?php
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+              $sql_query = "SELECT * FROM notift WHERE euid='admin' ORDER BY id DESC LIMIT 4;";
+              $result = mysqli_query($conn,$sql_query);
+              while($row = mysqli_fetch_assoc($result)){
+                echo '<li class="notification-item">
+                <i class="bi bi-check-circle text-success"></i>';
+                echo '<div><h4>'.$row['ttype'].'</h4>';
+                echo '<p class="notification-text">'.$row['nmsg'].'</p>';
+                $newdate = date("d M, Y", strtotime($row['ddate']));
+                echo '<p class="notification-text">'.$newdate.'</p>';
+                echo '</li></div>';
 
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Atque rerum nesciunt</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
+                echo '<li><hr class="dropdown-divider"></li>';
+              }
 
-            <li>
-              <hr class="dropdown-divider">
-            </li>
+            ?>
 
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Sit rerum fuga</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
             <li class="dropdown-footer">
               <a href="#">Show all notifications</a>
             </li>
@@ -240,27 +221,13 @@
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link " href="../admin/finance.php">
-          <i class="bi bi-grid"></i>
-          <span>Finance</span>
+        <a class="nav-link " href="../MCQ/dashboard.php">
+          <i class="bi bi-people"></i>
+          <span>MCQ Test</span>
         </a>
-      </li><!-- End Finance Dashboard Nav -->
+      </li>
 
-      <li class="nav-item">
-        <a class="nav-link " href="../admin/transaction.php">
-        <i class="bi bi-grid"></i>
-        <span>Transaction Entry</span>
-        </a>
-      </li><!-- End Finance Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link " href="../admin/allsalary.php">
-        <i class="bi bi-grid"></i>
-        <span>Salary</span>
-        </a>
-      </li><!-- End Salary Nav -->
-
-      <li class="nav-item">
+            <li class="nav-item">
         <a class="nav-link " href="../admin/attendance.php">
           <i class="bi bi-people"></i>
           <span>Attendance</span>
@@ -268,11 +235,48 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link " href="dashboard.php">
-          <i class="bi bi-people"></i>
-          <span>MCQ Test</span>
+        <a class="nav-link collapsed" data-bs-target="#finance-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Finance</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
+        <ul id="finance-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+        <li>
+            <a href="../admin/finance.php">
+              <i class="bi bi-circle"></i><span>Dashboard</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="../admin/transaction.php">
+              <i class="bi bi-circle"></i><span>Transaction Entry</span>
+            </a>
+          </li>
+          </ul>
       </li>
+
+
+
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#salary-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Salary</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="salary-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+        <li>
+            <a href="../admin/allsalary.php">
+              <i class="bi bi-circle"></i><span>View Salary</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="../admin/salpayment.php">
+              <i class="bi bi-circle"></i><span>Salary Payment</span>
+            </a>
+          </li>
+          </ul>
+      </li>
+    <!-- End Salary Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#client-nav" data-bs-toggle="collapse" href="#">
@@ -308,13 +312,18 @@
         </a>
         <ul id="projects-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="assign.php">
+            <a href="../admin/assign.php">
               <i class="bi bi-circle"></i><span>Assign Work</span>
             </a>
           </li>
           <li>
-            <a href="change_status.php">
+            <a href="../admin/change_status.php">
               <i class="bi bi-circle"></i><span>Update Status</span>
+            </a>
+          </li>
+          <li>
+            <a href="../admin/project_report.php">
+              <i class="bi bi-circle"></i><span>Project Report</span>
             </a>
           </li>
         </ul>
@@ -326,22 +335,23 @@
         </a>
         <ul id="employees-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
         <li>
-            <a href="addEmployee.php">
+            <a href="../admin/addEmployee.php">
               <i class="bi bi-circle"></i><span>Add Employee</span>
             </a>
           </li>
           <li>
-            <a href="all_emp.php">
+            <a href="../admin/all_emp.php">
               <i class="bi bi-circle"></i><span>All Employees</span>
             </a>
           </li>
           <li>
-            <a href="browse_emp.php">
+            <a href="../admin/browse_emp.php">
               <i class="bi bi-circle"></i><span>Browse Employee</span>
             </a>
           </li>
         </ul>
       </li><!-- End Tables Nav -->
+    </ul>
   </aside><!-- End Sidebar-->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

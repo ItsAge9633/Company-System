@@ -271,12 +271,12 @@
                         ?>
                     <form action="" method="post">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <?php
                                     echo '<input type="hidden" class="form-control" name="cid" id="cid" value="'.$cid.'"><br>';
                                     ?>
                                 <label for="cdate" class="form-label">Completed date</label>
-                                <input type="text" class="form-control" name="cdate" id="cdate" placeholder="yyyy-m-d format"><br>
+                                <input type="date" class="form-control" name="cdate" id="cdate" placeholder="yyyy-m-d format"><br>
                                 <label for="ccharges" class="form-label">Charges in Number</label>
                                 <input type="text" class="form-control" name="ccharges" id="ccharges"><br>
                                 <center><input type="submit" class="btn btn-outline-success" value="Submit" name="compsubmit"></center>

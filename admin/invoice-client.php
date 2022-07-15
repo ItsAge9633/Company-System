@@ -21,7 +21,7 @@
   $result = $conn->query($sql);
   
     $row = $result->fetch_assoc();
-    $invoice_number = $row['id'];
+    $Receipt_number = $row['id'];
     $tto = $row['tto'];
     $ffrom = $row['ffrom'];
     $ddate = $row['ddate'];
@@ -37,19 +37,19 @@
     }
   }
 
-  //customer and invoice details
+  //customer and Receipt details
   $info=[
     "customer"=> $tto,
     "address"=>"From : $ffrom",
-    "invoice_no"=>"$invoice_number",
-    "invoice_date"=>"$ddate",
+    "Receipt_no"=>"$Receipt_number",
+    "Receipt_date"=>"$ddate",
     "total_amt"=>"$amt",
     "bankacc"=>"From : $ffrom",
     "bankacc_no"=>"To : $tto"
   ];
   
   
-  //invoice Products
+  //Receipt Products
   $products_info=[
     [
       "name"=>"$narration",
@@ -71,11 +71,11 @@
       $this->Cell(50,7,"Pune 411012.",0,1);
       $this->Cell(50,7,"PH : 9175315683",0,1);
       
-      //Display INVOICE text
+      //Display Receipt text
       $this->SetY(15);
       $this->SetX(-60);
       $this->SetFont('Arial','B',18);
-      $this->Cell(30,10," SALARY INVOICE",0,1);
+      $this->Cell(30,10,"RECEIPT",0,1);
       
       //Display Horizontal line
       $this->Line(0,48,210,48);
@@ -92,15 +92,15 @@
       $this->Cell(50,7,$info["customer"],0,1);
       //$this->Cell(50,7,$info["city"],0,1);
       
-      //Display Invoice no
+      //Display Receipt no
       $this->SetY(55);
       $this->SetX(-60);
-      $this->Cell(50,7,"Invoice No : ".$info["invoice_no"]);
+      $this->Cell(50,7,"Receipt No : ".$info["Receipt_no"]);
       
-      //Display Invoice date
+      //Display Receipt date
       $this->SetY(63);
       $this->SetX(-60);
-      $this->Cell(50,7,"Invoice Date : ".$info["invoice_date"]);
+      $this->Cell(50,7,"Receipt Date : ".$info["Receipt_date"]);
       
       //Display Table headings
       $this->SetY(95);
@@ -150,7 +150,7 @@
       $this->SetY(182);
       $this->SetX(10);
       $this->SetFont('Arial','',12);
-      $this->Cell(0,9,'Completed on : ' . strval($info["invoice_date"]),0,1);
+      $this->Cell(0,9,'Completed on : ' . strval($info["Receipt_date"]),0,1);
       
     }
     function Footer(){
@@ -165,7 +165,7 @@
       $this->SetFont('Arial','',10);
       
       //Display Footer Text
-      $this->Cell(340,10,"This is a computer generated invoice",10,5,"C");
+      $this->Cell(340,10,"This is a computer generated Receipt",10,5,"C");
       $this->Cell(340,0,"and doesn't require a signature",10,5,"C");
 
       

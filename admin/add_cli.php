@@ -33,12 +33,6 @@
   <!-- Template Main CSS File -->
   <link rel="stylesheet" href="../assets/css/style.css?v=<?php echo time(); ?>">
 
-  <!-- =======================================================
-  * Template Name: NiceAdmin - v2.2.2
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -83,13 +77,13 @@
               <label for="email" class="form-label">Email ID</label>
               <input type="email" class="form-control" name="email" id="email">
             </div>
-            <div class="col-12">
-              <label for="pdate" class="form-label">Assign Date in yyyy-m-d</label>
-              <input type="text" class="form-control" name="pdate" id="pdate">
+            <div class="col-6">
+              <label for="pdate" class="form-label">Assign Date </label>
+              <input type="date" class="form-control" name="pdate" id="pdate">
             </div>
-            <div class="col-12">
-              <label for="ddate" class="form-label">Due Date in yyyy-m-d</label>
-              <input type="text" class="form-control" name="ddate" id="ddate">
+            <div class="col-6">
+              <label for="ddate" class="form-label">Due Date </label>
+              <input type="date" class="form-control" name="ddate" id="ddate">
             </div>
             </center>
                 <br><label for="descrip">Description</label>
