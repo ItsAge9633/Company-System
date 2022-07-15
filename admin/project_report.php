@@ -103,10 +103,10 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <form action="" method="post">
+                            <form action="" method="post" enctype="multipart/form-data">
                                 <center>
-                                    <input type="text" class="form-control" name="pid" id="" placeholder="Project ID"><br>
-                                    <input type="file" class="form-control" name="pdoc" id="" placeholder="Project Document"><br>
+                                    <input type="text" class="form-control" name="pid" id="pid" placeholder="Project ID"><br>
+                                    <input type="file" class="form-control" name="pdoc" id="pdoc" placeholder="Project Document"><br>
                                     <textarea class="form-control" id="descrip" name="descrip" rows="4"></textarea><br>
                                     <label for="access" class="form-control">Choose Access Permission</label>
                                     <select name="access" class="form-control" id="access">
@@ -123,14 +123,14 @@
                         <div class="col-md-6">
                             <form action="" method="post">
                                 <center>
-                                    <input type="text" class="form-control" name="pid" id="" placeholder="Project ID"><br>
+                                    <input type="text" class="form-control" name="upid" id="" placeholder="Project ID"><br>
                                     <label for="uaccess" class="form-control">Choose Access Permission</label>
                                     <select name="uaccess" class="form-control" id="uaccess">
                                         <option value="private">Private</option>
                                         <option value="public">Public</option>
                                     </select><br>
 
-                                    <input type="submit" name="prsubmit" style="font-size:20px" class="btn btn-outline-primary" value="Update">
+                                    <input type="submit" name="prupdate" style="font-size:20px" class="btn btn-outline-primary" value="Update">
                                 </center>
                                 <br>
                                 <br>
@@ -138,6 +138,44 @@
                         </div>
                     </div>
                 </div>
+
+                <?php
+
+                    if (isset($_POST['prsubmit'])){
+
+                        include '../imports/config.php';
+
+                        $pid=$_POST['pid'];
+                        //$pdoc=$_FILES['pdoc'];
+                        $descrip=$_POST['descrip'];
+                        $access=$_POST['access'];
+
+                        $fileName = basename($_FILES["pdoc"]["name"]); 
+                        $fileType = pathinfo($fileName, PATHINFO_EXTENSION); 
+                        
+                        // Allow certain file formats 
+                        $allowTypes = array('jpg','png','jpeg','gif','txt','pdf'); 
+                        if(in_array($fileType, $allowTypes)){ 
+                            $image = $_FILES['pdoc']['tmp_name']; 
+                            $pdoc = addslashes(file_get_contents($image)); 
+                        }
+
+                        $sql_query = "INSERT INTO reportt (pid,doct,descrip,accessp) VALUES ('$pid','$pdoc','$descrip','$access')";
+                        $records = mysqli_query($conn, $sql_query);
+
+                    }
+                    
+                    if (isset($_POST['prupdate'])){
+                        include '../imports/config.php';
+
+                        $pid=$_POST['upid'];
+                        $access=$_POST['uaccess'];
+
+                        $sql_query = "UPDATE reportt SET accessp='$access' WHERE pid='$pid'";
+                        $records = mysqli_query($conn, $sql_query);
+                    }
+
+                ?>
                 
             </section>
         </main>
