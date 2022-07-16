@@ -1,0 +1,27 @@
+Company Systems Workflow Mapping
+
+** Project Developed by, 
+	Sarvesh A. Mankar	- 194009
+	Gourav B. Suram	- 194028
+	Umer M. Shaikh	- 194032
+**
+
+** Recommended PHP Version: 7.6+ **
+
+
+Steps to run the project : 
+
+1. Download xampp : https://www.apachefriends.org/download.html
+
+2. Open Xampp and enable Apache, Mysql Services
+
+3. ** Create 2 database in phpmyadmin : (a) autoclick, (b) db1 **
+
+4. Import the databse file from Database folder
+
+5. ** URL : http://localhost/Company-System/ **
+
+6. Credentials : Admin login		- admin:admin@1234
+		     Employee Login	- cwit:Cwit@1234, Sarvesh:Sarvesh@1234, Gourav:Gourav@1234, Umer:Umer@1234
+
+
