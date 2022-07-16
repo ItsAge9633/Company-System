@@ -14,22 +14,22 @@ CWIT End Semester Project
 **
 ```
 
-- ** Recommended PHP Version: 7.6+ **
+``` ** Recommended PHP Version: 7.6+ ** ```
 
 
 ### Steps to run the project : 
 
-- 1. Download xampp : https://www.apachefriends.org/download.html
+- Download xampp : https://www.apachefriends.org/download.html
 
-- 2. Open Xampp and enable Apache, Mysql Services
+- Open Xampp and enable Apache, Mysql Services
 
-- 3. ** Create 2 database in phpmyadmin : (a) autoclick, (b) db1 **
+- ** Create 2 database in phpmyadmin : (a) autoclick, (b) db1 **
 
-- 4. Import the databse file from Database folder
+- Import the databse file from Database folder
 
-- 5. ** URL : http://localhost/Company-System/ **
+- ** URL : http://localhost/Company-System/ **
 
-- 6. Credentials : Admin login    - admin:admin@1234
+- Credentials : Admin login    - admin:admin@1234
 		        Employee Login  - cwit:Cwit@1234, Sarvesh:Sarvesh@1234, Gourav:Gourav@1234, Umer:Umer@1234
 
 
